@@ -88,7 +88,7 @@ export default function AboutPage() {
               <ul className="mt-6 space-y-3 text-zinc-400">
                 {[
                   "Customer-facing web apps and dashboards",
-                  "iOS and Android apps from a shared codebase",
+                  "Native and cross-platform mobile apps (iOS & Android)",
                   "Marketing sites and landing pages",
                   "Design systems and component libraries",
                   "Internal tools and admin panels",
@@ -106,20 +106,39 @@ export default function AboutPage() {
               <h2 className="text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
                 The stack
               </h2>
-              <ul className="mt-6 space-y-3 text-zinc-400">
+              <p className="mt-3 text-sm text-zinc-500">
+                We pick the right tool for the job — not the only one we know.
+              </p>
+              <div className="mt-6 space-y-5">
                 {[
-                  "Next.js and React for the web",
-                  "React Native for mobile",
-                  "TypeScript end to end",
-                  "Tailwind for styling",
-                  "Composable, API-first backends",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-violet-400" />
-                    {item}
-                  </li>
+                  {
+                    label: "Web",
+                    items: "Next.js, React, TypeScript, Tailwind CSS",
+                  },
+                  {
+                    label: "Mobile",
+                    items: "React Native, Flutter, Kotlin, Swift, Expo",
+                  },
+                  {
+                    label: "Backend",
+                    items: "Node.js, PostgreSQL, Prisma, Redis, tRPC",
+                  },
+                  {
+                    label: "Infra & tooling",
+                    items: "Vercel, Cloudflare, Docker, GitHub Actions",
+                  },
+                ].map((group) => (
+                  <div
+                    key={group.label}
+                    className="rounded-xl border border-white/10 bg-white/[0.02] p-4"
+                  >
+                    <p className="text-xs uppercase tracking-wider text-violet-400">
+                      {group.label}
+                    </p>
+                    <p className="mt-1.5 text-sm text-zinc-300">{group.items}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
             </Reveal>
           </div>

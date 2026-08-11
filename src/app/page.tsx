@@ -24,7 +24,7 @@ const services = [
   },
   {
     title: "Mobile apps",
-    body: "Cross-platform apps built around the moments your users actually reach for their phone.",
+    body: "Native and cross-platform apps in React Native, Flutter, and Kotlin — built around the moments your users reach for their phone.",
     icon: (
       <path
         d="M7 2h10v20H7zM11 18h2"

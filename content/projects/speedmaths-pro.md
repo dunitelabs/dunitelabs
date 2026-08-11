@@ -4,7 +4,7 @@ summary: "A speed-math practice app that turns mental calculation into a game yo
 category: "Mobile App"
 year: "2025"
 status: "almost-done"
-tags: ["React Native", "TypeScript", "Expo", "Animation", "Gamification"]
+tags: ["React Native", "Flutter", "TypeScript", "Animation", "Gamification"]
 featured: true
 ---
 
