@@ -1,4 +1,5 @@
 import { Container } from "@/components/Container";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function AboutPage() {
   return (
     <>
       <Container className="py-24">
+        <Reveal>
         <div className="max-w-3xl">
           <h1 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
             We build software people don&apos;t have to fight.
@@ -48,34 +50,37 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
+        </Reveal>
       </Container>
 
       <section className="border-t border-white/10 py-20">
         <Container>
+          <Reveal>
           <h2 className="text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
             How we work
           </h2>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          </Reveal>
+          <StaggerGroup className="mt-10 grid gap-4 sm:grid-cols-2">
             {principles.map((p) => (
-              <div
-                key={p.title}
-                className="rounded-2xl border border-white/10 bg-white/[0.02] p-6"
-              >
-                <h3 className="text-base font-semibold text-zinc-50">
-                  {p.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-                  {p.body}
-                </p>
-              </div>
+              <StaggerItem key={p.title}>
+                <div className="h-full rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+                  <h3 className="text-base font-semibold text-zinc-50">
+                    {p.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                    {p.body}
+                  </p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </Container>
       </section>
 
       <section className="border-t border-white/10 py-20">
         <Container>
           <div className="grid gap-12 sm:grid-cols-2">
+            <Reveal>
             <div>
               <h2 className="text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
                 What we build
@@ -95,6 +100,8 @@ export default function AboutPage() {
                 ))}
               </ul>
             </div>
+            </Reveal>
+            <Reveal delay={0.1}>
             <div>
               <h2 className="text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
                 The stack
@@ -114,6 +121,7 @@ export default function AboutPage() {
                 ))}
               </ul>
             </div>
+            </Reveal>
           </div>
         </Container>
       </section>

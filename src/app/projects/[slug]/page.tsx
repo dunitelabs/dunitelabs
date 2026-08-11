@@ -5,6 +5,7 @@ import {
   getAllProjects,
   getProjectBySlug,
   renderMarkdown,
+  STATUS_LABELS,
 } from "@/lib/projects";
 import type { Metadata } from "next";
 
@@ -68,9 +69,29 @@ export default async function ProjectPage({
       </Link>
 
       <header className="mt-8 max-w-3xl">
-        <div className="flex items-center gap-3 text-sm text-zinc-500">
+        <div className="flex flex-wrap items-center gap-3 text-sm text-zinc-500">
           <span className="rounded-full border border-white/10 px-2.5 py-0.5 text-zinc-400">
             {project.category}
+          </span>
+          <span
+            className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 ${
+              project.status === "live"
+                ? "border-emerald-400/30 text-emerald-300"
+                : project.status === "almost-done"
+                ? "border-amber-400/30 text-amber-300"
+                : "border-violet-400/30 text-violet-300"
+            }`}
+          >
+            <span
+              className={`h-1.5 w-1.5 rounded-full ${
+                project.status === "live"
+                  ? "bg-emerald-400"
+                  : project.status === "almost-done"
+                  ? "bg-amber-400"
+                  : "bg-violet-400"
+              }`}
+            />
+            {STATUS_LABELS[project.status]}
           </span>
           <span>{project.year}</span>
           {project.client ? <span>· {project.client}</span> : null}
@@ -81,6 +102,18 @@ export default async function ProjectPage({
         <p className="mt-4 text-lg leading-relaxed text-zinc-400">
           {project.summary}
         </p>
+        {project.tags.length > 0 ? (
+          <div className="mt-5 flex flex-wrap gap-1.5">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-md bg-white/5 px-2 py-0.5 text-xs text-zinc-400"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        ) : null}
         {project.url ? (
           <a
             href={project.url}

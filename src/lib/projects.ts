@@ -3,6 +3,8 @@ import path from "node:path";
 import matter from "gray-matter";
 import { marked } from "marked";
 
+export type ProjectStatus = "live" | "almost-done" | "in-development";
+
 export type ProjectMeta = {
   slug: string;
   title: string;
@@ -10,12 +12,21 @@ export type ProjectMeta = {
   category: string;
   year: string;
   client: string;
+  status: ProjectStatus;
+  tags: string[];
   url?: string;
+  repoUrl?: string;
   featured?: boolean;
 };
 
 export type Project = ProjectMeta & {
   content: string;
+};
+
+export const STATUS_LABELS: Record<ProjectStatus, string> = {
+  live: "Live",
+  "almost-done": "Almost done",
+  "in-development": "In development",
 };
 
 const projectsDirectory = path.join(process.cwd(), "content", "projects");
@@ -42,7 +53,10 @@ function parseProject(slug: string): Project | null {
     category: data.category ?? "Project",
     year: data.year ?? "",
     client: data.client ?? "",
+    status: (data.status as ProjectStatus) ?? "in-development",
+    tags: data.tags ?? [],
     url: data.url,
+    repoUrl: data.repoUrl,
     featured: data.featured ?? false,
     content,
   };

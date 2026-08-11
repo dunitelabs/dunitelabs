@@ -38,6 +38,10 @@ body {
   color: var(--foreground);
 }
 
+@media (pointer: fine) {
+  body { cursor: auto; }
+}
+
 /* Subtle grid / glow backdrop used on hero sections */
 .bg-grid {
   background-image:

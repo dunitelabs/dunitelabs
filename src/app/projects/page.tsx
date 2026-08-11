@@ -1,5 +1,6 @@
 import { Container } from "@/components/Container";
 import { ProjectCard } from "@/components/ProjectCard";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { getAllProjects } from "@/lib/projects";
 import type { Metadata } from "next";
 
@@ -14,6 +15,7 @@ export default function ProjectsPage() {
 
   return (
     <Container className="py-24">
+      <Reveal>
       <div className="max-w-2xl">
         <h1 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
           Projects
@@ -23,11 +25,14 @@ export default function ProjectsPage() {
           started with a question about the people using it.
         </p>
       </div>
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      </Reveal>
+      <StaggerGroup className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
+          <StaggerItem key={project.slug}>
+            <ProjectCard project={project} />
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerGroup>
     </Container>
   );
 }
