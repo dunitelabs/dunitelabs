@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Container } from "./Container";
 
@@ -21,15 +22,15 @@ export function Header() {
           href="/"
           className="flex items-center gap-2 text-sm font-semibold tracking-tight text-zinc-50"
         >
-          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-violet-500 text-zinc-950">
-            <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" aria-hidden="true">
-              <path
-                d="M2 8L8 2L14 8L8 14L2 8Z"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinejoin="round"
-              />
-            </svg>
+          <span className="relative h-8 w-8 overflow-hidden rounded-lg">
+            <Image
+              src="/logo.png"
+              alt="dunitelabs logo"
+              fill
+              sizes="32px"
+              className="object-cover"
+              priority
+            />
           </span>
           dunitelabs
         </Link>

@@ -29,10 +29,10 @@ export default function ContactPage() {
           <div className="h-full rounded-2xl border border-white/10 bg-white/[0.02] p-6">
             <p className="text-xs uppercase tracking-wider text-zinc-500">Email</p>
             <a
-              href="mailto:hello@dunitelabs.com"
+              href="mailto:dunitelabs.support@gmail.com"
               className="mt-2 block text-base font-medium text-zinc-50 hover:text-violet-300"
             >
-              hello@dunitelabs.com
+              dunitelabs.support@gmail.com
             </a>
           </div>
         </StaggerItem>
@@ -61,7 +61,7 @@ export default function ContactPage() {
       <Reveal>
       <div className="mt-12">
         <a
-          href="mailto:hello@dunitelabs.com"
+          href="mailto:dunitelabs.support@gmail.com"
           className="inline-flex h-12 items-center justify-center rounded-full bg-violet-500 px-6 text-sm font-medium text-zinc-950 transition-colors hover:bg-violet-400"
         >
           Email us →
