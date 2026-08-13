@@ -138,6 +138,28 @@ export default async function ProjectPage({
             </svg>
           </a>
         ) : null}
+        {slug === "speedmaths-pro" ? (
+          <Link
+            href="/speedmathspro/privacy-policy"
+            className="mt-3 inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-zinc-200"
+          >
+            Privacy Policy
+            <svg
+              className="h-3.5 w-3.5"
+              viewBox="0 0 16 16"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M6 3.5L10.5 8L6 12.5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Link>
+        ) : null}
       </header>
 
       <article
