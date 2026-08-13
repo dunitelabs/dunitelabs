@@ -1,6 +1,7 @@
+import type { Metadata } from "next";
 import { Container } from "@/components/Container";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
-import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy · SpeedMaths Pro",
@@ -27,9 +28,7 @@ const sections = [
   {
     id: "how-we-use-it",
     heading: "How the app uses it",
-    body: [
-      "Your data is used only to run SpeedMaths Pro:",
-    ],
+    body: ["Your data is used only to run SpeedMaths Pro:"],
     bullets: [
       "Display your score and display name on the daily and weekly leaderboards.",
       "Compute your streaks, badges, and personal progress.",
@@ -39,9 +38,7 @@ const sections = [
   {
     id: "what-we-dont-do",
     heading: "What the app doesn’t do",
-    body: [
-      "A few things you should be able to take for granted:",
-    ],
+    body: ["A few things you should be able to take for granted:"],
     bullets: [
       "SpeedMaths Pro never sells your data, in any form.",
       "It never shares your data with advertisers or advertising networks — the app contains no advertising at all.",
@@ -62,9 +59,7 @@ const sections = [
   {
     id: "your-choices",
     heading: "Your choices",
-    body: [
-      "You’re in control of your data at every step:",
-    ],
+    body: ["You’re in control of your data at every step:"],
     bullets: [
       "Use the app without ever appearing on the leaderboard — practice mode works entirely offline and anonymously.",
       "Clear all local data at any time by uninstalling the app.",
@@ -94,22 +89,43 @@ const sections = [
   },
 ];
 
-export default function PrivacyPage() {
+export default function PrivacyPolicyPage() {
   return (
     <Container className="py-24">
       <Reveal>
         <div className="max-w-3xl">
-          <p className="text-sm uppercase tracking-wider text-violet-400">
+          <Link
+            href="/projects/speedmaths-pro"
+            className="inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-zinc-200"
+          >
+            <svg
+              className="h-3.5 w-3.5"
+              viewBox="0 0 16 16"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M10 3.5L5.5 8L10 12.5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Back to SpeedMaths Pro
+          </Link>
+          <p className="mt-6 text-sm uppercase tracking-wider text-violet-400">
             SpeedMaths Pro
           </p>
           <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
             Privacy Policy
           </h1>
           <p className="mt-4 text-lg leading-relaxed text-zinc-400">
-            This policy covers the SpeedMaths Pro app only. It explains what data
-            the app collects, why it collects it, and the choices you have. The
-            short version: SpeedMaths Pro is anonymous and local-first, keeps your
-            practice data on your device by default, and never sells it.
+            This policy covers the SpeedMaths Pro app only. It explains what
+            data the app collects, why it collects it, and the choices you have.
+            The short version: SpeedMaths Pro is anonymous and local-first,
+            keeps your practice data on your device by default, and never sells
+            it.
           </p>
           <p className="mt-4 text-sm text-zinc-500">Last updated: {lastUpdated}</p>
         </div>
@@ -162,7 +178,15 @@ export default function PrivacyPage() {
               >
                 dunitelabs.support@gmail.com
               </a>
-              , and you'll get a response within a few business days.
+              , and you'll get a response within a few business days. You can
+              also request data deletion from the{" "}
+              <Link
+                href="/projects/speedmaths-pro/delete-data"
+                className="font-medium text-violet-300 hover:text-violet-200"
+              >
+                Delete your data
+              </Link>{" "}
+              page.
             </p>
           </div>
         </StaggerItem>
