@@ -4,15 +4,15 @@ import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 const codeLines = [
-  { text: "// usability-first, shipped with care", color: "text-zinc-500" },
-  { text: "import { build } from '@dunitelabs/core'", color: "text-violet-300" },
+  { text: "// usability-first, shipped with care", color: "text-muted-soft" },
+  { text: "import { build } from '@dunitelabs/core'", color: "text-accent" },
   { text: "", color: "" },
-  { text: "export const product = build({", color: "text-zinc-200" },
-  { text: "  fast: true,", color: "text-emerald-300" },
-  { text: "  accessible: 'WCAG-AA',", color: "text-emerald-300" },
-  { text: "  stack: ['Next.js', 'React Native'],", color: "text-amber-300" },
-  { text: "  goal: 'interfaces people love to use',", color: "text-fuchsia-300" },
-  { text: "})", color: "text-zinc-200" },
+  { text: "export const product = build({", color: "text-ink" },
+  { text: "  fast: true,", color: "text-emerald-600" },
+  { text: "  accessible: 'WCAG-AA',", color: "text-emerald-600" },
+  { text: "  stack: ['Next.js', 'React Native'],", color: "text-amber-600" },
+  { text: "  goal: 'interfaces people love to use',", color: "text-fuchsia-600" },
+  { text: "})", color: "text-ink" },
 ];
 
 export function CodeTerminal() {
@@ -53,20 +53,20 @@ export function CodeTerminal() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/80 shadow-2xl shadow-violet-950/30"
+      className="overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_8px_rgba(0,0,0,0.04),0_12px_32px_rgba(0,0,0,0.06)]"
     >
       {/* Title bar */}
-      <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-        <span className="h-3 w-3 rounded-full bg-red-400/80" />
-        <span className="h-3 w-3 rounded-full bg-amber-400/80" />
-        <span className="h-3 w-3 rounded-full bg-emerald-400/80" />
-        <span className="ml-3 font-mono text-xs text-zinc-500">
+      <div className="flex items-center gap-2 border-b border-line bg-paper-alt px-4 py-3">
+        <span className="h-3 w-3 rounded-full bg-red-400" />
+        <span className="h-3 w-3 rounded-full bg-amber-400" />
+        <span className="h-3 w-3 rounded-full bg-emerald-400" />
+        <span className="ml-3 font-mono text-xs text-muted-soft">
           dunitelabs/build.ts
         </span>
       </div>
 
       {/* Code */}
-      <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-relaxed">
+      <pre className="overflow-x-auto bg-white p-5 font-mono text-[13px] leading-relaxed">
         <code>
           {codeLines.slice(0, visibleLines).map((line, i) => (
             <div key={i} className={line.color}>
@@ -76,7 +76,7 @@ export function CodeTerminal() {
           {visibleLines < codeLines.length && (
             <div className={codeLines[visibleLines].color}>
               {typed}
-              <span className="ml-0.5 inline-block h-3.5 w-2 animate-pulse bg-violet-400 align-middle" />
+              <span className="ml-0.5 inline-block h-3.5 w-2 animate-pulse bg-accent align-middle" />
             </div>
           )}
         </code>

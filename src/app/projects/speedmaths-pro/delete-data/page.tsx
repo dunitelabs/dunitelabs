@@ -50,7 +50,7 @@ export default function DeleteDataPage() {
         <div className="max-w-3xl">
           <Link
             href="/projects/speedmaths-pro"
-            className="inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-zinc-200"
+            className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-ink"
           >
             <svg
               className="h-3.5 w-3.5"
@@ -68,42 +68,42 @@ export default function DeleteDataPage() {
             </svg>
             Back to SpeedMaths Pro
           </Link>
-          <p className="mt-6 text-sm uppercase tracking-wider text-violet-400">
+          <p className="mt-6 text-sm uppercase tracking-wider text-accent">
             SpeedMaths Pro
           </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
+          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
             Delete your data
           </h1>
-          <p className="mt-4 text-lg leading-relaxed text-zinc-400">
+          <p className="mt-4 text-lg leading-relaxed text-muted">
             SpeedMaths Pro is built to be anonymous and local-first. You can
             request deletion of your leaderboard data at any time — no account,
             no login, no questions asked.
           </p>
-          <p className="mt-4 text-sm text-zinc-500">Last updated: {lastUpdated}</p>
+          <p className="mt-4 text-sm text-muted-soft">Last updated: {lastUpdated}</p>
         </div>
       </Reveal>
 
       <StaggerGroup className="mt-12 grid gap-4">
         <StaggerItem>
-          <div className="rounded-2xl border border-violet-400/20 bg-violet-500/[0.04] p-6 sm:p-8">
-            <h2 className="text-xl font-semibold tracking-tight text-zinc-50">
+          <div className="rounded-2xl border border-accent/20 bg-accent-soft p-6 sm:p-8">
+            <h2 className="text-xl font-semibold tracking-tight text-ink">
               What we can delete from our servers
             </h2>
             <ul className="mt-4 space-y-2">
               {deletableData.map((item, i) => (
                 <li
                   key={i}
-                  className="flex gap-3 leading-relaxed text-zinc-400"
+                  className="flex gap-3 leading-relaxed text-muted"
                 >
                   <span
                     aria-hidden="true"
-                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400"
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
                   />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-sm leading-relaxed text-zinc-500">
+            <p className="mt-4 text-sm leading-relaxed text-muted-soft">
               Leaderboard scores are also automatically removed on a rolling
               basis, typically within 7 to 14 days of being submitted.
             </p>
@@ -111,11 +111,11 @@ export default function DeleteDataPage() {
         </StaggerItem>
 
         <StaggerItem>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
-            <h2 className="text-xl font-semibold tracking-tight text-zinc-50">
+          <div className="rounded-2xl border border-line bg-white p-6 shadow-sm sm:p-8">
+            <h2 className="text-xl font-semibold tracking-tight text-ink">
               What about local data?
             </h2>
-            <p className="mt-4 leading-relaxed text-zinc-400">
+            <p className="mt-4 leading-relaxed text-muted">
               The following data is stored only on your device and never leaves
               it. The simplest way to delete this data is to uninstall SpeedMaths
               Pro — all local data is removed with the app:
@@ -124,11 +124,11 @@ export default function DeleteDataPage() {
               {localData.map((item, i) => (
                 <li
                   key={i}
-                  className="flex gap-3 leading-relaxed text-zinc-400"
+                  className="flex gap-3 leading-relaxed text-muted"
                 >
                   <span
                     aria-hidden="true"
-                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400"
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
                   />
                   <span>{item}</span>
                 </li>
@@ -138,8 +138,8 @@ export default function DeleteDataPage() {
         </StaggerItem>
 
         <StaggerItem>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
-            <h2 className="text-xl font-semibold tracking-tight text-zinc-50">
+          <div className="rounded-2xl border border-line bg-white p-6 shadow-sm sm:p-8">
+            <h2 className="text-xl font-semibold tracking-tight text-ink">
               How to request deletion
             </h2>
             <ol className="mt-4 space-y-6">
@@ -147,23 +147,23 @@ export default function DeleteDataPage() {
                 <li key={i} className="flex gap-4">
                   <span
                     aria-hidden="true"
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-semibold text-violet-300"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent-soft text-sm font-semibold text-accent"
                   >
                     {i + 1}
                   </span>
                   <div>
-                    <p className="font-medium text-zinc-100">{step.title}</p>
-                    <p className="mt-1 leading-relaxed text-zinc-400">{step.body}</p>
+                    <p className="font-medium text-ink">{step.title}</p>
+                    <p className="mt-1 leading-relaxed text-muted">{step.body}</p>
                   </div>
                 </li>
               ))}
             </ol>
-            <div className="mt-8 rounded-xl border border-violet-400/20 bg-violet-500/[0.04] p-5">
+            <div className="mt-8 rounded-xl border border-accent/20 bg-accent-soft p-5">
               <a
                 href={`mailto:${DELETION_EMAIL}?subject=${encodeURIComponent(
                   DELETION_SUBJECT,
                 )}&body=${encodeURIComponent(DELETION_BODY)}`}
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-violet-300 hover:text-violet-200"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:text-accent-strong"
               >
                 Email to delete your data
                 <svg
@@ -181,9 +181,9 @@ export default function DeleteDataPage() {
                   />
                 </svg>
               </a>
-              <p className="mt-3 text-sm text-zinc-500">
+              <p className="mt-3 text-sm text-muted-soft">
                 Or email{" "}
-                <span className="text-zinc-400">{DELETION_EMAIL}</span> directly.
+                <span className="font-medium text-muted">{DELETION_EMAIL}</span> directly.
                 No account details are required — just mention SpeedMaths Pro.
               </p>
             </div>

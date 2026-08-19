@@ -96,7 +96,7 @@ export default function PrivacyPolicyPage() {
         <div className="max-w-3xl">
           <Link
             href="/projects/speedmaths-pro"
-            className="inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-zinc-200"
+            className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-ink"
           >
             <svg
               className="h-3.5 w-3.5"
@@ -114,20 +114,20 @@ export default function PrivacyPolicyPage() {
             </svg>
             Back to SpeedMaths Pro
           </Link>
-          <p className="mt-6 text-sm uppercase tracking-wider text-violet-400">
+          <p className="mt-6 text-sm uppercase tracking-wider text-accent">
             SpeedMaths Pro
           </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
+          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
             Privacy Policy
           </h1>
-          <p className="mt-4 text-lg leading-relaxed text-zinc-400">
+          <p className="mt-4 text-lg leading-relaxed text-muted">
             This policy covers the SpeedMaths Pro app only. It explains what
             data the app collects, why it collects it, and the choices you have.
             The short version: SpeedMaths Pro is anonymous and local-first,
             keeps your practice data on your device by default, and never sells
             it.
           </p>
-          <p className="mt-4 text-sm text-zinc-500">Last updated: {lastUpdated}</p>
+          <p className="mt-4 text-sm text-muted-soft">Last updated: {lastUpdated}</p>
         </div>
       </Reveal>
 
@@ -136,14 +136,14 @@ export default function PrivacyPolicyPage() {
           <StaggerItem key={section.id}>
             <section
               id={section.id}
-              className="scroll-mt-24 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8"
+              className="scroll-mt-24 rounded-2xl border border-line bg-white p-6 shadow-sm sm:p-8"
             >
-              <h2 className="text-xl font-semibold tracking-tight text-zinc-50">
+              <h2 className="text-xl font-semibold tracking-tight text-ink">
                 {section.heading}
               </h2>
               <div className="mt-4 space-y-4">
                 {section.body.map((paragraph, i) => (
-                  <p key={i} className="leading-relaxed text-zinc-400">
+                  <p key={i} className="leading-relaxed text-muted">
                     {paragraph}
                   </p>
                 ))}
@@ -152,11 +152,11 @@ export default function PrivacyPolicyPage() {
                     {section.bullets.map((item, i) => (
                       <li
                         key={i}
-                        className="flex gap-3 leading-relaxed text-zinc-400"
+                        className="flex gap-3 leading-relaxed text-muted"
                       >
                         <span
                           aria-hidden="true"
-                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400"
+                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
                         />
                         <span>{item}</span>
                       </li>
@@ -169,20 +169,20 @@ export default function PrivacyPolicyPage() {
         ))}
 
         <StaggerItem>
-          <div className="rounded-2xl border border-violet-400/20 bg-violet-500/[0.04] p-6 sm:p-8">
-            <p className="text-sm text-zinc-400">
+          <div className="rounded-2xl border border-accent/20 bg-accent-soft p-6 sm:p-8">
+            <p className="text-sm text-muted">
               Questions about your data in SpeedMaths Pro? Email the developer,{" "}
               <a
                 href="mailto:dunitelabs.support@gmail.com"
-                className="font-medium text-violet-300 hover:text-violet-200"
+                className="font-medium text-accent hover:text-accent-strong"
               >
                 dunitelabs.support@gmail.com
               </a>
-              , and you'll get a response within a few business days. You can
+              , and you&apos;ll get a response within a few business days. You can
               also request data deletion from the{" "}
               <Link
                 href="/projects/speedmaths-pro/delete-data"
-                className="font-medium text-violet-300 hover:text-violet-200"
+                className="font-medium text-accent hover:text-accent-strong"
               >
                 Delete your data
               </Link>{" "}

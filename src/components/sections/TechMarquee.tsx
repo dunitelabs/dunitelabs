@@ -31,19 +31,19 @@ export function TechMarquee() {
   const repeated = [...tech, ...tech];
 
   return (
-    <div className="relative overflow-hidden border-y border-white/10 py-8">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-zinc-950 to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-zinc-950 to-transparent" />
+    <div className="relative overflow-hidden border-y border-line bg-paper py-5">
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-paper to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-paper to-transparent" />
 
       <motion.div
         className="flex w-max gap-3"
         animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
       >
         {repeated.map((t, i) => (
           <span
             key={`${t}-${i}`}
-            className="whitespace-nowrap rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-sm text-zinc-400"
+            className="whitespace-nowrap rounded-full border border-line bg-paper-alt px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-ink"
           >
             {t}
           </span>

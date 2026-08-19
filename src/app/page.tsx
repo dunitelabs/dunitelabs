@@ -1,98 +1,57 @@
 import Link from "next/link";
 import { Container } from "@/components/Container";
-import { ProjectCard } from "@/components/ProjectCard";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { Hero } from "@/components/sections/Hero";
 import { TechMarquee } from "@/components/sections/TechMarquee";
-import { CodeTerminal } from "@/components/sections/CodeTerminal";
+import { Lookbook } from "@/components/sections/Lookbook";
 import { StatsCounter } from "@/components/sections/StatsCounter";
-import { getFeaturedProjects } from "@/lib/projects";
 
 const services = [
   {
+    no: "01",
     title: "Web apps",
-    body: "Dashboards, internal tools, and customer-facing platforms that stay fast as they grow.",
-    icon: (
-      <path
-        d="M3 5h18v10H3zM3 19h18M9 15v4M15 15v4"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    ),
+    body: "Dashboards, internal tools, and customer platforms that stay fast as they grow.",
   },
   {
+    no: "02",
     title: "Mobile apps",
-    body: "Native and cross-platform apps in React Native, Flutter, and Kotlin — built around the moments your users reach for their phone.",
-    icon: (
-      <path
-        d="M7 2h10v20H7zM11 18h2"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    ),
+    body: "Native and cross-platform apps in React Native, Flutter, and Kotlin — built around real moments.",
   },
   {
+    no: "03",
     title: "Websites",
     body: "Marketing sites and landing pages engineered to load instantly and convert.",
-    icon: (
-      <path
-        d="M3 12h18M3 12l5-5M3 12l5 5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    ),
   },
 ];
 
 export default function Home() {
-  const featured = getFeaturedProjects();
-
   return (
     <>
       <Hero />
 
       <TechMarquee />
 
-      {/* Services */}
-      <section className="border-b border-white/10 py-24">
+      {/* Services — editorial index */}
+      <section className="border-b border-line py-24">
         <Container>
           <Reveal>
-            <div className="max-w-2xl">
-              <p className="text-sm font-medium text-violet-400">What we do</p>
-              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
-                From a first landing page to a full platform
-              </h2>
-              <p className="mt-3 text-zinc-400">
-                We build the thing you need — and make sure it&apos;s a pleasure
-                to use.
-              </p>
-            </div>
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">
+              What we do
+            </p>
+            <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight text-ink sm:text-6xl">
+              Three ways we build
+            </h2>
           </Reveal>
 
-          <StaggerGroup className="mt-12 grid gap-4 sm:grid-cols-3">
+          <StaggerGroup className="mt-12 divide-y divide-line border-y border-line">
             {services.map((s) => (
-              <StaggerItem key={s.title}>
-                <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-violet-400/40 hover:bg-white/[0.04]">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-violet-500/10 text-violet-300 transition-transform group-hover:scale-110">
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="h-5 w-5"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      {s.icon}
-                    </svg>
-                  </span>
-                  <h3 className="mt-5 text-base font-semibold text-zinc-50">
+              <StaggerItem key={s.no}>
+                <div className="group grid items-baseline gap-4 py-8 transition-colors hover:bg-paper-alt/40 sm:grid-cols-[120px_1fr_1.2fr]">
+                  <span className="font-mono text-sm text-accent">{s.no}</span>
+                  <h3 className="font-display text-3xl font-semibold tracking-tight text-ink transition-colors group-hover:text-accent sm:text-4xl">
                     {s.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                  <p className="font-mono text-sm leading-relaxed text-muted">
                     {s.body}
                   </p>
                 </div>
@@ -102,110 +61,45 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Engineering showcase */}
-      <section className="border-b border-white/10 py-24">
+      {/* The Collection — lookbook */}
+      <Lookbook />
+
+      {/* Manifesto */}
+      <section className="border-y border-line bg-ink py-28 text-paper">
         <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <Reveal>
-              <div>
-                <p className="text-sm font-medium text-violet-400">
-                  How we code
-                </p>
-                <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
-                  Engineering you can read
-                </h2>
-                <p className="mt-4 leading-relaxed text-zinc-400">
-                  We treat code like a product, not a byproduct. Strictly typed,
-                  well-named, and commented where it earns its keep. The kind of
-                  codebase your next engineer can open and feel at home in.
-                </p>
-                <ul className="mt-6 space-y-3">
-                  {[
-                    "TypeScript end to end, no anys hiding in corners",
-                    "Component-driven design systems",
-                    "Performance budgets kept, not just promised",
-                    "Accessible by default, not as a retrofit",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-zinc-300">
-                      <span className="mt-1 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-violet-500/20 text-violet-300">
-                        <svg viewBox="0 0 16 16" className="h-2.5 w-2.5" fill="none" aria-hidden="true">
-                          <path d="M3.5 8.5l3 3 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-            <CodeTerminal />
-          </div>
+          <Reveal>
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">
+              Manifesto
+            </p>
+            <p className="mt-8 max-w-4xl font-display text-3xl font-medium leading-[1.2] tracking-tight sm:text-5xl">
+              We treat software like a craft, not a commodity. Small team, sharp
+              opinions, and an unreasonable amount of care for the details most
+              people never notice —{" "}
+              <span className="italic text-accent">until they&apos;re missing.</span>
+            </p>
+          </Reveal>
         </Container>
       </section>
 
       <StatsCounter />
 
-      {/* Featured projects */}
-      <section className="py-24">
-        <Container>
-          <Reveal>
-            <div className="flex items-end justify-between">
-              <div className="max-w-2xl">
-                <p className="text-sm font-medium text-violet-400">
-                  Selected work
-                </p>
-                <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
-                  Products we&apos;ve shipped
-                </h2>
-                <p className="mt-3 text-zinc-400">
-                  A few of the things we&apos;re building right now.
-                </p>
-              </div>
-              <Link
-                href="/projects"
-                className="hidden text-sm font-medium text-violet-400 hover:text-violet-300 sm:inline"
-              >
-                All projects →
-              </Link>
-            </div>
-          </Reveal>
-
-          <StaggerGroup className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {featured.map((project) => (
-              <StaggerItem key={project.slug}>
-                <ProjectCard project={project} />
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-
-          <Reveal className="mt-8 sm:hidden">
-            <Link
-              href="/projects"
-              className="text-sm font-medium text-violet-400 hover:text-violet-300"
-            >
-              All projects →
-            </Link>
-          </Reveal>
-        </Container>
-      </section>
-
       {/* CTA */}
-      <section className="border-t border-white/10 py-24">
+      <section className="py-28">
         <Container>
           <Reveal>
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-violet-500/10 via-zinc-950 to-zinc-950 px-8 py-16 text-center sm:px-16">
-              <div className="bg-grid pointer-events-none absolute inset-0 opacity-40" />
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-line bg-paper-alt px-8 py-16 text-center sm:px-16">
               <div className="relative">
-                <h2 className="text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
+                <h2 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-6xl">
                   Have something to build?
                 </h2>
-                <p className="mx-auto mt-3 max-w-md text-zinc-400">
+                <p className="mx-auto mt-4 max-w-md font-mono text-sm leading-relaxed text-muted">
                   Tell us what you&apos;re trying to make. We&apos;ll help you
-                  shape it into something usable.
+                  shape it into something worth using.
                 </p>
                 <Link
                   href="/contact"
-                  className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-violet-500 px-6 text-sm font-medium text-zinc-950 transition-colors hover:bg-violet-400"
+                  data-cursor-label="Start"
+                  className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-accent px-7 font-mono text-xs uppercase tracking-widest text-paper transition-colors hover:bg-accent-strong"
                 >
                   Start a project
                 </Link>

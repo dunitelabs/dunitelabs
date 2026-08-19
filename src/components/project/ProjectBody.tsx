@@ -31,10 +31,10 @@ export function ProjectSection({
 }) {
   return (
     <section className="mt-10 first:mt-0">
-      <h2 className="text-xl font-semibold tracking-tight text-zinc-50">
+      <h2 className="font-display text-2xl font-semibold tracking-tight text-ink">
         {heading}
       </h2>
-      <div className="mt-4 space-y-4 text-zinc-400">{children}</div>
+      <div className="mt-4 space-y-4 text-muted">{children}</div>
     </section>
   );
 }
@@ -50,7 +50,7 @@ export function ProjectBulletList({ items }: { items: string[] }) {
         <li key={i} className="flex gap-3 leading-relaxed">
           <span
             aria-hidden="true"
-            className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400"
+            className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
           />
           <span>{item}</span>
         </li>

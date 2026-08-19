@@ -37,16 +37,17 @@ export function MagneticButton({
   }
 
   const base =
-    "inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-medium transition-colors";
+    "inline-flex h-12 items-center justify-center rounded-full px-6 font-mono text-xs uppercase tracking-widest transition-colors";
   const styles =
     variant === "primary"
-      ? "bg-violet-500 text-zinc-950 hover:bg-violet-400"
-      : "border border-white/15 text-zinc-100 hover:border-white/30 hover:bg-white/5";
+      ? "bg-accent text-paper hover:bg-accent-strong"
+      : "border border-line text-ink hover:border-ink hover:bg-paper-alt";
 
   return (
     <motion.a
       ref={ref}
       href={href}
+      data-cursor-label="Go"
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       style={{ x: springX, y: springY }}

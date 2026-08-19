@@ -37,29 +37,29 @@ const stats = [
 
 export function StatsCounter() {
   return (
-    <section className="border-b border-white/10 py-20">
+    <section className="border-b border-line bg-paper py-20">
       <Container>
         <Reveal>
           <div className="max-w-2xl">
-            <p className="text-sm font-medium text-violet-400">
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">
               By the numbers
             </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
               Standards we hold ourselves to
             </h2>
           </div>
         </Reveal>
-        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s) => (
-            <Reveal key={s.label} className="bg-zinc-950 p-6">
-              <div className="flex items-baseline gap-0.5 text-4xl font-semibold tracking-tight text-zinc-50">
+            <Reveal key={s.label} className="bg-paper p-6">
+              <div className="flex items-baseline gap-0.5 font-display text-5xl font-semibold tracking-tight text-ink">
                 <AnimatedCounter value={s.value} format={s.format} />
-                <span className="text-violet-400">{s.suffix}</span>
+                <span className="text-accent">{s.suffix}</span>
               </div>
-              <p className="mt-3 text-sm font-medium text-zinc-200">
+              <p className="mt-3 text-sm font-medium text-ink">
                 {s.label}
               </p>
-              <p className="mt-1 text-xs text-zinc-500">{s.sub}</p>
+              <p className="mt-1 text-xs text-muted-soft">{s.sub}</p>
             </Reveal>
           ))}
         </div>
