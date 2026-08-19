@@ -30,18 +30,15 @@ export function MagneticButton({
     x.set(relX * 0.25);
     y.set(relY * 0.25);
   }
-
   function handleLeave() {
     x.set(0);
     y.set(0);
   }
 
   const base =
-    "inline-flex h-12 items-center justify-center rounded-full px-6 font-mono text-xs uppercase tracking-widest transition-colors";
+    "brutal inline-flex h-12 items-center justify-center rounded-xl px-6 font-mono text-xs uppercase tracking-widest transition-colors";
   const styles =
-    variant === "primary"
-      ? "bg-accent text-paper hover:bg-accent-strong"
-      : "border border-line text-ink hover:border-ink hover:bg-paper-alt";
+    variant === "primary" ? "bg-ink text-paper" : "bg-paper text-ink";
 
   return (
     <motion.a

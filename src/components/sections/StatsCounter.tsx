@@ -37,29 +37,29 @@ const stats = [
 
 export function StatsCounter() {
   return (
-    <section className="border-b border-line bg-paper py-20">
+    <section className="border-b-2 border-ink bg-paper py-20">
       <Container>
         <Reveal>
           <div className="max-w-2xl">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">
-              By the numbers
-            </p>
+            <p className="marker">By the numbers</p>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
               Standards we hold ourselves to
             </h2>
           </div>
         </Reveal>
-        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s) => (
-            <Reveal key={s.label} className="bg-paper p-6">
-              <div className="flex items-baseline gap-0.5 font-display text-5xl font-semibold tracking-tight text-ink">
-                <AnimatedCounter value={s.value} format={s.format} />
-                <span className="text-accent">{s.suffix}</span>
+            <Reveal key={s.label}>
+              <div className="brutal h-full rounded-2xl bg-paper p-6">
+                <div className="flex items-baseline gap-0.5 font-display text-5xl font-semibold tracking-tight text-ink">
+                  <AnimatedCounter value={s.value} format={s.format} />
+                  <span className="text-accent">{s.suffix}</span>
+                </div>
+                <p className="mt-3 text-sm font-medium text-ink">
+                  {s.label}
+                </p>
+                <p className="mt-1 text-xs text-muted-soft">{s.sub}</p>
               </div>
-              <p className="mt-3 text-sm font-medium text-ink">
-                {s.label}
-              </p>
-              <p className="mt-1 text-xs text-muted-soft">{s.sub}</p>
             </Reveal>
           ))}
         </div>

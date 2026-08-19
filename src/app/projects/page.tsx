@@ -17,7 +17,7 @@ export default function ProjectsPage() {
     <Container className="py-24">
       <Reveal>
         <div className="max-w-2xl">
-          <h1 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
             Projects
           </h1>
           <p className="mt-4 text-muted">
@@ -26,7 +26,7 @@ export default function ProjectsPage() {
           </p>
         </div>
       </Reveal>
-      <StaggerGroup className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <StaggerItem key={project.slug}>
             <ProjectCard project={project} />

@@ -136,7 +136,7 @@ export default function PrivacyPolicyPage() {
           <StaggerItem key={section.id}>
             <section
               id={section.id}
-              className="scroll-mt-24 rounded-2xl border border-line bg-white p-6 shadow-sm sm:p-8"
+              className="scroll-mt-24 brutal rounded-2xl bg-paper p-6 sm:p-8"
             >
               <h2 className="text-xl font-semibold tracking-tight text-ink">
                 {section.heading}

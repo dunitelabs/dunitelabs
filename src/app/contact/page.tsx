@@ -13,7 +13,7 @@ export default function ContactPage() {
     <Container className="py-24">
       <Reveal>
         <div className="max-w-2xl">
-          <h1 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
             Let&apos;s build something
           </h1>
           <p className="mt-4 text-lg leading-relaxed text-muted">
@@ -24,9 +24,9 @@ export default function ContactPage() {
         </div>
       </Reveal>
 
-      <StaggerGroup className="mt-12 grid gap-4 sm:grid-cols-3">
+      <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-3">
         <StaggerItem>
-          <div className="h-full rounded-2xl border border-line bg-white p-6 shadow-sm">
+          <div className="brutal h-full rounded-2xl bg-paper p-6">
             <p className="text-xs uppercase tracking-wider text-muted-soft">Email</p>
             <a
               href="mailto:dunitelabs.support@gmail.com"
@@ -37,7 +37,7 @@ export default function ContactPage() {
           </div>
         </StaggerItem>
         <StaggerItem>
-          <div className="h-full rounded-2xl border border-line bg-white p-6 shadow-sm">
+          <div className="brutal h-full rounded-2xl bg-paper p-6">
             <p className="text-xs uppercase tracking-wider text-muted-soft">
               Response time
             </p>
@@ -47,7 +47,7 @@ export default function ContactPage() {
           </div>
         </StaggerItem>
         <StaggerItem>
-          <div className="h-full rounded-2xl border border-line bg-white p-6 shadow-sm">
+          <div className="brutal h-full rounded-2xl bg-paper p-6">
             <p className="text-xs uppercase tracking-wider text-muted-soft">
               Availability
             </p>
@@ -62,7 +62,8 @@ export default function ContactPage() {
         <div className="mt-12">
           <a
             href="mailto:dunitelabs.support@gmail.com"
-            className="inline-flex h-12 items-center justify-center rounded-full bg-accent px-6 text-sm font-medium text-white transition-colors hover:bg-accent-strong"
+            data-cursor-label="Email"
+            className="brutal inline-flex h-12 items-center justify-center rounded-xl bg-accent px-6 font-mono text-xs uppercase tracking-widest text-paper transition-colors hover:bg-accent-strong"
           >
             Email us →
           </a>

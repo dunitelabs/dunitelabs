@@ -33,7 +33,7 @@ export default function AboutPage() {
       <Container className="py-24">
         <Reveal>
           <div className="max-w-3xl">
-            <h1 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+            <h1 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
               We build software people don&apos;t have to fight.
             </h1>
             <div className="mt-6 space-y-5 text-lg leading-relaxed text-muted">
@@ -53,18 +53,18 @@ export default function AboutPage() {
         </Reveal>
       </Container>
 
-      <section className="border-t border-line bg-paper-alt py-20">
+      <section className="border-t-2 border-ink bg-paper-alt py-20">
         <Container>
           <Reveal>
-            <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+            <h2 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
               How we work
             </h2>
           </Reveal>
-          <StaggerGroup className="mt-10 grid gap-4 sm:grid-cols-2">
+          <StaggerGroup className="mt-10 grid gap-6 sm:grid-cols-2">
             {principles.map((p) => (
               <StaggerItem key={p.title}>
-                <div className="h-full rounded-2xl border border-line bg-white p-6 shadow-sm">
-                  <h3 className="text-base font-semibold text-ink">
+                <div className="brutal h-full rounded-2xl bg-paper p-6">
+                  <h3 className="font-display text-lg font-semibold text-ink">
                     {p.title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -77,12 +77,12 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="border-t border-line py-20">
+      <section className="border-t-2 border-ink py-20">
         <Container>
           <div className="grid gap-12 sm:grid-cols-2">
             <Reveal>
               <div>
-                <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                <h2 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
                   What we build
                 </h2>
                 <ul className="mt-6 space-y-3 text-muted">
@@ -103,7 +103,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <div>
-                <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                <h2 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
                   The stack
                 </h2>
                 <p className="mt-3 text-sm text-muted-soft">
@@ -130,7 +130,7 @@ export default function AboutPage() {
                   ].map((group) => (
                     <div
                       key={group.label}
-                      className="rounded-xl border border-line bg-white p-4 shadow-sm"
+                      className="brutal rounded-xl bg-paper p-4"
                     >
                       <p className="text-xs uppercase tracking-wider text-accent">
                         {group.label}

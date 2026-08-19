@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { Container } from "./Container";
 
 const navItems = [
-  { href: "/", label: "Index" },
+  { href: "/", label: "Home" },
   { href: "/projects", label: "Work" },
   { href: "/about", label: "Studio" },
   { href: "/contact", label: "Contact" },
@@ -15,7 +15,7 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-paper/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b-2 border-ink bg-paper/85 backdrop-blur-xl">
       <Container className="flex h-16 items-center justify-between">
         <Link
           href="/"

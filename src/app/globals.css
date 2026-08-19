@@ -10,24 +10,26 @@
   --color-accent-strong: var(--accent-strong);
   --color-accent-soft: var(--accent-soft);
   --color-line: var(--line);
-  --color-line-strong: var(--line-strong);
+  --color-coral: #ff5d5d;
+  --color-sun: #ffd23f;
+  --color-sky: #4cc9f0;
+  --color-lime: #80ed99;
+  --color-grape: #b388eb;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-bodoni);
 }
 
 :root {
-  --paper: #f3efe7;
-  --paper-alt: #ece6da;
-  --ink: #16130f;
-  --muted: #6b655c;
-  --muted-soft: #9a9388;
-  --accent: #ff4d00;
-  --accent-strong: #e23c00;
-  --accent-soft: rgba(255, 77, 0, 0.1);
-  --line: rgba(22, 19, 15, 0.12);
-  --line-strong: rgba(22, 19, 15, 0.22);
-  --shadow-soft: 0 2px 6px rgba(22, 19, 15, 0.05), 0 18px 40px rgba(22, 19, 15, 0.08);
+  --paper: #faf7f0;
+  --paper-alt: #f1ece0;
+  --ink: #16130d;
+  --muted: #6b645a;
+  --muted-soft: #a39a8c;
+  --accent: #4338ca;
+  --accent-strong: #3730a3;
+  --accent-soft: rgba(67, 56, 202, 0.1);
+  --line: rgba(22, 19, 13, 0.9);
 }
 
 html {
@@ -44,60 +46,59 @@ body {
 }
 
 ::selection {
-  background: var(--accent);
-  color: #fff;
+  background: var(--sun);
+  color: var(--ink);
 }
 
-/* Display serif helper */
+/* Display serif for playful italic accents */
 .font-display {
-  font-family: var(--font-bodoni), "Times New Roman", serif;
-  font-weight: 500;
+  font-family: var(--font-bodoni), Georgia, "Times New Roman", serif;
+  font-weight: 600;
 }
 
-/* Fine grain overlay for the whole page */
-.grain::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+/* Highlighter mark */
+.mark {
+  background: linear-gradient(transparent 58%, var(--sun) 58%);
+  padding: 0 0.1em;
 }
 
-/* Hide native cursor on fine pointers (custom cursor takes over) */
-@media (pointer: fine) {
-  .custom-cursor-active,
-  .custom-cursor-active a,
-  .custom-cursor-active button,
-  .custom-cursor-active [data-cursor] {
-    cursor: none;
-  }
+/* Neo-brutalist hard-shadow element */
+.brutal {
+  border: 2px solid var(--ink);
+  box-shadow: 5px 5px 0 0 var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.brutal:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 0 var(--ink);
+}
+.brutal:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--ink);
 }
 
-/* Marquee animation used by capability ticker */
-@keyframes marquee-x {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+.brutal-sm {
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 0 var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.animate-marquee {
-  animation: marquee-x 32s linear infinite;
+.brutal-sm:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 0 var(--ink);
 }
 
-/* Outline-text hover effect for big headings */
-.text-outline {
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--ink);
-}
-.group:hover .text-outline {
-  color: var(--accent);
-  -webkit-text-stroke: 1.5px var(--accent);
+.marker {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted-soft);
 }
 
 /* Long-form markdown copy */
 .prose {
   color: var(--muted);
-  line-height: 1.75;
+  line-height: 1.8;
   font-size: 1.05rem;
 }
 .prose h1,
@@ -128,7 +129,7 @@ body {
 .prose ol { list-style: decimal; }
 .prose li { margin-top: 0.35rem; margin-bottom: 0.35rem; }
 .prose blockquote {
-  border-left: 2px solid var(--accent);
+  border-left: 3px solid var(--accent);
   padding-left: 1rem;
   color: var(--ink);
   font-style: italic;
@@ -137,13 +138,13 @@ body {
 .prose code {
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.9em;
-  background: rgba(22, 19, 15, 0.06);
+  background: rgba(22, 19, 13, 0.06);
   padding: 0.15rem 0.4rem;
   border-radius: 0.3rem;
 }
 .prose pre {
   background: var(--paper-alt);
-  border: 1px solid var(--line);
+  border: 2px solid var(--ink);
   padding: 1rem 1.25rem;
   border-radius: 0.75rem;
   overflow-x: auto;
@@ -155,12 +156,12 @@ body {
   font-size: 0.875rem;
 }
 .prose img {
+  border: 2px solid var(--ink);
   border-radius: 0.75rem;
-  border: 1px solid var(--line);
   margin: 1.5rem 0;
 }
 .prose hr {
   border: none;
-  border-top: 1px solid var(--line);
+  border-top: 2px solid var(--ink);
   margin: 2rem 0;
 }

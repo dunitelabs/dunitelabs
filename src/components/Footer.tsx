@@ -4,7 +4,7 @@ import { Container } from "./Container";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-paper">
+    <footer className="border-t-2 border-ink bg-paper">
       <Container className="flex flex-col gap-10 py-16">
         <div className="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-end">
           <div>
@@ -14,7 +14,7 @@ export function Footer() {
             <Link
               href="/contact"
               data-cursor-label="Say hi"
-              className="font-display text-5xl font-semibold leading-none tracking-tight text-ink transition-colors hover:text-accent sm:text-7xl"
+              className="brutal mt-3 inline-block rounded-2xl bg-sun px-6 py-4 font-display text-4xl font-semibold leading-none tracking-tight text-ink transition-colors hover:bg-accent hover:text-paper sm:text-6xl"
             >
               Start a project →
             </Link>
@@ -35,7 +35,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-line pt-8 text-muted-soft sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 border-t-2 border-ink pt-8 text-muted-soft sm:flex-row">
           <p className="font-mono text-xs uppercase tracking-widest">
             © {new Date().getFullYear()} dunitelabs — an indie studio
           </p>

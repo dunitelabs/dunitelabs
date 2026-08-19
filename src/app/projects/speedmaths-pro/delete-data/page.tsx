@@ -111,7 +111,7 @@ export default function DeleteDataPage() {
         </StaggerItem>
 
         <StaggerItem>
-          <div className="rounded-2xl border border-line bg-white p-6 shadow-sm sm:p-8">
+          <div className="brutal rounded-2xl bg-paper p-6 sm:p-8">
             <h2 className="text-xl font-semibold tracking-tight text-ink">
               What about local data?
             </h2>
@@ -138,7 +138,7 @@ export default function DeleteDataPage() {
         </StaggerItem>
 
         <StaggerItem>
-          <div className="rounded-2xl border border-line bg-white p-6 shadow-sm sm:p-8">
+          <div className="brutal rounded-2xl bg-paper p-6 sm:p-8">
             <h2 className="text-xl font-semibold tracking-tight text-ink">
               How to request deletion
             </h2>

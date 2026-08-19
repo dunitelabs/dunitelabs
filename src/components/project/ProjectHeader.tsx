@@ -73,25 +73,36 @@ export function ProjectHeader({
         Back to projects
       </Link>
 
-      <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-muted-soft">
-        <span className="rounded-full border border-line bg-paper-alt px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-widest text-muted">
-          {project.category}
+      <div className="mt-6 flex items-center gap-5">
+        <span className="brutal flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-paper-alt font-display text-3xl text-ink">
+          {project.title
+            .split(" ")
+            .slice(0, 2)
+            .map((w) => w[0])
+            .join("")}
         </span>
-        <span
-          className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-widest ${statusStyles[project.status]}`}
-        >
-          <span
-            className={`h-1.5 w-1.5 rounded-full ${statusDot[project.status]}`}
-          />
-          {STATUS_LABELS[project.status]}
-        </span>
-        <span className="font-mono text-[11px] uppercase tracking-widest">{project.year}</span>
-        {project.client ? <span>· {project.client}</span> : null}
-      </div>
+        <div>
+          <div className="flex flex-wrap items-center gap-3 text-sm text-muted-soft">
+            <span className="rounded-full border border-ink/30 bg-paper-alt px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-widest text-muted">
+              {project.category}
+            </span>
+            <span
+              className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-widest ${statusStyles[project.status]}`}
+            >
+              <span
+                className={`h-1.5 w-1.5 rounded-full ${statusDot[project.status]}`}
+              />
+              {STATUS_LABELS[project.status]}
+            </span>
+            <span className="font-mono text-[11px] uppercase tracking-widest">{project.year}</span>
+            {project.client ? <span>· {project.client}</span> : null}
+          </div>
 
-      <h1 className="mt-5 font-display text-4xl font-semibold tracking-tight text-ink sm:text-6xl">
-        {project.title}
-      </h1>
+          <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight text-ink sm:text-6xl">
+            {project.title}
+          </h1>
+        </div>
+      </div>
       <p className="mt-4 text-lg leading-relaxed text-muted">
         {project.summary}
       </p>
