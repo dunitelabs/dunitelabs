@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node -e \"import('fs').then(fs=>fs.cpSync('dist','out',{recursive:true,force:true}))\"",
     "preview": "astro preview",
     "astro": "astro"
   },
