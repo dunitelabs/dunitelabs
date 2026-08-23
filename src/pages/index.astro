@@ -1,0 +1,339 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { apps } from "../data/apps.ts";
+---
+
+<Layout title="DUNITE LABS — We build useful things.">
+  <!-- VERTICAL SIDE TEXT + GRID BG -->
+  <div class="page">
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- HERO: MASSIVE BRANDING, NO NAV -->
+    <header class="hero">
+      <div class="hero-top">
+        <div class="eyebrow">
+          <span class="dot"></span> EST. 2024 — INDIA <span class="sep">/</span> WE BUILD USEFUL THINGS
+          <span class="right-mono">apps • websites • tools</span>
+        </div>
+      </div>
+
+      <div class="brand-wrap">
+        <div class="logo-mark" aria-hidden="true">
+          <img src="/dunitelabs_logo.svg" alt="Dunite Labs logo" width="118" height="118" />
+        </div>
+
+        <h1 class="brand">
+          <span class="line1">DUNITE</span>
+          <span class="line2">LABS<span class="trademark">®</span></span>
+        </h1>
+        <div class="hero-sub">
+          <p class="tagline"><em>Developers who make</em> <b>apps, websites</b> & <b>tech tools</b> to solve real problems — <u>simply, quickly, beautifully.</u></p>
+          <div class="hero-actions">
+            <a class="stamp" href="#work">↓ OUR WORK</a>
+            <span class="hero-mono">3 SHIPPED — MORE COOKING →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- thin rule + manifesto -->
+      <div class="hero-rule"></div>
+      <div class="hero-foot">
+        <div class="foot-left">NO NAVBAR. NO CLUTTER. JUST WORK.</div>
+        <div class="foot-right">SCROLL ↓</div>
+      </div>
+    </header>
+
+    <!-- WORK: 3 APPS, UNIQUE STRIPS (NOT GENERIC CARDS) -->
+    <section id="work" class="work">
+      <div class="work-head">
+        <span class="work-label">SELECTED WORK — 01 / 03</span>
+        <h2>Three small tools.<br><span class="serif">Loved by real people.</span></h2>
+      </div>
+
+      <div class="stack">
+        {apps.map((app, i) => (
+          <a class="strip" href={`/app/${app.slug}`} style={`--accent:${app.accent}; --strip-bg:${app.bg}`}>
+            <div class="strip-num">0{i+1}</div>
+            <div class="strip-icon" aria-hidden="true">
+              {app.icon.startsWith("/") ? (
+                <img class="icon-img" src={app.icon} alt={`${app.name} logo`} />
+              ) : (
+                <span class="icon-glyph">{app.icon}</span>
+              )}
+            </div>
+            <div class="strip-main">
+              <div class="strip-kicker">
+                <span class="pill">{app.platform}</span>
+                <span class="pill ghost">{app.type}</span>
+              </div>
+              <h3 class="strip-title">{app.name}</h3>
+              <p class="strip-desc">{app.tagline}</p>
+            </div>
+            <div class="strip-cta">
+              <span class="know">Know more</span>
+              <span class="arrow">→</span>
+            </div>
+            <div class="strip-bar"></div>
+          </a>
+        ))}
+      </div>
+
+      <div class="work-note">
+        <p>Each project has its own <b>big branding page</b> — logo, story, store links, and a showcase wall. We keep shipping. You keep exploring.</p>
+        <div class="note-lines" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <div class="foot-inner">
+        <div class="foot-brand"><img src="/dunitelabs_logo.svg" alt="" width="32" height="32" /> DUNITE LABS</div>
+        <div class="foot-copy">© {new Date().getFullYear()} Dunite Labs. Built with care in India. <span class="mono">support.dunitelabs@gmail.com</span></div>
+      </div>
+      <div class="foot-big" aria-hidden="true">DUNITE LABS — DUNITE LABS — DUNITE LABS</div>
+    </footer>
+  </div>
+
+<style>
+  .page{
+    position:relative;
+    overflow:clip;
+    background:
+      radial-gradient(ellipse 1200px 500px at 20% -10%, #fff 0%, transparent 60%),
+      linear-gradient(#0e0e0e0a 1px, transparent 1px),
+      linear-gradient(90deg, #0e0e0e0a 1px, transparent 1px);
+    background-size: auto, 36px 36px, 36px 36px;
+    min-height:100dvh;
+  }
+  .grain{
+    position:fixed; inset:0; pointer-events:none; opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  /* HERO */
+  .hero{
+    min-height:92dvh;
+    padding:18px 22px 0;
+    border-bottom:4px solid var(--line);
+    display:flex; flex-direction:column;
+  }
+  .hero-top{ max-width:1400px; width:100%; margin:0 auto; }
+  .eyebrow{
+    display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+    font-family:"JetBrains Mono", monospace;
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    border:1.5px solid var(--line); padding:10px 14px; background:#fff;
+    box-shadow:4px 4px 0 var(--line);
+  }
+  .dot{width:9px; height:9px; background:var(--ink); border-radius:50%; display:inline-block; animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{opacity:1} 50%{opacity:0.4}}
+  .sep{opacity:0.3}
+  .right-mono{margin-left:auto; opacity:0.7}
+  @media(max-width:720px){ .right-mono{display:none} }
+
+  .brand-wrap{
+    max-width:1400px; width:100%; margin:0 auto;
+    flex:1;
+    display:grid;
+    grid-template-columns:118px 1fr;
+    gap:18px;
+    align-items:end;
+    padding:38px 0 22px;
+  }
+  .logo-mark{
+    width:128px; height:128px;
+    background:var(--ink);
+    border:3px solid var(--ink);
+    border-radius:26px;
+    padding:0;
+    box-shadow:6px 6px 0 var(--ink);
+    transform:rotate(-1.2deg);
+    overflow:hidden;
+    display:grid; place-items:center;
+  }
+  .logo-mark img{ width:90%; height:90%; object-fit:contain; display:block; transform:scale(1.45); }
+  .brand{
+    margin:0; line-height:0.82;
+    font-family:"Bricolage Grotesque", sans-serif;
+    font-weight:800; letter-spacing:-0.05em;
+    text-transform:uppercase;
+  }
+  .line1, .line2{ display:block; }
+  .line1{
+    font-size:clamp(54px, 12vw, 168px);
+    -webkit-text-stroke:2.2px var(--ink);
+    color:transparent;
+    letter-spacing:-0.06em;
+  }
+  .line2{
+    font-size:clamp(54px, 12vw, 168px);
+    color:var(--ink);
+    position:relative;
+    display:inline-block;
+  }
+  .trademark{
+    font-size:0.18em; vertical-align:super; margin-left:6px;
+    border:1.5px solid var(--ink); border-radius:50%; width:1.6em; height:1.6em;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-weight:700; transform:translateY(-0.6em);
+  }
+  .hero-sub{
+    grid-column:2;
+    display:flex; gap:24px; align-items:end; flex-wrap:wrap;
+    padding-top:6px;
+  }
+  .tagline{
+    margin:0; max-width:560px;
+    font-family:"Instrument Serif", serif;
+    font-size:clamp(18px, 2vw, 24px);
+    line-height:1.25;
+    color:#1a1a1a;
+  }
+  .tagline b{ font-family:"Space Grotesk", sans-serif; font-weight:700; }
+  .tagline u{ text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:4px; }
+  .hero-actions{ display:flex; gap:14px; align-items:center; }
+  .stamp{
+    font-family:"JetBrains Mono", monospace;
+    font-size:12px; letter-spacing:0.12em;
+    background:var(--ink); color:var(--bg);
+    padding:12px 16px;
+    border:2px solid var(--ink);
+    box-shadow:3px 3px 0 #000;
+  }
+  .hero-mono{
+    font-family:"JetBrains Mono", monospace;
+    font-size:11px; letter-spacing:0.08em; opacity:0.6
+  }
+  @media(max-width:900px){
+    .brand-wrap{ grid-template-columns:84px 1fr; }
+    .logo-mark{ width:84px; height:84px; border-radius:18px; padding:0 }
+    .logo-mark img{ width:168%; height:168%; transform:scale(1.45); }
+    .hero-sub{ grid-column:1 / -1; }
+  }
+
+  .hero-rule{ height:1.5px; background:var(--ink); margin-top:auto; }
+  .hero-foot{
+    display:flex; justify-content:space-between;
+    font-family:"JetBrains Mono", monospace;
+    font-size:11px; letter-spacing:0.12em;
+    padding:10px 0 14px;
+    max-width:1400px; width:100%; margin:0 auto;
+  }
+
+  /* WORK */
+  .work{ max-width:1400px; margin:0 auto; padding:42px 22px 0; }
+  .work-head{
+    display:grid; grid-template-columns:280px 1fr; gap:24px; align-items:start;
+    padding-bottom:28px; border-bottom:1.5px solid var(--ink);
+  }
+  .work-label{
+    font-family:"JetBrains Mono", monospace; font-size:11px; letter-spacing:0.14em;
+    border:1.5px solid var(--ink); padding:8px 10px; background:#fff; width:fit-content;
+  }
+  .work-head h2{
+    margin:0; font-family:"Bricolage Grotesque", sans-serif;
+    font-size:clamp(28px, 4vw, 54px); line-height:0.95; letter-spacing:-0.04em;
+  }
+  .work-head .serif{ font-family:"Instrument Serif", serif; font-weight:400; font-style:italic; }
+  @media(max-width:800px){ .work-head{ grid-template-columns:1fr; } }
+
+  .stack{ display:flex; flex-direction:column; margin-top:22px; }
+  .strip{
+    position:relative;
+    display:grid;
+    grid-template-columns:84px 96px 1fr 180px;
+    align-items:center;
+    gap:16px;
+    background:#fff;
+    border:2px solid var(--ink);
+    padding:22px 18px;
+    margin-bottom:16px;
+    box-shadow:6px 6px 0 var(--ink);
+    transition:transform 160ms, box-shadow 160ms, background 160ms;
+    overflow:hidden;
+  }
+  .strip:hover{ transform:translate(-2px,-2px); box-shadow:10px 10px 0 var(--ink); background:#FFFEFB; }
+  .strip:active{ transform:translate(1px,1px); box-shadow:3px 3px 0 var(--ink); }
+  .strip-num{
+    font-family:"Bricolage Grotesque", sans-serif;
+    font-size:42px; font-weight:800; line-height:1;
+    color:transparent; -webkit-text-stroke:1.4px var(--ink);
+    letter-spacing:-0.04em;
+  }
+  .strip-icon{
+    width:96px; height:96px; border:2px solid var(--ink); background:var(--strip-bg); color:var(--accent);
+    display:grid; place-items:center;
+    border-radius:18px; transform:rotate(-1deg);
+  }
+  .icon-glyph{ font-size:44px; font-weight:800; line-height:1; color:var(--accent); }
+  .icon-img{ width:68px; height:68px; object-fit:contain; border-radius:14px; display:block; }
+  .strip-kicker{ display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap }
+  .pill{
+    font-family:"JetBrains Mono", monospace; font-size:10px; letter-spacing:0.1em;
+    border:1.5px solid var(--ink); padding:4px 8px; background:var(--accent); font-weight:500;
+  }
+  .pill.ghost{ background:#fff }
+  .strip-title{
+    margin:0; font-family:"Bricolage Grotesque", sans-serif;
+    font-size:clamp(22px, 2.6vw, 34px); line-height:0.9; letter-spacing:-0.04em;
+  }
+  .strip-desc{
+    margin:6px 0 0; font-family:"Instrument Serif", serif; font-size:18px; line-height:1.2; opacity:0.8
+  }
+  .strip-cta{ display:flex; align-items:center; justify-content:flex-end; gap:12px }
+  .know{
+    font-family:"JetBrains Mono", monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
+    border-bottom:2px solid var(--ink); padding-bottom:2px;
+  }
+  .arrow{
+    width:44px; height:44px; display:grid; place-items:center;
+    border:2px solid var(--ink); background:var(--accent); font-size:18px; font-weight:700;
+    border-radius:50%;
+  }
+  .strip-bar{
+    position:absolute; left:0; right:0; bottom:0; height:6px; background:var(--accent);
+    border-top:1.5px solid var(--ink);
+  }
+  @media(max-width:860px){
+    .strip{ grid-template-columns:54px 72px 1fr; }
+    .strip-num{ font-size:30px }
+    .strip-icon{ width:72px; height:72px; border-radius:14px }
+    .icon-glyph{ font-size:32px }
+    .strip-cta{ grid-column:1 / -1; justify-content:flex-start; margin-top:4px }
+  }
+
+  .work-note{
+    margin:28px 0 0; background:#fff; border:2px solid var(--ink); padding:18px 18px 18px 20px;
+    display:grid; grid-template-columns:1fr 120px; gap:16px; align-items:center;
+    box-shadow:6px 6px 0 var(--ink);
+    font-family:"Instrument Serif", serif; font-size:18px; line-height:1.35;
+  }
+  .work-note b{ font-family:"Space Grotesk", sans-serif }
+  .note-lines{
+    height:52px; background:repeating-linear-gradient(-45deg, var(--ink) 0 2px, transparent 2px 10px);
+    border:1.5px solid var(--ink); opacity:0.9
+  }
+  @media(max-width:600px){ .work-note{ grid-template-columns:1fr } }
+
+  /* FOOTER */
+  .foot{
+    margin-top:42px; border-top:4px solid var(--ink); background:var(--ink); color:var(--bg);
+    padding:22px; overflow:hidden;
+  }
+  .foot-inner{
+    max-width:1400px; margin:0 auto;
+    display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    font-family:"JetBrains Mono", monospace; font-size:11px; letter-spacing:0.08em;
+  }
+  .foot-brand{ font-family:"Bricolage Grotesque", sans-serif; font-size:18px; letter-spacing:-0.03em; font-weight:800; display:flex; align-items:center; gap:10px }
+  .foot-brand img{ width:36px; height:36px; border-radius:8px; background:transparent; padding:0; border:none; filter:none; transform:scale(1.35); object-fit:contain }
+  .mono{ opacity:0.8 }
+  .foot-big{
+    max-width:1400px; margin:18px auto 0;
+    font-family:"Bricolage Grotesque", sans-serif;
+    font-size:clamp(22px, 7vw, 86px);
+    line-height:1; letter-spacing:-0.05em; white-space:nowrap;
+    color:transparent; -webkit-text-stroke:1px #ffffff22;
+    border-top:1px solid #ffffff1a; padding-top:14px;
+  }
+</style>
+</Layout>

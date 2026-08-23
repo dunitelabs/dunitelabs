@@ -1,0 +1,84 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { apps } from "../../../data/apps.ts";
+import { deleteBySlug } from "../../../data/legal.ts";
+
+export function getStaticPaths() {
+  return apps.map(a => ({ params: { slug: a.slug } }));
+}
+const { slug } = Astro.params;
+const app = apps.find(a => a.slug === slug)!;
+const doc = deleteBySlug[slug as string];
+if (!doc) throw new Error(`No delete doc for ${slug}`);
+---
+
+<Layout title={`${doc.title} — Dunite Labs`} description={doc.intro}>
+  <div class="page" style={`--accent:${app.accent}`}>
+    <div class="topbar">
+      <a href={`/app/${app.slug}`} class="back"><img src="/dunitelabs_logo.svg" alt="" width="20" height="20" /> Back to {app.name}</a>
+      <span class="top-mono">LEGAL • DELETE DATA</span>
+    </div>
+
+    <article class="doc">
+      <div class="doc-head">
+        <div class="app-badge" style={`background:${app.bg}; color:${app.accent}; border-color:var(--line)`}>
+          {app.icon.startsWith("/") ? <img src={app.icon} alt="" /> : <span>{app.icon}</span>}
+          <span>{app.name}</span>
+        </div>
+        <h1>{doc.title}</h1>
+        <p class="last">Last updated: {doc.lastUpdated}</p>
+        <p class="intro">{doc.intro}</p>
+        <div class="links">
+          <a href={`/app/${app.slug}/privacy`} class="link">Privacy Policy →</a>
+          <span class="sep">•</span>
+          <a href={`mailto:${doc.contact}?subject=Delete%20my%20${encodeURIComponent(app.name)}%20data`} class="cta">Email to delete</a>
+        </div>
+      </div>
+
+      <div class="sections">
+        {doc.sections.map(s => (
+          <section>
+            <h2>{s.heading}</h2>
+            <p>{s.body}</p>
+          </section>
+        ))}
+        <section class="contact">
+          <h2>Contact</h2>
+          <p>Email <a href={`mailto:${doc.contact}`}>{doc.contact}</a> with subject “Delete my {app.name} data”. We delete/confirm within 7 days. For Play Store Data safety, this page is your official deletion URL.</p>
+        </section>
+      </div>
+
+      <div class="doc-foot">
+        <a href={`/app/${app.slug}`} class="back dark">← Back to {app.name}</a>
+        <span>© {new Date().getFullYear()} Dunite Labs</span>
+      </div>
+    </article>
+  </div>
+
+<style>
+  .page{ min-height:100dvh; background:#F7F3EE; padding-bottom:24px }
+  .topbar{ max-width:860px; margin:0 auto; padding:14px 22px; display:flex; justify-content:space-between; gap:12px; align-items:center; font-family:"JetBrains Mono", monospace; font-size:11px; letter-spacing:0.1em }
+  .back{ display:flex; align-items:center; gap:8px; background:#0E0E0E; color:#fff; border:1.5px solid #0E0E0E; padding:6px 12px; font-weight:700; box-shadow:3px 3px 0 #0E0E0E }
+  .back.dark{ background:#fff; color:#0E0E0E; border-color:#0E0E0E }
+  .back img{ width:20px; height:20px }
+  .top-mono{ opacity:0.6 }
+  .doc{ max-width:860px; margin:0 auto; padding:0 22px }
+  .doc-head{ background:#fff; border:2px solid var(--line); padding:22px; box-shadow:6px 6px 0 var(--line); margin-top:8px }
+  .app-badge{ display:inline-flex; align-items:center; gap:8px; border:1.5px solid; padding:6px 10px; font-family:"Space Grotesk", sans-serif; font-weight:700; font-size:13px }
+  .app-badge img{ width:22px; height:22px; object-fit:contain; background:#fff; border-radius:6px; padding:2px }
+  h1{ margin:14px 0 6px; font-family:"Bricolage Grotesque", sans-serif; font-size:32px; letter-spacing:-0.04em; line-height:1 }
+  .last{ font-family:"JetBrains Mono", monospace; font-size:11px; opacity:0.6; margin:0 }
+  .intro{ margin:12px 0 0; font-family:"Instrument Serif", serif; font-size:18px; line-height:1.4 }
+  .links{ margin-top:12px; display:flex; gap:10px; align-items:center; font-family:"JetBrains Mono", monospace; font-size:11px; flex-wrap:wrap }
+  .link{ border-bottom:1.5px solid var(--line); }
+  .cta{ background:#0E0E0E; color:#fff; padding:8px 12px; border:1.5px solid #0E0E0E; box-shadow:2px 2px 0 #0E0E0E }
+  .sep{ opacity:0.4 }
+  .sections{ margin-top:16px; background:#fff; border:2px solid var(--line); padding:22px; box-shadow:6px 6px 0 var(--line) }
+  section{ padding:14px 0; border-bottom:1px solid #00000012 }
+  section:last-child{ border-bottom:none }
+  h2{ margin:0 0 6px; font-family:"Space Grotesk", sans-serif; font-size:15px; letter-spacing:-0.02em }
+  p{ margin:0; font-size:14px; line-height:1.6; opacity:0.85 }
+  .contact a{ text-decoration:underline }
+  .doc-foot{ display:flex; justify-content:space-between; gap:12px; align-items:center; margin-top:16px; font-family:"JetBrains Mono", monospace; font-size:11px }
+</style>
+</Layout>

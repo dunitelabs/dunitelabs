@@ -1,0 +1,134 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = "Dunite Labs — We build useful things.", description = "Dunite Labs builds apps, websites and tools that solve real problems. Guava Music, Speedmaths Pro, GovtJobsNotice." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/dunitelabs_logo.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.svg" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style is:global>
+      :root{
+        --bg:#F7F3EE;
+        --ink:#0E0E0E;
+        --line:#0E0E0E;
+        --muted:#6B6B6B;
+        --card:#ffffff;
+      }
+      html[data-theme="dark"], :root[data-theme="dark"], [data-theme="dark"]{
+        --bg:#0A0A0A;
+        --ink:#F7F3EE;
+        --line:#F7F3EE;
+        --muted:#9A9A9A;
+        --card:#1A1A1A;
+      }
+      *{box-sizing:border-box}
+      html,body{margin:0; padding:0}
+      html{scroll-behavior:smooth}
+      body{
+        background:var(--bg);
+        color:var(--ink);
+        font-family:"Space Grotesk", system-ui, sans-serif;
+        -webkit-font-smoothing:antialiased;
+        transition: background 200ms, color 200ms;
+      }
+      a{color:inherit; text-decoration:none}
+      ::selection{background:var(--ink); color:var(--bg)}
+      /* dark overrides */
+      html[data-theme="dark"] body{ background:var(--bg); color:var(--ink) }
+      html[data-theme="dark"] .page{
+        background: radial-gradient(ellipse 1200px 500px at 20% -10%, #1A1A1A 0%, transparent 60%), linear-gradient(#ffffff0a 1px, transparent 1px), linear-gradient(90deg, #ffffff0a 1px, transparent 1px) !important;
+        background-color:var(--bg) !important;
+      }
+      html[data-theme="dark"] .eyebrow,
+      html[data-theme="dark"] .work-label,
+      html[data-theme="dark"] .strip,
+      html[data-theme="dark"] .work-note,
+      html[data-theme="dark"] .card.feature,
+      html[data-theme="dark"] .card.quote,
+      html[data-theme="dark"] .doc-head,
+      html[data-theme="dark"] .sections,
+      html[data-theme="dark"] .showcase .kicker,
+      html[data-theme="dark"] .showcase .pill,
+      html[data-theme="dark"] .next-card,
+      html[data-theme="dark"] .next-kicker,
+      html[data-theme="dark"] .card-caption.boundary,
+      html[data-theme="dark"] .feat-list li,
+      html[data-theme="dark"] .pill.ghost{
+        background:var(--card) !important;
+        color:var(--ink) !important;
+        border-color:var(--line) !important;
+      }
+      html[data-theme="dark"] .strip .arrow,
+      html[data-theme="dark"] .strip .pill:not(.ghost){
+        border-color:var(--line) !important;
+      }
+      html[data-theme="dark"] .strip-icon{ border-color:var(--line) !important; }
+      html[data-theme="dark"] .strip-num{ -webkit-text-stroke-color:var(--ink) }
+      html[data-theme="dark"] .tagline{ color:var(--ink) }
+      html[data-theme="dark"] .hero{ border-color:var(--line); background:var(--bg) }
+      html[data-theme="dark"] .brand, html[data-theme="dark"] .line2{ color:var(--ink) !important }
+      html[data-theme="dark"] .line1{ -webkit-text-stroke-color:var(--ink) }
+      html[data-theme="dark"] .show-head p{ color:#CFCFCF }
+      html[data-theme="dark"] .builder{ background:var(--card); border-color:var(--line) }
+      html[data-theme="dark"] .grain{ opacity:0.06 }
+      /* individual project page fixes */
+      html[data-theme="dark"] .showcase .show-head{ border-color:var(--line) }
+      html[data-theme="dark"] .showcase h2{ color:var(--ink) }
+      html[data-theme="dark"] .card-top{ background:var(--card) !important; border-color:var(--line) !important; color:var(--ink) !important; }
+      html[data-theme="dark"] .thumb-label{ color:var(--ink); }
+      html[data-theme="dark"] .hint{ color:var(--muted) }
+      html[data-theme="dark"] .next-count{ color:var(--muted) }
+      html[data-theme="dark"] .mini-foot{ border-color:var(--line); color:var(--muted) }
+      html[data-theme="dark"] .stats .stat{ background:#ffffff0a; border-color:#ffffff18 }
+      /* keep logo & footer always dark - white logo needs dark bg */
+      html[data-theme="dark"] .logo-mark{ background:#0E0E0E !important; border-color:#2A2A2A !important; box-shadow:6px 6px 0 #000 !important; }
+      html[data-theme="dark"] .foot{ background:#0E0E0E !important; color:#F7F3EE !important; border-color:#2A2A2A !important; }
+      html[data-theme="dark"] .foot .foot-big{ -webkit-text-stroke-color:#ffffff18; border-color:#ffffff14 }
+      html[data-theme="dark"] .topbar .back{ background:#0E0E0E !important; color:#fff !important; border-color:#2A2A2A !important; }
+    </style>
+    <script is:inline>
+      (function(){
+        const key='dunite-theme';
+        try{
+          const saved=localStorage.getItem(key);
+          const prefers=window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', saved || prefers);
+        }catch(e){}
+        window.toggleTheme=function(){
+          const cur=document.documentElement.getAttribute('data-theme') || 'light';
+          const next=cur==='dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          try{ localStorage.setItem(key, next); }catch(e){}
+          const btn=document.getElementById('theme-toggle-icon');
+          if(btn) btn.textContent= next==='dark' ? '☀' : '☾';
+        };
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+    <button id="theme-toggle" type="button" onclick="window.toggleTheme()" aria-label="Toggle theme" title="Light / Dark" style="position:fixed; right:16px; bottom:16px; z-index:99; width:44px; height:44px; border-radius:50%; border:2px solid var(--line); background:var(--card); color:var(--ink); box-shadow:4px 4px 0 var(--line); cursor:pointer; display:grid; place-items:center; font-size:18px;">
+      <span id="theme-toggle-icon">☾</span>
+    </button>
+    <script is:inline>
+      (function(){
+        const icon=document.getElementById('theme-toggle-icon');
+        const cur=document.documentElement.getAttribute('data-theme');
+        if(icon) icon.textContent= cur==='dark' ? '☀' : '☾';
+      })();
+    </script>
+  </body>
+</html>
