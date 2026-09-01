@@ -30,10 +30,7 @@ export const apps: App[] = [
     color: "#D2FF4D",
     icon: "/guava/guava-music-logo-coompress.png",
     screenshots: ["/guava/1.png", "/guava/2.png", "/guava/3.png"],
-    links: [
-      { label: "Get it on Google Play", href: "#", kind: "playstore" },
-      { label: "View on Play Store", href: "#", kind: "playstore" },
-    ],
+    links: [],
     stats: [
       { label: "Downloads", value: "10K+" },
       { label: "Rating", value: "4.6★" },
@@ -54,9 +51,7 @@ export const apps: App[] = [
     color: "#6AE4FF",
     icon: "/speedmaths-pro/speedmathspro_logo.png",
     screenshots: ["/speedmaths-pro/1.png", "/speedmaths-pro/2.png", "/speedmaths-pro/3.png", "/speedmaths-pro/4.png", "/speedmaths-pro/5.png", "/speedmaths-pro/6.png"],
-    links: [
-      { label: "Get it on Google Play", href: "#", kind: "playstore" },
-    ],
+    links: [],
     stats: [
       { label: "Questions", value: "5K+" },
       { label: "Users", value: "8K+" },

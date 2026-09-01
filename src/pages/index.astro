@@ -38,7 +38,7 @@ import { apps } from "../data/apps.ts";
       <!-- thin rule + manifesto -->
       <div class="hero-rule"></div>
       <div class="hero-foot">
-        <div class="foot-left">NO NAVBAR. NO CLUTTER. JUST WORK.</div>
+        <div class="foot-left">BUILT IN INDIA, USED EVERYWHERE.</div>
         <div class="foot-right">SCROLL ↓</div>
       </div>
     </header>
@@ -78,10 +78,6 @@ import { apps } from "../data/apps.ts";
         ))}
       </div>
 
-      <div class="work-note">
-        <p>Each project has its own <b>big branding page</b> — logo, story, store links, and a showcase wall. We keep shipping. You keep exploring.</p>
-        <div class="note-lines" aria-hidden="true"></div>
-      </div>
     </section>
 
     <footer class="foot">
@@ -150,7 +146,7 @@ import { apps } from "../data/apps.ts";
     overflow:hidden;
     display:grid; place-items:center;
   }
-  .logo-mark img{ width:90%; height:90%; object-fit:contain; display:block; transform:scale(1.45); }
+  .logo-mark img{ width:100%; height:100%; object-fit:contain; display:block; padding:4%; transform:scale(1.2); }
   .brand{
     margin:0; line-height:0.82;
     font-family:"Bricolage Grotesque", sans-serif;
@@ -206,8 +202,11 @@ import { apps } from "../data/apps.ts";
   @media(max-width:900px){
     .brand-wrap{ grid-template-columns:84px 1fr; }
     .logo-mark{ width:84px; height:84px; border-radius:18px; padding:0 }
-    .logo-mark img{ width:168%; height:168%; transform:scale(1.45); }
     .hero-sub{ grid-column:1 / -1; }
+  }
+  @media(max-width:720px){
+    .hero{ min-height:0; padding-top:14px; }
+    .brand-wrap{ padding:24px 0 14px; }
   }
 
   .hero-rule{ height:1.5px; background:var(--ink); margin-top:auto; }
@@ -300,19 +299,6 @@ import { apps } from "../data/apps.ts";
     .icon-glyph{ font-size:32px }
     .strip-cta{ grid-column:1 / -1; justify-content:flex-start; margin-top:4px }
   }
-
-  .work-note{
-    margin:28px 0 0; background:#fff; border:2px solid var(--ink); padding:18px 18px 18px 20px;
-    display:grid; grid-template-columns:1fr 120px; gap:16px; align-items:center;
-    box-shadow:6px 6px 0 var(--ink);
-    font-family:"Instrument Serif", serif; font-size:18px; line-height:1.35;
-  }
-  .work-note b{ font-family:"Space Grotesk", sans-serif }
-  .note-lines{
-    height:52px; background:repeating-linear-gradient(-45deg, var(--ink) 0 2px, transparent 2px 10px);
-    border:1.5px solid var(--ink); opacity:0.9
-  }
-  @media(max-width:600px){ .work-note{ grid-template-columns:1fr } }
 
   /* FOOTER */
   .foot{

@@ -104,8 +104,7 @@ const { title = "Dunite Labs — We build useful things.", description = "Dunite
         const key='dunite-theme';
         try{
           const saved=localStorage.getItem(key);
-          const prefers=window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-          document.documentElement.setAttribute('data-theme', saved || prefers);
+          document.documentElement.setAttribute('data-theme', saved || 'light');
         }catch(e){}
         window.toggleTheme=function(){
           const cur=document.documentElement.getAttribute('data-theme') || 'light';
