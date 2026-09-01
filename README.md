@@ -1,34 +1,46 @@
-# Dunite Labs
+# Dunite Labs — Website
 
-[![Website](https://img.shields.io/badge/website-dunitelabs.pages.dev-0E0E0E?style=flat-square)](https://dunitelabs.pages.dev)
+The source for the [Dunite Labs](https://dunitelabs.pages.dev) company website — a usability-first product studio from India. Built with [Astro](https://astro.build) as a static, SEO-friendly site.
 
-[**Dunite Labs**](https://dunitelabs.pages.dev) is a usability-first product studio from India. We design and build **apps, websites and tools** that solve real problems — with clean, fast, no-clutter experiences.
+## Features
 
-Est. 2024 • India • Remote
+- ⚡ **Astro static site** — zero runtime JS, fast loads
+- 🔍 **Full technical SEO** — canonical URLs, Open Graph, Twitter cards, JSON-LD structured data
+- 🗺️ **Auto-generated sitemap** + `robots.txt`
+- 🌗 **Light/dark mode** with a `data-theme` toggle
+- 🎨 **Brutalist design** with per-page themed favicons
+- 📱 **Mobile-optimized** across `768px`, `480px`, `375px`, and `320px` breakpoints
 
 ## Projects
 
-| Project | Type | What it is |
-| :------ | :--- | :--------- |
-| **Guava Music** | Android app | Lightweight offline music player — your library, playlists, EQ, sleep timer. No ads, no tracking. |
-| **Speedmaths Pro** | Android app | Daily ranked quizzes, custom drills and a mastery game to train mental maths. |
-| **Govt Jobs Notice** | Website | Clean, fast aggregator of government job notices. No popups, no fake updates — verified listings with instant filters. |
+The site showcases Dunite Labs products:
 
-## This repository
+| Project | Type | Notes |
+| :------ | :--- | :---- |
+| **Speedmaths Pro** | Android app | `src/data/apps.ts` |
+| **Govt Jobs Notice** | Website | `src/data/apps.ts` |
+| **Guava Music** | Android app | `src/data/apps.ts` |
 
-The source of the Dunite Labs company website, built for **performance** and **SEO**:
+Edit `src/data/apps.ts` to add, update, or remove products.
 
-- ⚡ **Astro** static site — fast, zero-JS pages
-- 🔍 Full technical SEO: canonical URLs, Open Graph, Twitter cards, JSON-LD structured data
-- 🗺️ Auto-generated **sitemap** + `robots.txt`
-- 🌗 Light/dark brutalist design with per-page themed favicons
-- 📱 Mobile-optimized across breakpoints
+## Pages
 
-## Stack
+- `/` — Home
+- `/app/[slug]/` — Product detail
+- `/app/[slug]/privacy/` — Privacy policy
+- `/app/[slug]/delete-data/` — Data deletion
 
-- [Astro](https://astro.build) + `@astrojs/sitemap`
-- Vanilla CSS with a `data-theme` light/dark toggle
-- No heavy JS — everything is static and prerendered
+## Project structure
+
+```text
+src/
+  layouts/Layout.astro   # Global head, SEO meta, theme
+  pages/                 # Routes
+  data/apps.ts           # Product data
+  data/legal.ts          # Privacy / delete-data content
+  site.ts                # Central site config (name, URL, social)
+public/                  # Static assets (logos, screenshots, robots.txt)
+```
 
 ## Commands
 
@@ -36,13 +48,23 @@ The source of the Dunite Labs company website, built for **performance** and **S
 | :--------------- | :------------------------------------------ |
 | `npm install`    | Installs dependencies                       |
 | `npm run dev`    | Starts local dev server at `localhost:4321` |
-| `npm run build`  | Builds your production site to `./dist/` + `./out/` |
-| `npm run preview`| Previews your build locally, before deploying |
+| `npm run build`  | Builds production site to `./dist/` + `./out/` |
+| `npm run preview`| Previews the build locally before deploying |
 
-## Connect
+## Deployment
 
-- 🌐 Website: https://dunitelabs.pages.dev
-- 🐦 X / Twitter: https://x.com/dunitelabs
-- 💼 LinkedIn: https://www.linkedin.com/company/dunitelabs
-- 📺 YouTube: https://www.youtube.com/@dunitelabs
-- 📸 Instagram: https://www.instagram.com/dunitelabs
+Deployed on **Cloudflare Pages**:
+
+- **Build command:** `npm run build`
+- **Build output:** `out`
+- **Production branch:** `main` (auto-deploys on push)
+
+## Site configuration
+
+Central config lives in [`src/site.ts`](src/site.ts):
+
+- Name, tagline, description
+- Base URL (switch `https://dunitelabs.pages.dev` → `https://dunitelabs.com` when the custom domain goes live)
+- Contact email and all social links
+
+Mirror URL changes in [`astro.config.mjs`](astro.config.mjs) (`site`) so canonical tags and the sitemap stay correct.
