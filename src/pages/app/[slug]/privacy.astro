@@ -2,6 +2,7 @@
 import Layout from "../../../layouts/Layout.astro";
 import { apps } from "../../../data/apps.ts";
 import { privacyBySlug } from "../../../data/legal.ts";
+import { site } from "../../../site";
 
 export function getStaticPaths() {
   return apps.map(a => ({ params: { slug: a.slug } }));
@@ -10,9 +11,24 @@ const { slug } = Astro.params;
 const app = apps.find(a => a.slug === slug)!;
 const doc = privacyBySlug[slug as string];
 if (!doc) throw new Error(`No privacy doc for ${slug}`);
+const jsonld = [
+  {
+    "@type": "WebPage",
+    name: doc.title,
+    description: doc.intro,
+    url: `/app/${app.slug}/privacy/`,
+    isPartOf: { "@type": "WebSite", name: "Dunite Labs", url: site.url },
+  },
+];
 ---
 
-<Layout title={`${doc.title} — Dunite Labs`} description={doc.intro}>
+<Layout
+  title={`${doc.title} — Dunite Labs`}
+  description={doc.intro}
+  favicon={app.icon}
+  path={`/app/${app.slug}/privacy/`}
+  jsonld={jsonld}
+>
   <div class="page" style={`--accent:${app.accent}`}>
     <div class="topbar">
       <a href={`/app/${app.slug}`} class="back"><img src="/dunitelabs_logo.svg" alt="" width="20" height="20" /> Back to {app.name}</a>
