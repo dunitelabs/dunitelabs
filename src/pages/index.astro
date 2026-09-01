@@ -33,6 +33,16 @@ import { apps } from "../data/apps.ts";
             <span class="hero-mono">3 SHIPPED — MORE COOKING →</span>
           </div>
         </div>
+
+        <aside class="hero-rail">
+          <span class="rail-head">NOW SHIPPING</span>
+          <ul class="rail-list">
+            {apps.map((app) => (
+              <li><a href={`/app/${app.slug}`}><b class="rail-dot" style={`background:${app.accent}`}></b>{app.name}</a></li>
+            ))}
+          </ul>
+          <a class="rail-mail" href="mailto:support.dunitelabs@gmail.com">support.dunitelabs@gmail.com <span>→</span></a>
+        </aside>
       </div>
 
       <!-- thin rule + manifesto -->
@@ -52,28 +62,35 @@ import { apps } from "../data/apps.ts";
 
       <div class="stack">
         {apps.map((app, i) => (
-          <a class="strip" href={`/app/${app.slug}`} style={`--accent:${app.accent}; --strip-bg:${app.bg}`}>
-            <div class="strip-num">0{i+1}</div>
-            <div class="strip-icon" aria-hidden="true">
+          <a class="app-card" href={`/app/${app.slug}`} style={`--accent:${app.accent}; --strip-bg:${app.bg}`}>
+            <div class="card-art" aria-hidden="true" style={`background:${app.bg}`}>
+              <span class="card-num">0{i+1}</span>
+              <span class="card-platform">{app.platform}</span>
               {app.icon.startsWith("/") ? (
-                <img class="icon-img" src={app.icon} alt={`${app.name} logo`} />
+                <img class="card-icon" src={app.icon} alt="" />
               ) : (
-                <span class="icon-glyph">{app.icon}</span>
+                <span class="card-glyph">{app.icon}</span>
               )}
+              <span class="card-badge" style={`background:${app.accent}`}>↗</span>
             </div>
-            <div class="strip-main">
-              <div class="strip-kicker">
-                <span class="pill">{app.platform}</span>
-                <span class="pill ghost">{app.type}</span>
+            <div class="card-info">
+              <div class="card-main">
+                <div class="card-kicker">
+                  <span class="pill" style={`background:${app.accent}`}>{app.type}</span>
+                </div>
+                <h3 class="card-title">{app.name}</h3>
+                <p class="card-desc">{app.tagline}</p>
               </div>
-              <h3 class="strip-title">{app.name}</h3>
-              <p class="strip-desc">{app.tagline}</p>
+              <div class="card-side">
+                <span class="side-label">WHAT YOU GET</span>
+                <ul class="card-features">
+                  {app.features.map(f => (
+                    <li><span class="check">✓</span>{f}</li>
+                  ))}
+                </ul>
+                <span class="card-cta">Explore <b>→</b></span>
+              </div>
             </div>
-            <div class="strip-cta">
-              <span class="know">Know more</span>
-              <span class="arrow">→</span>
-            </div>
-            <div class="strip-bar"></div>
           </a>
         ))}
       </div>
@@ -130,8 +147,8 @@ import { apps } from "../data/apps.ts";
     max-width:1400px; width:100%; margin:0 auto;
     flex:1;
     display:grid;
-    grid-template-columns:118px 1fr;
-    gap:18px;
+    grid-template-columns:118px 1fr 230px;
+    gap:18px 26px;
     align-items:end;
     padding:38px 0 22px;
   }
@@ -199,10 +216,42 @@ import { apps } from "../data/apps.ts";
     font-family:"JetBrains Mono", monospace;
     font-size:11px; letter-spacing:0.08em; opacity:0.6
   }
+  .hero-rail{
+    grid-column:3; grid-row:1 / span 2;
+    align-self:end;
+    display:flex; flex-direction:column; gap:14px;
+    border:2px solid var(--ink);
+    border-left-width:6px;
+    background:#fff;
+    padding:16px 16px 14px;
+    box-shadow:6px 6px 0 var(--ink);
+  }
+  .rail-head{
+    font-family:"JetBrains Mono", monospace; font-size:10px; letter-spacing:0.16em;
+    background:var(--ink); color:var(--bg); width:fit-content; padding:4px 8px;
+  }
+  .rail-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column }
+  .rail-list li{ border-top:1.5px solid var(--line) }
+  .rail-list li:first-child{ border-top:none }
+  .rail-list a{
+    display:flex; align-items:center; gap:9px;
+    padding:11px 2px;
+    font-family:"Bricolage Grotesque", sans-serif; font-weight:700; font-size:15px;
+    letter-spacing:-0.02em;
+  }
+  .rail-dot{ width:10px; height:10px; border:1.5px solid var(--ink); flex-shrink:0 }
+  .rail-mail{
+    margin-top:4px; border-top:1.5px solid var(--line); padding-top:12px;
+    font-family:"JetBrains Mono", monospace; font-size:10px; letter-spacing:0.06em;
+    display:flex; justify-content:space-between; gap:8px; align-items:center;
+    color:var(--ink); opacity:0.85;
+  }
+  .rail-mail span{ font-size:14px }
   @media(max-width:900px){
     .brand-wrap{ grid-template-columns:84px 1fr; }
     .logo-mark{ width:84px; height:84px; border-radius:18px; padding:0 }
     .hero-sub{ grid-column:1 / -1; }
+    .hero-rail{ display:none }
   }
   @media(max-width:720px){
     .hero{ min-height:0; padding-top:14px; }
@@ -236,68 +285,114 @@ import { apps } from "../data/apps.ts";
   @media(max-width:800px){ .work-head{ grid-template-columns:1fr; } }
 
   .stack{ display:flex; flex-direction:column; margin-top:22px; }
-  .strip{
+
+  .app-card{
     position:relative;
     display:grid;
-    grid-template-columns:84px 96px 1fr 180px;
-    align-items:center;
-    gap:16px;
+    grid-template-columns:300px 1fr;
+    align-items:stretch;
     background:#fff;
     border:2px solid var(--ink);
-    padding:22px 18px;
-    margin-bottom:16px;
+    margin-bottom:20px;
     box-shadow:6px 6px 0 var(--ink);
-    transition:transform 160ms, box-shadow 160ms, background 160ms;
+    transition:transform 160ms, box-shadow 160ms;
+    overflow:hidden;
+    text-decoration:none; color:inherit;
+  }
+  .app-card:hover{ transform:translate(-2px,-2px); box-shadow:10px 10px 0 var(--ink); }
+  .app-card:active{ transform:translate(1px,1px); box-shadow:3px 3px 0 var(--ink); }
+
+  .card-art{
+    position:relative;
+    display:grid; place-items:center;
+    min-height:200px;
+    border-right:2px solid var(--ink);
     overflow:hidden;
   }
-  .strip:hover{ transform:translate(-2px,-2px); box-shadow:10px 10px 0 var(--ink); background:#FFFEFB; }
-  .strip:active{ transform:translate(1px,1px); box-shadow:3px 3px 0 var(--ink); }
-  .strip-num{
-    font-family:"Bricolage Grotesque", sans-serif;
-    font-size:42px; font-weight:800; line-height:1;
-    color:transparent; -webkit-text-stroke:1.4px var(--ink);
-    letter-spacing:-0.04em;
+  .card-num{
+    position:absolute; top:12px; left:14px;
+    font-family:"Bricolage Grotesque", sans-serif; font-size:28px; font-weight:800;
+    -webkit-text-stroke:1.4px #ffffff55; color:transparent; letter-spacing:-0.03em;
   }
-  .strip-icon{
-    width:96px; height:96px; border:2px solid var(--ink); background:var(--strip-bg); color:var(--accent);
-    display:grid; place-items:center;
-    border-radius:18px; transform:rotate(-1deg);
+  .card-platform{
+    position:absolute; top:16px; right:14px;
+    font-family:"JetBrains Mono", monospace; font-size:10px; letter-spacing:0.14em;
+    color:#ffffffaa;
   }
-  .icon-glyph{ font-size:44px; font-weight:800; line-height:1; color:var(--accent); }
-  .icon-img{ width:68px; height:68px; object-fit:contain; border-radius:14px; display:block; }
-  .strip-kicker{ display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap }
+  .card-icon{
+    width:110px; height:110px; object-fit:contain; border-radius:24px;
+    background:#fff; padding:8px; border:3px solid #fff;
+    box-shadow:0 16px 34px rgba(0,0,0,0.35); transform:rotate(-2deg);
+  }
+  .card-glyph{ font-size:72px; font-weight:800; color:#fff; line-height:1 }
+  .card-badge{
+    position:absolute; right:14px; bottom:14px;
+    width:40px; height:40px; display:grid; place-items:center;
+    border:2px solid var(--ink); border-radius:50%; font-size:18px; font-weight:800;
+  }
+
+  .card-info{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:20px 32px;
+    align-items:stretch;
+    padding:26px 28px;
+  }
+  .card-main{
+    display:flex; flex-direction:column; align-items:flex-start; gap:10px;
+  }
+  .card-kicker{ display:flex; gap:8px }
   .pill{
     font-family:"JetBrains Mono", monospace; font-size:10px; letter-spacing:0.1em;
-    border:1.5px solid var(--ink); padding:4px 8px; background:var(--accent); font-weight:500;
+    border:1.5px solid var(--ink); padding:4px 9px; font-weight:600;
   }
-  .pill.ghost{ background:#fff }
-  .strip-title{
+  .card-title{
     margin:0; font-family:"Bricolage Grotesque", sans-serif;
-    font-size:clamp(22px, 2.6vw, 34px); line-height:0.9; letter-spacing:-0.04em;
+    font-size:clamp(24px, 3vw, 40px); line-height:0.95; letter-spacing:-0.04em;
   }
-  .strip-desc{
-    margin:6px 0 0; font-family:"Instrument Serif", serif; font-size:18px; line-height:1.2; opacity:0.8
+  .card-desc{
+    margin:0; font-family:"Instrument Serif", serif; font-size:18px; line-height:1.4; opacity:0.8;
   }
-  .strip-cta{ display:flex; align-items:center; justify-content:flex-end; gap:12px }
-  .know{
+  .card-side{
+    display:flex; flex-direction:column; align-items:flex-start; gap:12px;
+    border-left:1.5px solid var(--line); padding-left:28px;
+  }
+  .side-label{
+    font-family:"JetBrains Mono", monospace; font-size:10px; letter-spacing:0.16em;
+    background:var(--ink); color:var(--bg); padding:4px 8px;
+  }
+  .card-features{
+    list-style:none; margin:0; padding:0;
+    display:flex; flex-direction:column; gap:8px; width:100%;
+  }
+  .card-features li{
+    display:flex; align-items:center; gap:9px;
+    font-family:"Space Grotesk", sans-serif; font-size:13px; font-weight:600; line-height:1.2;
+    border:1.5px solid var(--line); background:#F7F3EE; padding:8px 10px;
+  }
+  .card-features .check{
+    width:18px; height:18px; flex-shrink:0; display:grid; place-items:center;
+    background:var(--accent); border:1.5px solid var(--ink); border-radius:50%;
+    font-size:11px; font-weight:800;
+  }
+  .card-cta{
+    margin-top:auto;
     font-family:"JetBrains Mono", monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
-    border-bottom:2px solid var(--ink); padding-bottom:2px;
+    border-bottom:2px solid var(--ink); padding-bottom:3px;
   }
-  .arrow{
-    width:44px; height:44px; display:grid; place-items:center;
-    border:2px solid var(--ink); background:var(--accent); font-size:18px; font-weight:700;
-    border-radius:50%;
+  .card-cta b{ margin-left:6px; transition:transform 160ms; display:inline-block }
+  .app-card:hover .card-cta b{ transform:translateX(4px) }
+
+  @media(max-width:900px){
+    .card-info{ grid-template-columns:1fr; }
+    .card-side{ border-left:none; padding-left:0; border-top:1.5px solid var(--line); padding-top:16px }
   }
-  .strip-bar{
-    position:absolute; left:0; right:0; bottom:0; height:6px; background:var(--accent);
-    border-top:1.5px solid var(--ink);
-  }
-  @media(max-width:860px){
-    .strip{ grid-template-columns:54px 72px 1fr; }
-    .strip-num{ font-size:30px }
-    .strip-icon{ width:72px; height:72px; border-radius:14px }
-    .icon-glyph{ font-size:32px }
-    .strip-cta{ grid-column:1 / -1; justify-content:flex-start; margin-top:4px }
+  @media(max-width:760px){
+    .app-card{ grid-template-columns:1fr; }
+    .card-art{
+      min-height:170px;
+      border-right:none; border-bottom:2px solid var(--ink);
+    }
   }
 
   /* FOOTER */
