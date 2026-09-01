@@ -10,11 +10,12 @@ import { apps } from "../data/apps.ts";
 
     <!-- HERO: MASSIVE BRANDING, NO NAV -->
     <header class="hero">
-      <div class="hero-top">
-        <div class="eyebrow">
+      <div class="hero-top" style="display:flex; gap:12px; align-items:center;">
+        <div class="eyebrow" style="flex:1;">
           <span class="dot"></span> EST. 2024 — INDIA <span class="sep">/</span> WE BUILD USEFUL THINGS
           <span class="right-mono">apps • websites • tools</span>
         </div>
+        <button id="theme-toggle" type="button" onclick="window.toggleTheme()" aria-label="Toggle theme" title="Light / Dark" style="width:38px; height:38px; border-radius:50%; border:2px solid var(--line); background:var(--card); color:var(--ink); box-shadow:3px 3px 0 var(--line); cursor:pointer; display:grid; place-items:center; font-size:16px; flex-shrink:0;"><span id="theme-toggle-icon">☾</span></button>
       </div>
 
       <div class="brand-wrap">
@@ -32,17 +33,25 @@ import { apps } from "../data/apps.ts";
             <a class="stamp" href="#work">↓ OUR WORK</a>
             <span class="hero-mono">3 SHIPPED — MORE COOKING →</span>
           </div>
+          <div class="hero-left-extra">
+            <span>✦ Apps</span><span>•</span><span>Websites</span><span>•</span><span>Tools</span>
+            <span class="left-extra-muted">Est. 2024 • India • Remote</span>
+          </div>
         </div>
 
-        <aside class="hero-rail">
-          <span class="rail-head">NOW SHIPPING</span>
-          <ul class="rail-list">
-            {apps.map((app) => (
-              <li><a href={`/app/${app.slug}`}><b class="rail-dot" style={`background:${app.accent}`}></b>{app.name}</a></li>
-            ))}
-          </ul>
-          <a class="rail-mail" href="mailto:support.dunitelabs@gmail.com">support.dunitelabs@gmail.com <span>→</span></a>
-        </aside>
+        <div class="hero-sticks">
+          {apps.map((app) => (
+            <a href={`/app/${app.slug}`} class="stick" style={`--accent:${app.accent}`}>
+              <span class="stick-pin" aria-hidden="true"></span>
+              {app.icon.startsWith("/") ? (
+                <img class="stick-logo" src={app.icon} alt={`${app.name} logo`} />
+              ) : (
+                <span class="stick-glyph">{app.icon}</span>
+              )}
+              <span class="stick-name">{app.name}</span>
+            </a>
+          ))}
+        </div>
       </div>
 
       <!-- thin rule + manifesto -->
@@ -84,7 +93,7 @@ import { apps } from "../data/apps.ts";
               <div class="card-side">
                 <span class="side-label">WHAT YOU GET</span>
                 <ul class="card-features">
-                  {app.features.map(f => (
+                  {(app.slug === "speedmaths-pro" ? app.features.slice(0,4) : app.features).map(f => (
                     <li><span class="check">✓</span>{f}</li>
                   ))}
                 </ul>
@@ -147,10 +156,10 @@ import { apps } from "../data/apps.ts";
     max-width:1400px; width:100%; margin:0 auto;
     flex:1;
     display:grid;
-    grid-template-columns:118px 1fr 230px;
-    gap:18px 26px;
-    align-items:end;
-    padding:38px 0 22px;
+    grid-template-columns:118px 1fr 320px;
+    gap:16px 14px;
+    align-items:stretch;
+    padding:28px 0 22px;
   }
   .logo-mark{
     width:128px; height:128px;
@@ -216,42 +225,60 @@ import { apps } from "../data/apps.ts";
     font-family:"JetBrains Mono", monospace;
     font-size:11px; letter-spacing:0.08em; opacity:0.6
   }
-  .hero-rail{
+  .hero-sticks{
     grid-column:3; grid-row:1 / span 2;
-    align-self:end;
-    display:flex; flex-direction:column; gap:14px;
-    border:2px solid var(--ink);
-    border-left-width:6px;
+    position:relative;
+    min-height:380px;
+    align-self:stretch;
+  }
+  .stick{
+    position:absolute;
+    width:148px;
     background:#fff;
-    padding:16px 16px 14px;
-    box-shadow:6px 6px 0 var(--ink);
+    border:2px solid #0E0E0E;
+    border-top:4px solid var(--accent);
+    padding:18px 10px 10px;
+    box-shadow:5px 5px 0 #0E0E0E;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    text-align:center;
+    text-decoration:none; color:#0E0E0E;
+    transition:transform 150ms, box-shadow 150ms;
   }
-  .rail-head{
-    font-family:"JetBrains Mono", monospace; font-size:10px; letter-spacing:0.16em;
-    background:var(--ink); color:var(--bg); width:fit-content; padding:4px 8px;
+  .stick:hover{ transform:translateY(-2px) rotate(var(--r, 0deg)); box-shadow:7px 7px 0 #0E0E0E; }
+  .stick:nth-child(1){ left:10px; top:14px; transform:rotate(-2.6deg); }
+  .stick:nth-child(1):hover{ transform:rotate(-2.6deg) translateY(-3px); }
+  .stick:nth-child(2){ left:132px; top:138px; transform:rotate(2.4deg); }
+  .stick:nth-child(2):hover{ transform:rotate(2.4deg) translateY(-3px); }
+  .stick:nth-child(3){ left:18px; top:262px; transform:rotate(-1.4deg); }
+  .stick:nth-child(3):hover{ transform:rotate(-1.4deg) translateY(-3px); }
+  .stick-pin{
+    position:absolute;
+    top:-9px; left:50%; transform:translateX(-50%);
+    width:16px; height:16px;
+    background:radial-gradient(circle at 35% 35%, #FF6B6B 0%, #E03131 62%, #8D0F0F 100%);
+    border:2px solid #5A0A0A;
+    border-radius:50%;
+    box-shadow:0 2px 5px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.7);
   }
-  .rail-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column }
-  .rail-list li{ border-top:1.5px solid var(--line) }
-  .rail-list li:first-child{ border-top:none }
-  .rail-list a{
-    display:flex; align-items:center; gap:9px;
-    padding:11px 2px;
-    font-family:"Bricolage Grotesque", sans-serif; font-weight:700; font-size:15px;
-    letter-spacing:-0.02em;
+  .stick-logo{ width:52px; height:52px; object-fit:contain; border-radius:12px; background:#fff; border:1.5px solid #0E0E0E; padding:4px; display:block; }
+  .stick-glyph{ width:52px; height:52px; display:grid; place-items:center; background:#fff; border:1.5px solid #0E0E0E; border-radius:12px; font-weight:800; font-size:20px; color:#0E0E0E; }
+  .stick-name{
+    font-family:"Bricolage Grotesque", sans-serif; font-weight:800; font-size:13px; line-height:1.1; letter-spacing:-0.03em;
   }
-  .rail-dot{ width:10px; height:10px; border:1.5px solid var(--ink); flex-shrink:0 }
-  .rail-mail{
-    margin-top:4px; border-top:1.5px solid var(--line); padding-top:12px;
-    font-family:"JetBrains Mono", monospace; font-size:10px; letter-spacing:0.06em;
-    display:flex; justify-content:space-between; gap:8px; align-items:center;
-    color:var(--ink); opacity:0.85;
+  .hero-left-extra{
+    display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+    margin-top:14px; padding-top:12px; border-top:1.5px dashed #0E0E0E22;
+    font-family:"JetBrains Mono", monospace; font-size:10px; letter-spacing:0.08em;
   }
-  .rail-mail span{ font-size:14px }
+  .hero-left-extra span{ opacity:0.7; }
+  .left-extra-muted{ margin-left:auto; opacity:0.5; font-size:9px; }
+
+  html[data-theme="dark"] .stick{ background:#fff !important; border-color:#F7F3EE !important; color:#0E0E0E !important; box-shadow:5px 5px 0 #F7F3EE !important; }
   @media(max-width:900px){
     .brand-wrap{ grid-template-columns:84px 1fr; }
     .logo-mark{ width:84px; height:84px; border-radius:18px; padding:0 }
     .hero-sub{ grid-column:1 / -1; }
-    .hero-rail{ display:none }
+    .hero-sticks{ display:none }
   }
   @media(max-width:720px){
     .hero{ min-height:0; padding-top:14px; }
@@ -393,6 +420,44 @@ import { apps } from "../data/apps.ts";
       min-height:170px;
       border-right:none; border-bottom:2px solid var(--ink);
     }
+  }
+
+  /* === MOBILE OPTIMIZATIONS === */
+  @media(max-width:480px){
+    .hero{ padding:12px 14px 0; }
+    .eyebrow{ font-size:9px; padding:8px 10px; box-shadow:3px 3px 0 var(--line); gap:6px }
+    .brand-wrap{ grid-template-columns:56px 1fr; gap:12px; padding:18px 0 12px; }
+    .logo-mark{ width:56px; height:56px; border-radius:14px; box-shadow:4px 4px 0 var(--ink); }
+    .line1,.line2{ font-size:clamp(32px, 13vw, 52px); }
+    .trademark{ font-size:0.16em; transform:translateY(-0.4em); }
+    .hero-sub{ gap:14px; }
+    .tagline{ font-size:clamp(15px, 4.2vw, 18px); line-height:1.35; }
+    .stamp{ padding:10px 12px; font-size:11px; }
+    .hero-mono{ font-size:10px; }
+    .hero-foot{ font-size:9px; padding:8px 0 10px; }
+    .work{ padding:24px 14px 0; }
+    .work-head h2{ font-size:clamp(22px, 7vw, 28px); }
+    .work-label{ font-size:10px; }
+    .app-card{ box-shadow:4px 4px 0 var(--ink); margin-bottom:14px; }
+    .card-art{ min-height:140px; }
+    .card-icon{ width:80px; height:80px; border-radius:16px; padding:6px; border-width:2px; }
+    .card-num{ font-size:20px; top:10px; left:10px; }
+    .card-platform{ font-size:8px; top:12px; right:10px; }
+    .card-badge{ width:32px; height:32px; font-size:14px; right:10px; bottom:10px; }
+    .card-info{ padding:16px; gap:14px; }
+    .card-title{ font-size:clamp(20px, 6vw, 26px); }
+    .card-desc{ font-size:15px; }
+    .pill{ font-size:9px; padding:3px 7px; }
+    .card-features li{ font-size:12px; padding:7px 8px; }
+    .foot{ padding:16px 14px; margin-top:24px; }
+    .foot-inner{ font-size:10px; }
+    .foot-brand{ font-size:15px; }
+    .foot-big{ font-size:clamp(14px, 8vw, 32px); padding-top:10px; }
+  }
+  @media(max-width:375px){
+    .brand-wrap{ grid-template-columns:52px 1fr; }
+    .logo-mark{ width:52px; height:52px; }
+    .card-info{ padding:14px; }
   }
 
   /* FOOTER */
