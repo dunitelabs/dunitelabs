@@ -1,7 +1,6 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import { apps } from "../../../data/apps.ts";
-import { privacyBySlug } from "../../../data/legal.ts";
 import { site } from "../../../site";
 
 export function getStaticPaths() {
@@ -9,13 +8,11 @@ export function getStaticPaths() {
 }
 const { slug } = Astro.params;
 const app = apps.find(a => a.slug === slug)!;
-const doc = privacyBySlug[slug as string];
-if (!doc) throw new Error(`No privacy doc for ${slug}`);
 const jsonld = [
   {
     "@type": "WebPage",
-    name: doc.title,
-    description: doc.intro,
+    name: "SpeedMaths Pro — Privacy Policy",
+    description: "Privacy policy for SpeedMaths Pro mental‑math trainer.",
     url: `/app/${app.slug}/privacy/`,
     isPartOf: { "@type": "WebSite", name: "Dunite Labs", url: site.url },
   },
@@ -23,11 +20,12 @@ const jsonld = [
 ---
 
 <Layout
-  title={`${doc.title} — Dunite Labs`}
-  description={doc.intro}
+  title="SpeedMaths Pro — Privacy Policy — Dunite Labs"
+  description="Privacy policy for SpeedMaths Pro mental‑math trainer."
   favicon={app.icon}
   path={`/app/${app.slug}/privacy/`}
   jsonld={jsonld}
+  date="22 Oct 2026"
 >
   <div class="page" style={`--accent:${app.accent}`}>
     <div class="topbar">
@@ -42,9 +40,9 @@ const jsonld = [
           {app.icon.startsWith("/") ? <img src={app.icon} alt="" /> : <span>{app.icon}</span>}
           <span>{app.name}</span>
         </div>
-        <h1>{doc.title}</h1>
-        <p class="last">Last updated: {doc.lastUpdated}</p>
-        <p class="intro">{doc.intro}</p>
+        <h1>SpeedMaths Pro — Privacy Policy</h1>
+        <p class="last">Last updated: 22 Oct 2026</p>
+        <p class="intro">SpeedMaths Pro is a mental‑math trainer for competitive‑exam aspirants. We collect the minimum data needed for the leaderboard, streak sync and offline practice, and we never sell your data.</p>
         <div class="links">
           <a href={`/app/${app.slug}/delete-data`} class="link">Delete my data →</a>
           <span class="sep">•</span>
@@ -53,15 +51,48 @@ const jsonld = [
       </div>
 
       <div class="sections">
-        {doc.sections.map(s => (
-          <section>
-            <h2>{s.heading}</h2>
-            <p>{s.body}</p>
-          </section>
-        ))}
+        <section>
+          <h2>What data we collect</h2>
+          <p>When you first open SpeedMaths Pro, Firebase creates an anonymous authentication ID. This random identifier lets the app save your daily leaderboard score and keep your streak in sync across devices. No email, phone number, or personal details are required.</p>
+          <p>The leaderboard stores your score, average time, and an optional display name in Cloud Firestore under a day‑specific document. A separate user profile document holds your chosen reminder time, theme preference, and streak counters — all optional.</p>
+          <p>All practice history — quiz results, level progress, custom‑practice settings, and the list of questions you answered incorrectly — stays in a local SQLite database on your device. App preferences such as theme, reminder time, and the onboarding flag are saved in SharedPreferences. None of this data leaves your phone unless you explicitly use the in‑app sync feature.</p>
+          <p><strong>We do not collect</strong> email addresses, phone numbers, contacts, precise location, camera or microphone access, advertising IDs, or any other personally‑identifiable information.</p>
+        </section>
+
+        <section>
+          <h2>Permissions</h2>
+          <p>The app requests only the Internet permission, which is required for Firebase Authentication and Firestore. No sensitive permissions — such as location, contacts, camera, microphone, SMS, or call logs — are requested.</p>
+        </section>
+
+        <section>
+          <h2>Third‑party services</h2>
+          <p>We use three Google services: Firebase Authentication (anonymous sign‑in) to generate a random user ID; Cloud Firestore to store leaderboard rows and optional profile data; and Google Play Services, which Firebase depends on. We do not use any of the identifiers from Play Services ourselves. All three are covered by Google's own privacy policies and Data‑Processing Addendum.</p>
+        </section>
+
+        <section>
+          <h2>Data retention & security</h2>
+          <p>All network traffic is encrypted with TLS 1.2 or higher (Firebase enforces HTTPS). The on‑device SQLite database lives in the app's private sandbox — no other app can read it. No data is written to external storage.</p>
+          <p>Leaderboard documents are kept for a rolling 30‑day window and then removed automatically by a Cloud Function. Your Firestore user profile remains until you request deletion (see the Delete Your Data page). Local data and preferences stay on your device until you tap <strong>Delete my data</strong> in the app or clear the app's storage from Android Settings.</p>
+        </section>
+
+        <section>
+          <h2>Children's privacy</h2>
+          <p>SpeedMaths Pro is not directed to children under 13 (or the local equivalent). We do not knowingly collect data from children. If a parent discovers a child has entered a display name, contact us and we will delete it immediately.</p>
+        </section>
+
+        <section>
+          <h2>Your rights</h2>
+          <p>You can view a summary of your data in the app's Profile screen. You may edit your display name and reminder time at any time. To erase everything, open <strong>Profile → Settings → Delete my data</strong>, or email us at <a href="mailto:dunitelabs.support@gmail.com">dunitelabs.support@gmail.com</a> with the subject "Delete my SpeedMaths Pro data" and the UID shown in Profile → About. We will confirm deletion within 48 hours. If you prefer, you can also request a JSON export of your data by email.</p>
+        </section>
+
+        <section>
+          <h2>Changes to this policy</h2>
+          <p>Any material change will be posted on this page with a new "Last updated" date. The in‑app link always points to the current version.</p>
+        </section>
+
         <section class="contact">
           <h2>Contact</h2>
-          <p>Email: <a href={`mailto:${doc.contact}`}>{doc.contact}</a> — we reply within 7 days. For Play Store, this page is your official privacy-policy URL.</p>
+          <p>Email: <a href="mailto:dunitelabs.support@gmail.com">dunitelabs.support@gmail.com</a> — we reply within 7 days. For Play Store, this page (<code>/app/speedmaths-pro/privacy/</code>) is the official privacy‑policy URL.</p>
         </section>
       </div>
 
@@ -93,7 +124,7 @@ const jsonld = [
   section{ padding:14px 0; border-bottom:1px solid #00000012 }
   section:last-child{ border-bottom:none }
   h2{ margin:0 0 6px; font-family:"Space Grotesk", sans-serif; font-size:15px; letter-spacing:-0.02em }
-  p{ margin:0; font-size:14px; line-height:1.6; opacity:0.85 }
+  p{ margin:0 0 12px; font-size:14px; line-height:1.7; opacity:0.85 }
   .contact a{ text-decoration:underline }
   .doc-foot{ display:flex; justify-content:space-between; gap:12px; align-items:center; margin-top:16px; font-family:"JetBrains Mono", monospace; font-size:11px }
   @media(max-width:768px){

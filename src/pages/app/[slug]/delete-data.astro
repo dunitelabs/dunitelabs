@@ -1,7 +1,6 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import { apps } from "../../../data/apps.ts";
-import { deleteBySlug } from "../../../data/legal.ts";
 import { site } from "../../../site";
 
 export function getStaticPaths() {
@@ -9,13 +8,11 @@ export function getStaticPaths() {
 }
 const { slug } = Astro.params;
 const app = apps.find(a => a.slug === slug)!;
-const doc = deleteBySlug[slug as string];
-if (!doc) throw new Error(`No delete doc for ${slug}`);
 const jsonld = [
   {
     "@type": "WebPage",
-    name: doc.title,
-    description: doc.intro,
+    name: "SpeedMaths Pro — Delete Your Data",
+    description: "Data‑deletion instructions for SpeedMaths Pro.",
     url: `/app/${app.slug}/delete-data/`,
     isPartOf: { "@type": "WebSite", name: "Dunite Labs", url: site.url },
   },
@@ -23,11 +20,12 @@ const jsonld = [
 ---
 
 <Layout
-  title={`${doc.title} — Dunite Labs`}
-  description={doc.intro}
+  title="SpeedMaths Pro — Delete Your Data — Dunite Labs"
+  description="Data‑deletion instructions for SpeedMaths Pro."
   favicon={app.icon}
   path={`/app/${app.slug}/delete-data/`}
   jsonld={jsonld}
+  date="22 Oct 2026"
 >
   <div class="page" style={`--accent:${app.accent}`}>
     <div class="topbar">
@@ -42,26 +40,41 @@ const jsonld = [
           {app.icon.startsWith("/") ? <img src={app.icon} alt="" /> : <span>{app.icon}</span>}
           <span>{app.name}</span>
         </div>
-        <h1>{doc.title}</h1>
-        <p class="last">Last updated: {doc.lastUpdated}</p>
-        <p class="intro">{doc.intro}</p>
+        <h1>SpeedMaths Pro — Delete Your Data</h1>
+        <p class="last">Last updated: 22 Oct 2026</p>
+        <p class="intro">You can erase every piece of data the app holds about you — both locally and in the cloud — with a single tap or by email.</p>
         <div class="links">
           <a href={`/app/${app.slug}/privacy`} class="link">Privacy Policy →</a>
           <span class="sep">•</span>
-          <a href={`mailto:${doc.contact}?subject=Delete%20my%20${encodeURIComponent(app.name)}%20data`} class="cta">Email to delete</a>
+          <a href={`mailto:dunitelabs.support@gmail.com?subject=${encodeURIComponent(`Delete my ${app.name} data`)}&body=${encodeURIComponent(`UID: (copy from Profile → About)\n\nPlease delete all my SpeedMaths Pro data.`)}`} class="cta">Email to delete</a>
         </div>
       </div>
 
       <div class="sections">
-        {doc.sections.map(s => (
-          <section>
-            <h2>{s.heading}</h2>
-            <p>{s.body}</p>
-          </section>
-        ))}
+        <section>
+          <h2>In‑app (recommended)</h2>
+          <p>Open <strong>SpeedMaths Pro</strong> → <strong>Profile</strong> → <strong>Settings</strong> → <strong>Delete my data</strong>. The app will immediately remove your Firestore user profile and every daily leaderboard row tied to your anonymous ID. It then wipes the on‑device SQLite database and clears all local preferences. The anonymous Firebase Auth ID is also deleted, so the installation can no longer be linked to any prior activity.</p>
+        </section>
+
+        <section>
+          <h2>By email (if you cannot open the app)</h2>
+          <p>Send a message to <a href="mailto:dunitelabs.support@gmail.com">dunitelabs.support@gmail.com</a> with the subject <strong>"Delete my SpeedMaths Pro data"</strong> and include the UID shown in <em>Profile → About</em> (or the email you used for any optional sign‑in). We will run the same server‑side cleanup within <strong>48 hours</strong> and reply with confirmation.</p>
+        </section>
+
+        <section>
+          <h2>Local‑only usage (no account ever created)</h2>
+          <p>If you never entered a display name, the app only stores data locally. Simply go to <strong>Android Settings → Apps → SpeedMaths Pro → Storage → Clear Data</strong> (or uninstall the app). No server‑side data exists.</p>
+        </section>
+
+        <section>
+          <h2>What happens after deletion</h2>
+          <p>All cloud records — your Firestore user profile and every daily leaderboard row — are permanently removed. All local data (SQLite database and SharedPreferences) is erased. The anonymous Firebase Auth ID is deleted, so the device can no longer be linked to any prior activity.</p>
+        </section>
+
         <section class="contact">
-          <h2>Contact</h2>
-          <p>Email <a href={`mailto:${doc.contact}`}>{doc.contact}</a> with subject “Delete my {app.name} data”. We delete/confirm within 7 days. For Play Store Data safety, this page is your official deletion URL.</p>
+          <h2>Contact for deletion requests</h2>
+          <p>Email: <a href="mailto:dunitelabs.support@gmail.com">dunitelabs.support@gmail.com</a> — subject <strong>"Delete my SpeedMaths Pro data"</strong>. We confirm completion within 48 hours.</p>
+          <p>For Play Store Data Safety, this page (<code>/app/speedmaths-pro/delete-data/</code>) is the official data‑deletion URL.</p>
         </section>
       </div>
 
@@ -94,7 +107,7 @@ const jsonld = [
   section{ padding:14px 0; border-bottom:1px solid #00000012 }
   section:last-child{ border-bottom:none }
   h2{ margin:0 0 6px; font-family:"Space Grotesk", sans-serif; font-size:15px; letter-spacing:-0.02em }
-  p{ margin:0; font-size:14px; line-height:1.6; opacity:0.85 }
+  p{ margin:0 0 12px; font-size:14px; line-height:1.7; opacity:0.85 }
   .contact a{ text-decoration:underline }
   .doc-foot{ display:flex; justify-content:space-between; gap:12px; align-items:center; margin-top:16px; font-family:"JetBrains Mono", monospace; font-size:11px }
   @media(max-width:768px){
