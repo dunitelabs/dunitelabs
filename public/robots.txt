@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dunitelabs.pages.dev/sitemap-index.xml
+Sitemap: https://dunitelabs.com/sitemap-index.xml

@@ -1,6 +1,6 @@
 # Dunite Labs — Website
 
-The source for the [Dunite Labs](https://dunitelabs.pages.dev) company website — a usability-first product studio from India. Built with [Astro](https://astro.build) as a static, SEO-friendly site.
+The source for the [Dunite Labs](https://dunitelabs.com) company website — a usability-first product studio from India. Built with [Astro](https://astro.build) as a static, SEO-friendly site.
 
 ## Features
 
@@ -64,7 +64,7 @@ Deployed on **Cloudflare Pages**:
 Central config lives in [`src/site.ts`](src/site.ts):
 
 - Name, tagline, description
-- Base URL (switch `https://dunitelabs.pages.dev` → `https://dunitelabs.com` when the custom domain goes live)
+- Base URL (`https://dunitelabs.com`, live on Cloudflare Pages)
 - Contact email and all social links
 
 Mirror URL changes in [`astro.config.mjs`](astro.config.mjs) (`site`) so canonical tags and the sitemap stay correct.

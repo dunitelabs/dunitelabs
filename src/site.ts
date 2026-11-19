@@ -1,8 +1,6 @@
 export const site = {
   name: "Dunite Labs",
-  url: "https://dunitelabs.pages.dev",
-  // Once the custom domain is live, switch url above to:
-  // url: "https://dunitelabs.com",
+  url: "https://dunitelabs.com",
   tagline: "We build useful things.",
   description:
     "Dunite Labs builds apps, websites and tools that solve real problems — Guava Music, Speedmaths Pro, GovtJobsNotice. Est. 2024, India.",
