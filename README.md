@@ -68,3 +68,8 @@ Central config lives in [`src/site.ts`](src/site.ts):
 - Contact email and all social links
 
 Mirror URL changes in [`astro.config.mjs`](astro.config.mjs) (`site`) so canonical tags and the sitemap stay correct.
+
+The auto-generated `dunitelabs.pages.dev` host 301-redirects to `https://dunitelabs.com` through an
+account-level **Bulk Redirect** (Cloudflare dashboard → *Bulk Redirects*), with subpath matching and
+path suffix preserved. It cannot live in `public/_redirects` — Cloudflare Pages does not support
+domain-level redirects in that file.
