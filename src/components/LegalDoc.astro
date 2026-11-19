@@ -1,0 +1,136 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../site";
+import type { App } from "../data/apps";
+import type { LegalSection } from "../data/legal";
+
+interface Props {
+  app: App;
+  kind: "privacy" | "delete-data";
+  title: string;
+  description: string;
+  path: string;
+  updated: string;
+  intro: string;
+  sections: LegalSection[];
+  email: string;
+  emailSubject: string;
+  emailBody: string;
+}
+
+const { app, kind, title, description, path, updated, intro, sections, email, emailSubject, emailBody } = Astro.props;
+
+const jsonld = [
+  {
+    "@type": "WebPage",
+    name: title,
+    description,
+    url: path,
+    isPartOf: { "@type": "WebSite", name: site.name, url: site.url },
+  },
+];
+
+const mailto =
+  kind === "delete-data"
+    ? `mailto:${email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`
+    : null;
+---
+
+<Layout title={`${title} — ${site.name}`} description={description} favicon={app.icon} path={path} jsonld={jsonld}>
+  <div class="legal-page" style={`--accent:${app.accent}`}>
+    <div class="topbar">
+      <a href={`/app/${app.slug}`} class="back"><img src="/dunitelabs_logo.svg" alt="" width="20" height="20" /> Back to {app.name}</a>
+      <span class="top-mono">LEGAL • {kind === "privacy" ? "PRIVACY POLICY" : "DELETE DATA"}</span>
+      <button id="theme-toggle" type="button" onclick="window.toggleTheme()" aria-label="Toggle theme" title="Light / Dark" style="width:36px; height:36px; border-radius:50%; border:2px solid var(--line); background:var(--card); color:var(--ink); box-shadow:3px 3px 0 var(--line); cursor:pointer; display:grid; place-items:center; font-size:16px; flex-shrink:0;"><span id="theme-toggle-icon">☾</span></button>
+    </div>
+
+    <article class="doc">
+      <div class="doc-head">
+        <div class="app-badge" style={`background:${app.bg}; color:${app.accent}; border-color:var(--line)`}>
+          {app.icon.startsWith("/") ? <img src={app.icon} alt="" /> : <span>{app.icon}</span>}
+          <span>{app.name}</span>
+        </div>
+        <h1>{title}</h1>
+        <p class="last">Last updated: {updated}</p>
+        <p class="intro">{intro}</p>
+        <div class="links">
+          {kind === "privacy" ? (
+            <a href={`/app/${app.slug}/delete-data`} class="link">Delete my data →</a>
+          ) : (
+            <a href={`/app/${app.slug}/privacy`} class="link">Privacy Policy →</a>
+          )}
+          <span class="sep">•</span>
+          {mailto ? <a href={mailto} class="cta">Email to delete</a> : <a href="/" class="link">Dunite Labs home</a>}
+        </div>
+      </div>
+
+      <div class="sections">
+        {sections.map((s) => (
+          <section class={s.contact ? "contact" : undefined}>
+            <h2>{s.heading}</h2>
+            <div set:html={s.html} />
+          </section>
+        ))}
+      </div>
+
+      <div class="doc-foot">
+        <a href={`/app/${app.slug}`} class="back dark">← Back to {app.name}</a>
+        <span>© {new Date().getFullYear()} Dunite Labs</span>
+      </div>
+    </article>
+  </div>
+</Layout>
+
+<style is:global>
+  /* Global but namespaced: the body is injected with set:html, which Astro's scoped styles
+     cannot reach. `.legal-page` exists only on these two pages. */
+  .legal-page{ min-height:100dvh; background:#F7F3EE; padding-bottom:24px }
+  .legal-page .topbar{ max-width:860px; margin:0 auto; padding:14px 22px; display:flex; justify-content:space-between; gap:12px; align-items:center; font-family:"JetBrains Mono", monospace; font-size:11px; letter-spacing:0.1em }
+  .legal-page .back{ display:flex; align-items:center; gap:8px; background:#0E0E0E; color:#fff; border:1.5px solid #0E0E0E; padding:6px 12px; font-weight:700; box-shadow:3px 3px 0 #0E0E0E }
+  .legal-page .back.dark{ background:#fff; color:#0E0E0E; border-color:#0E0E0E }
+  .legal-page .back img{ width:20px; height:20px }
+  .legal-page .top-mono{ opacity:0.6 }
+  .legal-page .doc{ max-width:860px; margin:0 auto; padding:0 22px }
+  .legal-page .doc-head{ background:#fff; border:2px solid var(--line); padding:22px; box-shadow:6px 6px 0 var(--line); margin-top:8px }
+  .legal-page .app-badge{ display:inline-flex; align-items:center; gap:8px; border:1.5px solid; padding:6px 10px; font-family:"Space Grotesk", sans-serif; font-weight:700; font-size:13px }
+  .legal-page .app-badge img{ width:22px; height:22px; object-fit:contain; background:#fff; border-radius:6px; padding:2px }
+  .legal-page h1{ margin:14px 0 6px; font-family:"Bricolage Grotesque", sans-serif; font-size:32px; letter-spacing:-0.04em; line-height:1 }
+  .legal-page .last{ font-family:"JetBrains Mono", monospace; font-size:11px; opacity:0.6; margin:0 }
+  .legal-page .intro{ margin:12px 0 0; font-family:"Instrument Serif", serif; font-size:18px; line-height:1.4 }
+  .legal-page .links{ margin-top:12px; display:flex; gap:10px; align-items:center; font-family:"JetBrains Mono", monospace; font-size:11px; flex-wrap:wrap }
+  .legal-page .link{ border-bottom:1.5px solid var(--line); }
+  .legal-page .cta{ background:#0E0E0E; color:#fff; padding:8px 12px; border:1.5px solid #0E0E0E; box-shadow:2px 2px 0 #0E0E0E }
+  .legal-page .sep{ opacity:0.4 }
+  .legal-page .sections{ margin-top:16px; background:#fff; border:2px solid var(--line); padding:22px; box-shadow:6px 6px 0 var(--line) }
+  .legal-page section{ padding:14px 0; border-bottom:1px solid #00000012 }
+  .legal-page section:last-child{ border-bottom:none }
+  .legal-page h2{ margin:0 0 6px; font-family:"Space Grotesk", sans-serif; font-size:15px; letter-spacing:-0.02em }
+  .legal-page p{ margin:0 0 12px; font-size:14px; line-height:1.7; opacity:0.85 }
+  .legal-page p:last-child{ margin-bottom:0 }
+  .legal-page ul, .legal-page ol{ margin:0 0 12px; padding-left:20px; font-size:14px; line-height:1.7 }
+  .legal-page li{ margin:4px 0; opacity:0.85 }
+  .legal-page a{ text-decoration:underline }
+  .legal-page table{ width:100%; border-collapse:collapse; margin:4px 0 12px; font-size:13px }
+  .legal-page th, .legal-page td{ text-align:left; padding:6px 8px; border-bottom:1px solid #00000012; vertical-align:top; opacity:0.85 }
+  .legal-page th{ font-family:"Space Grotesk", sans-serif; opacity:1 }
+  .legal-page code{ font-family:"JetBrains Mono", monospace; font-size:0.9em; background:#00000008; padding:1px 4px }
+  .legal-page .note{ font-size:13px; opacity:0.7 }
+  .legal-page .doc-foot{ display:flex; justify-content:space-between; gap:12px; align-items:center; margin-top:16px; font-family:"JetBrains Mono", monospace; font-size:11px }
+  @media(max-width:768px){
+    .legal-page .topbar{ padding:10px 14px; flex-wrap:wrap; gap:8px; }
+    .legal-page .back{ padding:5px 9px; font-size:11px; box-shadow:2px 2px 0 #0E0E0E; order:1; }
+    .legal-page #theme-toggle{ order:2; margin-left:auto; }
+    .legal-page .top-mono{ font-size:9px; width:100%; text-align:left; order:3; }
+    .legal-page .doc{ padding:0 14px; }
+    .legal-page .doc-head{ padding:16px; box-shadow:4px 4px 0 var(--line); }
+    .legal-page h1{ font-size:clamp(22px, 6vw, 28px); }
+    .legal-page .intro{ font-size:16px; }
+    .legal-page .links{ flex-wrap:nowrap; gap:6px; font-size:clamp(9.5px, 2.6vw, 10px); justify-content:flex-start; white-space:nowrap; max-width:100%; overflow:hidden; }
+    .legal-page .links a{ white-space:nowrap; padding:4px 2px; flex-shrink:1; min-width:0; }
+    .legal-page .links .sep{ flex-shrink:0; }
+    .legal-page .cta{ width:100%; text-align:center; justify-content:center; }
+    .legal-page .sections{ padding:16px; box-shadow:4px 4px 0 var(--line); }
+    .legal-page .doc-foot{ flex-direction:column; align-items:stretch; text-align:center; }
+    .legal-page .doc-foot .back{ justify-content:center; }
+  }
+</style>

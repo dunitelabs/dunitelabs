@@ -4,7 +4,10 @@ import { apps } from "../../../data/apps.ts";
 import { site } from "../../../site";
 
 export function getStaticPaths() {
-  return apps.map(a => ({ params: { slug: a.slug } }));
+  // The only policy still written inline here is SpeedMaths Pro's. Guava Music has its own
+  // pages (src/pages/app/guava-music/) and every other app has no policy at all, so neither
+  // may inherit this text - a policy for the wrong app is worse than no page.
+  return apps.filter(a => a.slug === 'speedmaths-pro').map(a => ({ params: { slug: a.slug } }));
 }
 const { slug } = Astro.params;
 const app = apps.find(a => a.slug === slug)!;

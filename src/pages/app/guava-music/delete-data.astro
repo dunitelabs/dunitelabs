@@ -1,0 +1,77 @@
+---
+import LegalDoc from "../../../components/LegalDoc.astro";
+import { apps } from "../../../data/apps.ts";
+import { contactEmail } from "../../../data/legal.ts";
+
+const app = apps.find((a) => a.slug === "guava-music")!;
+
+const sections = [
+  {
+    heading: "Option 1 — in the app (immediate)",
+    html: `
+      <ol>
+        <li>Open Guava Music and go to the <strong>Profile</strong> tab.</li>
+        <li>Find the <strong>Guava Cloud</strong> card (your name and email at the top).</li>
+        <li>Choose one:
+          <ul>
+            <li><strong>Delete my cloud data</strong> — removes the stored playlists, favorites and settings, and keeps your account signed in and usable.</li>
+            <li><strong>Delete my account</strong> — removes the same data and then the account identifier itself, and signs you out on every device.</li>
+          </ul>
+        </li>
+        <li>Confirm. The deletion happens immediately; no waiting period.</li>
+      </ol>
+      <p>If Google asks you to sign in once more during account deletion, that is a freshness check on the sign-in itself, not a failure: your cloud data has already been removed at that point, and signing in once and repeating the step closes the account.</p>
+    `,
+  },
+  {
+    heading: "Option 2 — by email",
+    html: `
+      <p>Write to <a href="mailto:${contactEmail}?subject=Account%20deletion">${contactEmail}</a> with the subject <em>Account deletion</em>, from — or naming — the Google account you signed in with. We verify ownership by replying to that address and complete the deletion within 30 days.</p>
+    `,
+  },
+  {
+    heading: "What is deleted",
+    html: `
+      <table>
+        <tr><th>Data</th><th>Where it lives</th><th>Deleted?</th></tr>
+        <tr><td>Playlists, playlist entries, favorites</td><td>Google Cloud Firestore, under your account</td><td>Yes, immediately</td></tr>
+        <tr><td>App settings synced to the cloud (theme, playback, library hygiene)</td><td>Google Cloud Firestore, under your account</td><td>Yes, immediately</td></tr>
+        <tr><td>Account identifier, name, email, profile picture</td><td>Firebase Authentication</td><td>Yes, immediately (on <em>Delete my account</em>)</td></tr>
+        <tr><td>Audio and artwork you uploaded</td><td>Your own Google Drive</td><td>No — see below</td></tr>
+        <tr><td>Your music library, history, downloaded artwork, local backups</td><td>This device only; never on a Guava server</td><td>No — see below</td></tr>
+      </table>
+    `,
+  },
+  {
+    heading: "What is not deleted, and how to remove it",
+    html: `
+      <ul>
+        <li><strong>Files in your Google Drive.</strong> The locker uploads into your own Drive under your own Google account, so those files belong to you and are removed by you: open Google Drive, find the Guava folder, and delete it. Deleting the Guava account does not touch your Drive.</li>
+        <li><strong>Data on your phone.</strong> Your library, playlists and settings are local and survive account deletion by design — they are your files, not ours. Uninstalling Guava Music removes them, and any local backup archives you exported stay wherever you saved them.</li>
+      </ul>
+    `,
+  },
+  {
+    heading: "Questions",
+    contact: true,
+    html: `
+      <p>See the <a href="/app/guava-music/privacy">privacy policy</a>, or write to <a href="mailto:${contactEmail}">${contactEmail}</a>.</p>
+      <p>For Play Store Data Safety, this page (<code>/app/guava-music/delete-data/</code>) is the official data-deletion URL.</p>
+    `,
+  },
+];
+---
+
+<LegalDoc
+  app={app}
+  kind="delete-data"
+  title="Delete your Guava Music account"
+  description="How to delete your Guava Cloud account and its data from inside Guava Music, or by email."
+  path="/app/guava-music/delete-data/"
+  updated="19 November 2026"
+  intro="Guava Music works fully without an account. If you signed in for Guava Cloud, you can delete that account and its data from inside the app, or by email if you no longer have the app installed."
+  sections={sections}
+  email={contactEmail}
+  emailSubject="Delete my Guava Music account"
+  emailBody="Signed-in Google account: "
+/>

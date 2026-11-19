@@ -1,0 +1,115 @@
+---
+import LegalDoc from "../../../components/LegalDoc.astro";
+import { apps } from "../../../data/apps.ts";
+import { contactEmail } from "../../../data/legal.ts";
+
+const app = apps.find((a) => a.slug === "guava-music")!;
+
+const sections = [
+  {
+    heading: "1. What stays on your phone",
+    html: `
+      <p>Your music library, play history, playlists, favorites, artwork cache and settings are stored in the app's private storage on the device. The app reads your audio files through Android's media permission and never uploads them anywhere unless you explicitly start a Drive upload. Uninstalling the app deletes this local data.</p>
+    `,
+  },
+  {
+    heading: "2. Signing in to Guava Cloud (optional)",
+    html: `
+      <p>If you sign in with Google, Google Sign-In returns your <strong>name</strong>, <strong>email address</strong> and <strong>profile picture</strong>, and Firebase Authentication creates an account identifier for you. That is the whole sign-in payload; the app asks for no other Google permission at this step.</p>
+      <p>While signed in, the following is stored in Google Cloud Firestore under your account:</p>
+      <ul>
+        <li>playlist names, descriptions and the entries in them</li>
+        <li>favorites</li>
+        <li>the song title, artist, duration and content hash needed to re-link an entry to a file</li>
+        <li>your app settings (theme, playback, library-hygiene preferences)</li>
+      </ul>
+      <p>No audio, artwork, lyrics or catalogue data is stored in Guava Cloud. One Google account can read only its own document — the database rules deny everything else, including to other signed-in users.</p>
+    `,
+  },
+  {
+    heading: "3. The Drive locker (optional, off until you tap it)",
+    html: `
+      <p>Uploading uses Google's <code>drive.file</code> permission, which lets the app create and manage <strong>only the files it created itself</strong>. Guava cannot read, list or modify anything else in your Drive, and the developer has no way to browse your Drive at all. Your files stay in your own Google Drive under your own Google account and Google's terms; deleting them there is always under your control.</p>
+    `,
+  },
+  {
+    heading: "4. Looking up artwork, metadata and lyrics",
+    html: `
+      <p>To fill in missing artwork and lyrics, the app sends a lookup containing the song's title, artist, album and duration directly from your device to these services. No account identifier, device identifier or listening history is included, and nothing about you is stored by the app as part of a lookup.</p>
+      <table>
+        <tr><th>Service</th><th>What it receives</th><th>Its policy</th></tr>
+        <tr><td>MusicBrainz</td><td>title, artist, album</td><td><a href="https://metabrainz.org/privacy" rel="noopener" target="_blank">metabrainz.org/privacy</a></td></tr>
+        <tr><td>Deezer</td><td>title, artist</td><td><a href="https://www.deezer.com/legal/personal-datas" rel="noopener" target="_blank">deezer.com/legal/personal-datas</a></td></tr>
+        <tr><td>iTunes Search API</td><td>title, artist</td><td><a href="https://www.apple.com/legal/privacy/" rel="noopener" target="_blank">apple.com/legal/privacy</a></td></tr>
+        <tr><td>LRCLIB</td><td>title, artist, album, duration</td><td><a href="https://lrclib.net" rel="noopener" target="_blank">lrclib.net</a></td></tr>
+        <tr><td>lyrics.ovh</td><td>title, artist</td><td><a href="https://lyrics.ovh" rel="noopener" target="_blank">lyrics.ovh</a></td></tr>
+      </table>
+    `,
+  },
+  {
+    heading: "5. Backups",
+    html: `
+      <p>Local backups are archives you create yourself and store where you choose. If you set a passphrase, the archive is encrypted with AES-256-GCM before it leaves the app and the passphrase is never stored or transmitted. A backup copy in your Drive is covered by section 3.</p>
+    `,
+  },
+  {
+    heading: "6. Permissions, and why",
+    html: `
+      <ul>
+        <li><strong>Audio files</strong> — to find and play the music on your phone.</li>
+        <li><strong>Internet / network state</strong> — sign-in, cloud sync, Drive uploads, and the lookups in section 4. If you never sign in and never use the locker, the app's own features work offline.</li>
+        <li><strong>Notifications and foreground service</strong> — the playback notification and lock-screen controls.</li>
+      </ul>
+      <p class="note">The app requests no location, contacts, calendar, camera, microphone, SMS or phone-state access, and does not read the advertising ID.</p>
+    `,
+  },
+  {
+    heading: "7. Who processes what",
+    html: `
+      <p>Guava Cloud uses Google Firebase (Authentication, Cloud Firestore) and the locker uses Google Drive; both are operated by Google and governed by Google's privacy policy. Requests are made over HTTPS only — the app refuses cleartext connections. No other server is involved: there is no Guava backend, and no data is sent to the developer's own infrastructure.</p>
+      <p>Guava's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener" target="_blank">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+    `,
+  },
+  {
+    heading: "8. Keeping it, deleting it",
+    html: `
+      <p>Cloud data is kept until you delete it. In the app: <strong>Profile → Guava Cloud → Delete my cloud data</strong> removes the stored playlists, favorites and settings; <strong>Delete my account</strong> removes that data and the account identifier itself. Both take effect immediately and the second signs you out on every device.</p>
+      <p>Files you uploaded to your own Drive are not deleted by the app — remove them in Google Drive. Local library data is removed by uninstalling the app. You can also request deletion by email (see below), and the same instructions are published on the <a href="/app/guava-music/delete-data">account deletion page</a>.</p>
+    `,
+  },
+  {
+    heading: "9. Children",
+    html: `
+      <p>Guava Music is not directed at children under 13 and does not knowingly collect personal information from them. An account is optional and requires a Google account.</p>
+    `,
+  },
+  {
+    heading: "10. Changes",
+    html: `
+      <p>If this policy changes, the new version is published at this address with a new effective date. Material changes that affect what is stored will be noted in the app's release notes.</p>
+    `,
+  },
+  {
+    heading: "Contact",
+    contact: true,
+    html: `
+      <p>Questions, or a deletion request: <a href="mailto:${contactEmail}">${contactEmail}</a>. For a deletion request, write from (or mention) the Google account you signed in with, and allow up to 30 days.</p>
+      <p>For Play Store, this page (<code>/app/guava-music/privacy/</code>) is the official privacy-policy URL.</p>
+    `,
+  },
+];
+---
+
+<LegalDoc
+  app={app}
+  kind="privacy"
+  title="Guava Music — Privacy Policy"
+  description="What Guava Music stores on your phone, in Guava Cloud and in your own Google Drive, and how to delete it."
+  path="/app/guava-music/privacy/"
+  updated="19 November 2026"
+  intro="Guava Music is an offline-first music player. It plays the audio files already on your phone and works without an account. Two optional features use the network: Guava Cloud (playlists, favorites and settings synced through your Google account) and the Drive locker (your audio copied to your own Google Drive). This page explains exactly what each one stores, where, and how to remove it."
+  sections={sections}
+  email={contactEmail}
+  emailSubject="Delete my Guava Music account"
+  emailBody="Signed-in Google account: "
+/>
