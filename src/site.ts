@@ -4,7 +4,7 @@ export const site = {
   tagline: "We build useful things.",
   description:
     "Dunite Labs builds apps, websites and tools that solve real problems — Guava Music, Speedmaths Pro, GovtJobsNotice. Est. 2024, India.",
-  email: "support@dunitelabs.com",
+  email: "dunitelabs.support@gmail.com",
   social: {
     github: "https://github.com/dunitelabs",
     x: "https://x.com/dunitelabs",

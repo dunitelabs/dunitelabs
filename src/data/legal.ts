@@ -5,7 +5,7 @@
  * a user who cannot reach support is a `Data safety` failure. Change it here and every page
  * follows.
  */
-export const contactEmail = "support@dunitelabs.com";
+export const contactEmail = "dunitelabs.support@gmail.com";
 
 export type LegalSection = {
   heading: string;
