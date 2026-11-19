@@ -6,5 +6,6 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   outDir: "dist",
   site: "https://dunitelabs.com",
+  trailingSlash: "always",
   integrations: [sitemap()],
 });

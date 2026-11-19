@@ -1,0 +1,289 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { apps } from "../data/apps.ts";
+import { site } from "../site";
+
+const jsonld = [
+  {
+    "@type": "AboutPage",
+    "@id": `${site.url}/about/#page`,
+    url: `${site.url}/about/`,
+    name: "About Dunite Labs",
+    description:
+      "Who Dunite Labs is, what we build, and how we build it — offline-first Android apps and clean web tools from India.",
+    isPartOf: { "@id": `${site.url}/#website` },
+    about: { "@id": `${site.url}/#organization` },
+    inLanguage: "en",
+  },
+  {
+    "@type": "BreadcrumbList",
+    "@id": `${site.url}/about/#breadcrumb`,
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Dunite Labs", item: site.url },
+      { "@type": "ListItem", position: 2, name: "About", item: `${site.url}/about/` },
+    ],
+  },
+];
+---
+
+<Layout
+  title="About Dunite Labs — an app studio from India"
+  description="Dunite Labs is an independent app studio from India building offline-first Android apps and clean web tools: Guava Music, Speedmaths Pro and Govt Jobs Notice."
+  keywords={[
+    "About Dunite Labs",
+    "who is Dunite Labs",
+    "Dunite Labs company",
+    "dunitelabs about",
+    "Dunite app studio India",
+    "independent app developer India",
+    ...site.keywords,
+  ]}
+  path="/about/"
+  ogImageAlt="About Dunite Labs — an independent app studio from India."
+  jsonld={jsonld}
+>
+  <main class="shell">
+    <header class="top">
+      <a class="back" href="/"><img src="/dunitelabs_logo.svg" alt="" width="22" height="22" /> DUNITE LABS</a>
+      <span class="mono">ABOUT • EST. 2024 • INDIA</span>
+    </header>
+
+    <h1>About<br /><span class="serif">Dunite Labs</span></h1>
+
+    <p class="lede">
+      Dunite Labs is a small, independent studio building apps, websites and tools that solve real problems.
+      We are based in India, we ship from scratch, and we keep things offline-first — your data stays on your
+      device unless you explicitly ask otherwise.
+    </p>
+
+    <section>
+      <h2>What we build</h2>
+      <div class="grid">
+        {apps.map((app) => (
+          <a class="card" href={`/app/${app.slug}/`} style={`--accent:${app.accent}`}>
+            <div class="card-head">
+              <span class="pill">{app.type}</span>
+              <span class="arrow">↗</span>
+            </div>
+            <h3>{app.name}</h3>
+            <p>{app.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>How we work</h2>
+      <ul class="rules">
+        <li>
+          <b>Offline first.</b> Every app works with no network. Cloud features are optional extras, never a
+          requirement.
+        </li>
+        <li>
+          <b>No ads, no trackers.</b> We do not sell attention or ship analytics SDKs that profile you.
+        </li>
+        <li>
+          <b>Your library is yours.</b> Guava Music indexes the music already on your phone and never uploads a
+          file without you connecting a storage provider.
+        </li>
+        <li>
+          <b>Small, fast, boring tech.</b> Kotlin and Jetpack Compose on Android, static sites on the web. Fewer
+          moving parts, fewer surprises.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Get in touch</h2>
+      <p class="contact">
+        Questions, bug reports or partnership ideas:{" "}
+        <a href="mailto:dunitelabs.support@gmail.com">dunitelabs.support@gmail.com</a>
+      </p>
+      <p class="contact small">
+        Find us on{" "}
+        <a href={site.social.github} rel="noopener" target="_blank">GitHub</a>,{" "}
+        <a href={site.social.x} rel="noopener" target="_blank">X</a> and{" "}
+        <a href={site.social.linkedin} rel="noopener" target="_blank">LinkedIn</a>.
+      </p>
+    </section>
+
+    <footer class="foot">
+      <a href="/">← Back to dunitelabs.com</a>
+      <span class="mono">© {new Date().getFullYear()} DUNITE LABS</span>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .shell {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 26px 22px 60px;
+  }
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding-bottom: 18px;
+    border-bottom: 3px solid var(--ink);
+  }
+  .back {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    border: 2px solid var(--ink);
+    border-radius: 8px;
+    padding: 7px 12px;
+    background: var(--card);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .back img {
+    background: #0e0e0e;
+    border-radius: 5px;
+    padding: 2px;
+  }
+  .mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+
+  h1 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 800;
+    font-size: clamp(38px, 8vw, 76px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin: 34px 0 18px;
+  }
+  .serif {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .lede {
+    font-size: clamp(16px, 2vw, 19px);
+    line-height: 1.6;
+    max-width: 62ch;
+    color: var(--ink);
+    opacity: 0.85;
+    margin: 0 0 40px;
+  }
+
+  section {
+    margin: 0 0 40px;
+    padding-top: 22px;
+    border-top: 2px solid var(--ink);
+  }
+  h2 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0 18px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+  }
+  .card {
+    display: block;
+    border: 2px solid var(--ink);
+    background: var(--card);
+    padding: 16px;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 160ms, box-shadow 160ms;
+  }
+  .card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .pill {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border: 1.5px solid var(--ink);
+    background: var(--accent);
+    color: #0e0e0e;
+  }
+  .arrow {
+    font-size: 16px;
+  }
+  .card h3 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+  }
+  .card p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .rules {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+  .rules li {
+    font-size: 14px;
+    line-height: 1.6;
+    padding-left: 18px;
+    border-left: 3px solid var(--ink);
+    color: var(--ink);
+    opacity: 0.88;
+  }
+  .rules b {
+    color: var(--ink);
+    opacity: 1;
+  }
+
+  .contact {
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0 0 8px;
+  }
+  .contact.small {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .contact a {
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 46px;
+    padding-top: 18px;
+    border-top: 3px solid var(--ink);
+    font-size: 12px;
+  }
+</style>

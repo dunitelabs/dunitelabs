@@ -14,6 +14,14 @@ export type App = {
   stats: { label: string; value: string }[];
   features: string[];
   color: string;
+  /** Social preview card (1200×630) */
+  ogImage: string;
+  /** Page-level keyword list */
+  keywords: string[];
+  /** Names people search for that are not the display name */
+  alternateNames: string[];
+  /** Whether /app/<slug>/privacy/ and /delete-data/ are published */
+  hasLegal: boolean;
 };
 
 export const apps: App[] = [
@@ -37,6 +45,21 @@ export const apps: App[] = [
       { label: "Mode", value: "Offline" },
     ],
     features: ["Offline playback", "Folder browser", "EQ + Sleep timer", "No ads, no tracking"],
+    ogImage: "/og-guava-music.png",
+    alternateNames: ["Guava", "Guava music app", "Guava player", "Guava-music"],
+    hasLegal: true,
+    keywords: [
+      "Guava Music",
+      "Guava music player",
+      "Guava music app",
+      "Guava Android music player",
+      "offline music player Android",
+      "local music player Android",
+      "music player with cloud locker",
+      "lyrics music player Android",
+      "Dunite Labs Guava Music",
+      "dunitelabs Guava",
+    ],
   },
   {
     slug: "speedmaths-pro",
@@ -58,6 +81,21 @@ export const apps: App[] = [
       { label: "Focus", value: "Daily Drills" },
     ],
     features: ["Daily ranked quiz + leaderboard", "Custom practice: mix operations & difficulty", "Mastery game", "Tips & tricks with practice", "Profile heatmaps + badges", "Full attempt history"],
+    ogImage: "/og-speedmaths-pro.png",
+    alternateNames: ["Speed Maths Pro", "SpeedMaths", "Speedmaths Pro app", "speedmaths-pro"],
+    hasLegal: true,
+    keywords: [
+      "Speedmaths Pro",
+      "Speed maths app",
+      "speed math practice app",
+      "mental maths practice app",
+      "mental math quiz app India",
+      "ranked maths quiz app",
+      "maths drill app Android",
+      "Vedic maths practice app",
+      "Dunite Labs Speedmaths Pro",
+      "dunitelabs speedmaths",
+    ],
   },
   {
     slug: "govtjobsnotice",
@@ -81,6 +119,20 @@ export const apps: App[] = [
       { label: "Updates", value: "Daily" },
     ],
     features: ["Instant filters", "Telegram alerts", "Admit card / Result tracker", "Zero spam"],
+    ogImage: "/og-govtjobsnotice.png",
+    alternateNames: ["GovtJobsNotice", "govtjobsnotice.com", "Govt Job Notice"],
+    hasLegal: false,
+    keywords: [
+      "Govt Jobs Notice",
+      "govtjobsnotice",
+      "government job notifications India",
+      "sarkari naukri",
+      "sarkari job alerts",
+      "govt job notice website",
+      "admit card and result tracker",
+      "government job filters",
+      "Dunite Labs Govt Jobs Notice",
+    ],
   },
 ];
 

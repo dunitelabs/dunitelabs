@@ -4,17 +4,48 @@ import { apps } from "../data/apps.ts";
 import { site } from "../site";
 const jsonld = [
   {
-    "@type": "WebSite",
-    name: site.name,
+    "@type": "CollectionPage",
+    "@id": `${site.url}/#page`,
     url: site.url,
+    name: `${site.name} — ${site.tagline}`,
     description: site.description,
+    isPartOf: { "@id": `${site.url}/#website` },
+    about: { "@id": `${site.url}/#organization` },
     inLanguage: "en",
-    publisher: { "@type": "Organization", name: site.name, url: site.url },
+  },
+  {
+    "@type": "ItemList",
+    "@id": `${site.url}/#apps`,
+    name: "Apps and websites by Dunite Labs",
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    numberOfItems: apps.length,
+    itemListElement: apps.map((a, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: a.name,
+      description: a.description,
+      url: `${site.url}/app/${a.slug}/`,
+      image: new URL(a.icon, site.url).href,
+    })),
   },
 ];
 ---
 
-<Layout title="DUNITE LABS — We build useful things." path="/" jsonld={jsonld}>
+<Layout
+  title="DUNITE LABS — We build useful things."
+  path="/"
+  keywords={[
+    ...site.keywords,
+    "Dunite Labs website",
+    "Dunite Labs portfolio",
+    "Dunite Labs apps list",
+    "dunite",
+    "dunite labs",
+    "dunitelabs apps",
+  ]}
+  ogImageAlt="Dunite Labs — an independent app studio from India. We build useful things."
+  jsonld={jsonld}
+>
   <!-- VERTICAL SIDE TEXT + GRID BG -->
   <div class="page">
     <div class="grain" aria-hidden="true"></div>
@@ -52,7 +83,7 @@ const jsonld = [
 
         <div class="hero-sticks">
           {apps.map((app) => (
-            <a href={`/app/${app.slug}`} class="stick" style={`--accent:${app.accent}`}>
+            <a href={`/app/${app.slug}/`} class="stick" style={`--accent:${app.accent}`}>
               <span class="stick-pin" aria-hidden="true"></span>
               {app.icon.startsWith("/") ? (
                 <img class="stick-logo" src={app.icon} alt={`${app.name} logo`} />
@@ -82,7 +113,7 @@ const jsonld = [
 
       <div class="stack">
         {apps.map((app, i) => (
-          <a class="app-card" href={`/app/${app.slug}`} style={`--accent:${app.accent}; --strip-bg:${app.bg}`}>
+          <a class="app-card" href={`/app/${app.slug}/`} style={`--accent:${app.accent}; --strip-bg:${app.bg}`}>
             <div class="card-art" aria-hidden="true" style={`background:${app.bg}`}>
               <span class="card-num">0{i+1}</span>
               <span class="card-platform">{app.platform}</span>
@@ -117,7 +148,7 @@ const jsonld = [
 
     </section>
 
-    <footer class="foot">
+    <footer class="foot" id="footer">
       <div class="foot-inner">
         <div class="foot-brand"><img src="/dunitelabs_logo.svg" alt="" width="32" height="32" /> DUNITE LABS</div>
         <div class="foot-social">
@@ -138,6 +169,19 @@ const jsonld = [
           </a>
         </div>
         <div class="foot-copy">© {new Date().getFullYear()} Dunite Labs. Built with care in India. <span class="mono">dunitelabs.support@gmail.com</span></div>
+        <p class="foot-about">
+          <b>Dunite Labs</b> (<a href="https://dunitelabs.com/">dunitelabs.com</a>) is an independent app studio from India.
+          We build offline-first Android apps — Guava Music, a local-first music player with a personal cloud locker,
+          and Speedmaths Pro, a daily ranked mental-maths trainer — plus clean web tools like Govt Jobs Notice.
+        </p>
+        <nav class="foot-links" aria-label="Site">
+          <a href="/about/">About</a>
+          <a href="/#work">Apps</a>
+          <a href="/app/guava-music/">Guava Music</a>
+          <a href="/app/speedmaths-pro/">Speedmaths Pro</a>
+          <a href="/app/govtjobsnotice/">Govt Jobs Notice</a>
+          <a href="/app/guava-music/privacy/">Privacy</a>
+        </nav>
       </div>
       <div class="foot-big" aria-hidden="true">DUNITE LABS — DUNITE LABS — DUNITE LABS</div>
     </footer>
@@ -504,6 +548,20 @@ const jsonld = [
   .foot-social a{ color:var(--bg); display:flex; align-items:center; padding:6px; border:1px solid #ffffff33; border-radius:8px; transition:background 150ms, transform 150ms; }
   .foot-social a:hover{ background:#ffffff1a; transform:translateY(-2px); }
   .mono{ opacity:0.8 }
+  .foot-about{
+    flex-basis:100%; margin:16px 0 0; max-width:760px;
+    font-family:"Space Grotesk", system-ui, sans-serif;
+    font-size:13px; line-height:1.65; letter-spacing:0; text-transform:none;
+    color:#F7F3EEb8;
+  }
+  .foot-about b{ color:#F7F3EE }
+  .foot-about a{ text-decoration:underline; text-underline-offset:2px; }
+  .foot-links{
+    flex-basis:100%; display:flex; gap:18px; flex-wrap:wrap; margin-top:14px;
+    font-family:"JetBrains Mono", monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase;
+  }
+  .foot-links a{ border-bottom:1px solid #ffffff40; padding-bottom:2px; opacity:0.85; }
+  .foot-links a:hover{ opacity:1; border-color:#ffffff; }
   .foot-big{
     max-width:1400px; margin:18px auto 0;
     font-family:"Bricolage Grotesque", sans-serif;

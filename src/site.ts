@@ -1,10 +1,14 @@
 export const site = {
   name: "Dunite Labs",
+  legalName: "Dunite Labs",
+  /** Every spelling people actually type when looking for us. */
+  alternateNames: ["Dunite Labs", "dunitelabs", "Dunite", "Dunite Lab", "dunite labs india"],
   url: "https://dunitelabs.com",
   tagline: "We build useful things.",
   description:
-    "Dunite Labs builds apps, websites and tools that solve real problems — Guava Music, Speedmaths Pro, GovtJobsNotice. Est. 2024, India.",
+    "Dunite Labs is an independent app studio from India. We build Guava Music, Speedmaths Pro and Govt Jobs Notice — offline-first, ad-free apps, websites and tools that solve real problems.",
   email: "dunitelabs.support@gmail.com",
+  foundingDate: "2024",
   social: {
     github: "https://github.com/dunitelabs",
     x: "https://x.com/dunitelabs",
@@ -12,6 +16,36 @@ export const site = {
     youtube: "https://www.youtube.com/@dunitelabs",
     instagram: "https://www.instagram.com/dunitelabs",
   },
+  knowsAbout: [
+    "Android app development",
+    "offline-first mobile apps",
+    "music players",
+    "mental maths training apps",
+    "government job notifications",
+    "web development",
+    "Kotlin and Jetpack Compose",
+  ],
+  /** Site-wide keyword fallback. Pages override with their own list. */
+  keywords: [
+    "Dunite Labs",
+    "dunitelabs",
+    "Dunite",
+    "dunitelabs.com",
+    "Dunite Labs apps",
+    "Dunite Labs India",
+    "independent app studio India",
+    "Android apps India",
+    "Guava Music",
+    "Guava Music player",
+    "Guava music app",
+    "Speedmaths Pro",
+    "Speedmaths Pro app",
+    "Govt Jobs Notice",
+    "govtjobsnotice",
+    "offline music player Android",
+    "mental maths practice app",
+    "government job alerts India",
+  ],
 };
 
 export const absoluteUrl = (path = "/") => {

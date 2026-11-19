@@ -1,4 +1,6 @@
+# Dunite Labs — https://dunitelabs.com
 User-agent: *
 Allow: /
 
+# Fully crawlable: no login walls, no infinite params.
 Sitemap: https://dunitelabs.com/sitemap-index.xml

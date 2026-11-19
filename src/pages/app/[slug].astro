@@ -14,14 +14,33 @@ if (!app) throw new Error(`App not found: ${slug}`);
 const jsonld = [
   {
     "@type": app.type.includes("Website") ? "WebSite" : "SoftwareApplication",
+    "@id": `${site.url}/app/${app.slug}/#app`,
     name: app.name,
+    alternateName: app.alternateNames,
     description: app.description,
-    applicationCategory: app.type,
-    operatingSystem: app.platform,
+    applicationCategory: app.type.includes("Website") ? "Website" : "MobileApplication",
+    applicationSubCategory: app.type.includes("Website")
+      ? "Job listings"
+      : app.slug === "speedmaths-pro"
+        ? "Education"
+        : "Music & Audio",
+    operatingSystem: app.type.includes("Website") ? undefined : app.platform,
     url: `/app/${app.slug}/`,
     image: app.screenshots?.[0] ? app.screenshots[0] : undefined,
+    screenshot: app.screenshots?.map((s) => new URL(s, site.url).href),
+    featureList: app.features,
     publisher: { "@type": "Organization", name: site.name, url: site.url },
+    isAccessibleForFree: true,
     offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  },
+  {
+    "@type": "BreadcrumbList",
+    "@id": `${site.url}/app/${app.slug}/#breadcrumb`,
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Dunite Labs", item: site.url },
+      { "@type": "ListItem", position: 2, name: "Apps", item: `${site.url}/#work` },
+      { "@type": "ListItem", position: 3, name: app.name, item: `${site.url}/app/${app.slug}/` },
+    ],
   },
 ];
 ---
@@ -29,8 +48,11 @@ const jsonld = [
 <Layout
   title={`${app.name} — Dunite Labs`}
   description={app.description}
+  keywords={[...app.keywords, ...app.alternateNames, "Dunite Labs", "dunitelabs"]}
   favicon={app.icon}
   path={`/app/${app.slug}/`}
+  ogImage={app.ogImage}
+  ogImageAlt={`${app.name} by Dunite Labs`}
   jsonld={jsonld}
 >
   <div class="page" style={`--accent:${app.accent}; --app-bg:${app.bg}; --app-color:${app.color}`}>
@@ -91,8 +113,12 @@ const jsonld = [
         </div>
 
         <div class="legal-links">
-          <a href={`/app/${app.slug}/privacy`}>Privacy Policy</a>
-          <a href={`/app/${app.slug}/delete-data`}>Delete Data</a>
+          {app.hasLegal && (
+            <>
+              <a href={`/app/${app.slug}/privacy/`}>Privacy Policy</a>
+              <a href={`/app/${app.slug}/delete-data/`}>Delete Data</a>
+            </>
+          )}
         </div>
       </div>
 
@@ -174,7 +200,7 @@ const jsonld = [
       </div>
       <div class="next-grid">
         {apps.filter(a=>a.slug!==app.slug).map(a=>(
-          <a class="next-card" href={`/app/${a.slug}`} style={`--accent:${a.accent}; --card-bg:${a.bg}`}>
+          <a class="next-card" href={`/app/${a.slug}/`} style={`--accent:${a.accent}; --card-bg:${a.bg}`}>
             <div class="next-icon-wrap" style={`background:${a.bg}`}>
               {a.icon.startsWith("/") ? <img class="next-img" src={a.icon} alt={`${a.name} logo`} /> : <span class="next-glyph">{a.icon}</span>}
             </div>

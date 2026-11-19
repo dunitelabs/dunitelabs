@@ -1,0 +1,36 @@
+{
+  "name": "Dunite Labs",
+  "short_name": "Dunite Labs",
+  "description": "Dunite Labs — an independent app studio from India. Guava Music, Speedmaths Pro and Govt Jobs Notice.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F7F3EE",
+  "theme_color": "#0E0E0E",
+  "lang": "en",
+  "categories": [
+    "productivity",
+    "music",
+    "education"
+  ],
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

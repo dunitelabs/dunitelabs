@@ -1,0 +1,26 @@
+# Dunite Labs
+
+> Dunite Labs (also written "dunitelabs" or "Dunite") is an independent app studio based in India,
+> founded in 2024. It builds offline-first Android apps, websites and tools. Everything works without
+> a network connection; cloud features are optional. No ads, no trackers.
+
+- Website: https://dunitelabs.com
+- About: https://dunitelabs.com/about/
+- Contact: dunitelabs.support@gmail.com
+- GitHub: https://github.com/dunitelabs
+
+## Apps
+
+- [Guava Music](https://dunitelabs.com/app/guava-music/): Offline-first Android music player and personal
+  cloud locker. Plays the music already on the device — folder browser, playlists, equaliser, sleep timer,
+  lyrics, optional sync through the user's own Google Drive. No ads, no tracking.
+- [Speedmaths Pro](https://dunitelabs.com/app/speedmaths-pro/): Android mental-maths trainer with daily
+  ranked quizzes, custom operation drills, a mastery game, heatmaps and badges.
+- [Govt Jobs Notice](https://dunitelabs.com/app/govtjobsnotice/): Clean website aggregating Indian
+  government job notices — verified listings, working filters, admit-card and result tracking, no popups.
+  Live at https://www.govtjobsnotice.com/
+
+## Legal
+
+- Privacy policy: https://dunitelabs.com/app/guava-music/privacy/
+- Data deletion: https://dunitelabs.com/app/guava-music/delete-data/

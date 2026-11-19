@@ -32,7 +32,7 @@ const jsonld = [
 >
   <div class="page" style={`--accent:${app.accent}`}>
     <div class="topbar">
-      <a href={`/app/${app.slug}`} class="back"><img src="/dunitelabs_logo.svg" alt="" width="20" height="20" /> Back to {app.name}</a>
+      <a href={`/app/${app.slug}/`} class="back"><img src="/dunitelabs_logo.svg" alt="" width="20" height="20" /> Back to {app.name}</a>
       <span class="top-mono">LEGAL • PRIVACY POLICY</span>
       <button id="theme-toggle" type="button" onclick="window.toggleTheme()" aria-label="Toggle theme" title="Light / Dark" style="width:36px; height:36px; border-radius:50%; border:2px solid var(--line); background:var(--card); color:var(--ink); box-shadow:3px 3px 0 var(--line); cursor:pointer; display:grid; place-items:center; font-size:16px; flex-shrink:0;"><span id="theme-toggle-icon">☾</span></button>
     </div>
@@ -47,7 +47,7 @@ const jsonld = [
         <p class="last">Last updated: 22 Oct 2026</p>
         <p class="intro">SpeedMaths Pro is a mental‑math trainer for competitive‑exam aspirants. We collect the minimum data needed for the leaderboard, streak sync and offline practice, and we never sell your data.</p>
         <div class="links">
-          <a href={`/app/${app.slug}/delete-data`} class="link">Delete my data →</a>
+          <a href={`/app/${app.slug}/delete-data/`} class="link">Delete my data →</a>
           <span class="sep">•</span>
           <a href="/" class="link">Dunite Labs home</a>
         </div>
@@ -100,7 +100,7 @@ const jsonld = [
       </div>
 
       <div class="doc-foot">
-        <a href={`/app/${app.slug}`} class="back dark">← Back to {app.name}</a>
+        <a href={`/app/${app.slug}/`} class="back dark">← Back to {app.name}</a>
         <span>© {new Date().getFullYear()} Dunite Labs</span>
       </div>
     </article>
