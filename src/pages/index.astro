@@ -86,7 +86,7 @@ const jsonld = [
             <a href={`/app/${app.slug}/`} class="stick" style={`--accent:${app.accent}`}>
               <span class="stick-pin" aria-hidden="true"></span>
               {app.icon.startsWith("/") ? (
-                <img class="stick-logo" src={app.icon} alt={`${app.name} logo`} />
+                <img class="stick-logo" src={app.iconSmall} alt={`${app.name} logo`} width="56" height="56" loading="lazy" decoding="async" />
               ) : (
                 <span class="stick-glyph">{app.icon}</span>
               )}
@@ -118,7 +118,7 @@ const jsonld = [
               <span class="card-num">0{i+1}</span>
               <span class="card-platform">{app.platform}</span>
               {app.icon.startsWith("/") ? (
-                <img class="card-icon" src={app.icon} alt="" />
+                <img class="card-icon" src={app.iconSmall} alt="" width="64" height="64" loading="lazy" decoding="async" />
               ) : (
                 <span class="card-glyph">{app.icon}</span>
               )}

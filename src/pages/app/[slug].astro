@@ -70,7 +70,7 @@ const jsonld = [
         <div class="big-icon-wrap">
           <div class="big-icon">
             {app.icon.startsWith("/") ? (
-              <img class="glyph-img" src={app.icon} alt={`${app.name} logo`} />
+              <img class="glyph-img" src={app.iconLarge} alt={`${app.name} logo`} width="84" height="84" />
             ) : (
               <span class="glyph">{app.icon}</span>
             )}
@@ -145,13 +145,13 @@ const jsonld = [
         <div class="card phone">
           <div class="card-top"><span class="card-num">01 — HERO SCREEN</span><span class="dots">● ● ●</span></div>
           {app.screenshots?.length ? (
-            <img class:list={["hero-shot-plain", app.platform === "WEB" ? "is-web" : "is-phone"]} src={app.screenshots[0]} alt={`${app.name} screenshot 1`} loading="lazy" />
+            <img class:list={["hero-shot-plain", app.platform === "WEB" ? "is-web" : "is-phone"]} src={app.shots[0]} alt={`${app.name} screenshot 1`} loading="lazy" decoding="async" />
           ) : (
             <div class="phone-frame">
               <div class="notch"></div>
               <div class="screen">
                 {app.icon.startsWith("/") ? (
-                  <img class="screen-glyph-img" src={app.icon} alt="" />
+                  <img class="screen-glyph-img" src={app.iconSmall} alt="" width="72" height="72" />
                 ) : (
                   <div class="screen-glyph">{app.icon}</div>
                 )}
@@ -180,7 +180,7 @@ const jsonld = [
               <div class="g-thumb">
                 <span class="thumb-label">SCREEN {String.fromCharCode(65+idx)}</span>
                 <a href={src} target="_blank" rel="noopener" class="thumb-box plain">
-                  <img class:list={["thumb-shot-plain", app.platform === "WEB" ? "is-web" : "is-phone"]} src={src} alt={`${app.name} screen ${idx+1}`} loading="lazy" />
+                  <img class:list={["thumb-shot-plain", app.platform === "WEB" ? "is-web" : "is-phone"]} src={app.shots[idx]} alt={`${app.name} screen ${idx+1}`} loading="lazy" decoding="async" />
                 </a>
               </div>
             ))}
@@ -201,7 +201,7 @@ const jsonld = [
         {apps.filter(a=>a.slug!==app.slug).map(a=>(
           <a class="next-card" href={`/app/${a.slug}/`} style={`--accent:${a.accent}; --card-bg:${a.bg}`}>
             <div class="next-icon-wrap" style={`background:${a.bg}`}>
-              {a.icon.startsWith("/") ? <img class="next-img" src={a.icon} alt={`${a.name} logo`} /> : <span class="next-glyph">{a.icon}</span>}
+              {a.icon.startsWith("/") ? <img class="next-img" src={a.iconSmall} alt={`${a.name} logo`} width="48" height="48" loading="lazy" decoding="async" /> : <span class="next-glyph">{a.icon}</span>}
             </div>
             <div class="next-main">
               <span class="next-pill">{a.platform}</span>

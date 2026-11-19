@@ -9,7 +9,13 @@ export type App = {
   accent: string;
   bg: string;
   icon: string;
+  /** 128px WebP for cards, strips and next-project links */
+  iconSmall: string;
+  /** 256px WebP for the app-page hero */
+  iconLarge: string;
   screenshots: string[];
+  /** Same order as `screenshots`, WebP-capped at 1600px wide */
+  shots: string[];
   links: { label: string; href: string; kind: "playstore" | "website" | "github" }[];
   stats: { label: string; value: string }[];
   features: string[];
@@ -37,7 +43,10 @@ export const apps: App[] = [
     bg: "#101010",
     color: "#D2FF4D",
     icon: "/guava/guava-music-logo-coompress.png",
+    iconSmall: "/guava/icon-128.webp",
+    iconLarge: "/guava/icon-256.webp",
     screenshots: ["/guava/1.png", "/guava/2.png", "/guava/3.png"],
+    shots: ["/guava/1.webp", "/guava/2.webp", "/guava/3.webp"],
     links: [],
     stats: [
       { label: "Phase", value: "v1 • Beta" },
@@ -73,7 +82,10 @@ export const apps: App[] = [
     bg: "#0A0F1A",
     color: "#6AE4FF",
     icon: "/speedmaths-pro/speedmathspro_logo.png",
+    iconSmall: "/speedmaths-pro/icon-128.webp",
+    iconLarge: "/speedmaths-pro/icon-256.webp",
     screenshots: ["/speedmaths-pro/1.png", "/speedmaths-pro/2.png", "/speedmaths-pro/3.png", "/speedmaths-pro/4.png", "/speedmaths-pro/5.png", "/speedmaths-pro/6.png"],
+    shots: ["/speedmaths-pro/1.webp", "/speedmaths-pro/2.webp", "/speedmaths-pro/3.webp", "/speedmaths-pro/4.webp", "/speedmaths-pro/5.webp", "/speedmaths-pro/6.webp"],
     links: [],
     stats: [
       { label: "Phase", value: "Early Access" },
@@ -109,7 +121,10 @@ export const apps: App[] = [
     bg: "#14110F",
     color: "#FF6B2C",
     icon: "/govtjobsnotice/logo.png",
+    iconSmall: "/govtjobsnotice/icon-128.webp",
+    iconLarge: "/govtjobsnotice/icon-256.webp",
     screenshots: ["/govtjobsnotice/1.png", "/govtjobsnotice/2.png", "/govtjobsnotice/3.png", "/govtjobsnotice/4.png"],
+    shots: ["/govtjobsnotice/1.webp", "/govtjobsnotice/2.webp", "/govtjobsnotice/3.webp", "/govtjobsnotice/4.webp"],
     links: [
       { label: "Visit Website", href: "https://www.govtjobsnotice.com/", kind: "website" },
     ],
