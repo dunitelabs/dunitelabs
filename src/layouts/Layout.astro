@@ -6,7 +6,6 @@ interface Props {
   title?: string;
   description?: string;
   keywords?: string[];
-  favicon?: string;
   path?: string;
   ogImage?: string;
   ogImageAlt?: string;
@@ -17,7 +16,6 @@ const {
   title = `${site.name} — ${site.tagline}`,
   description = site.description,
   keywords = site.keywords,
-  favicon = "/favicon.svg",
   path = "/",
   ogImage = "/og-home.png",
   ogImageAlt,
@@ -31,8 +29,6 @@ const fullTitle = path === "/"
     ? title
     : `${title} | ${site.name}`;
 const ogImageUrl = ogImage.startsWith("http") ? ogImage : absoluteUrl(ogImage);
-const usesBrandIcon = favicon === "/favicon.svg";
-const faviconType = favicon.endsWith(".svg") ? "image/svg+xml" : favicon.endsWith(".png") ? "image/png" : "image/x-icon";
 const orgId = `${site.url}/#organization`;
 const webId = `${site.url}/#website`;
 
@@ -128,24 +124,15 @@ const jsonLd = JSON.stringify({
     <meta name="twitter:image:alt" content={ogImageAlt ?? fullTitle} />
 
     <!-- Icons: Google reads the raster 48px+ entries, not the SVG -->
-    {usesBrandIcon ? (
-      <>
-        <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
-        <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
-        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
-        <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144.png" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
-        <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="mask-icon" href="/favicon.svg" color="#0E0E0E" />
-      </>
-    ) : (
-      <>
-        <link rel="icon" href={favicon} type={faviconType} />
-        <link rel="apple-touch-icon" href={favicon} />
-      </>
-    )}
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+    <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="mask-icon" href="/favicon.svg" color="#0E0E0E" />
     <link rel="manifest" href="/site.webmanifest" />
     <script type="application/ld+json" set:html={jsonLd} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
