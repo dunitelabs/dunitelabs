@@ -27,12 +27,12 @@ const jsonld = [
   description="Privacy policy for SpeedMaths Pro mental‑math trainer."
   path={`/app/${app.slug}/privacy/`}
   jsonld={jsonld}
-  date="22 Oct 2026"
+  date="22 Nov 2026"
 >
   <div class="page" style={`--accent:${app.accent}`}>
     <div class="topbar">
       <a href={`/app/${app.slug}/`} class="back"><img src="/dunitelabs_logo.svg" alt="" width="20" height="20" /> Back to {app.name}</a>
-      <span class="top-mono">LEGAL • PRIVACY POLICY</span>
+      <span class="top-mono">LEGAL • PRIVACY POLICY • v1.1</span>
       <button id="theme-toggle" type="button" onclick="window.toggleTheme()" aria-label="Toggle theme" title="Light / Dark" style="width:36px; height:36px; border-radius:50%; border:2px solid var(--line); background:var(--card); color:var(--ink); box-shadow:3px 3px 0 var(--line); cursor:pointer; display:grid; place-items:center; font-size:16px; flex-shrink:0;"><span id="theme-toggle-icon">☾</span></button>
     </div>
 
@@ -43,8 +43,8 @@ const jsonld = [
           <span>{app.name}</span>
         </div>
         <h1>SpeedMaths Pro — Privacy Policy</h1>
-        <p class="last">Last updated: 22 Oct 2026</p>
-        <p class="intro">SpeedMaths Pro is a mental‑math trainer for competitive‑exam aspirants. We collect the minimum data needed for the leaderboard, streak sync and offline practice, and we never sell your data.</p>
+        <p class="last">Last updated: 22 Nov 2026 · v1.1</p>
+        <p class="intro">SpeedMaths Pro is a mental‐math trainer for competitive‐exam aspirants. You can play entirely without an account — signing in with Google is optional and only used to back up and restore your progress. We collect the minimum data needed for the leaderboard, streak sync and offline practice, and we never sell your data.</p>
         <div class="links">
           <a href={`/app/${app.slug}/delete-data/`} class="link">Delete my data →</a>
           <span class="sep">•</span>
@@ -55,10 +55,11 @@ const jsonld = [
       <div class="sections">
         <section>
           <h2>What data we collect</h2>
-          <p>When you first open SpeedMaths Pro, Firebase creates an anonymous authentication ID. This random identifier lets the app save your daily leaderboard score and keep your streak in sync across devices. No email, phone number, or personal details are required.</p>
-          <p>The leaderboard stores your score, average time, and an optional display name in Cloud Firestore under a day‑specific document. A separate user profile document holds your chosen reminder time, theme preference, and streak counters — all optional.</p>
-          <p>All practice history — quiz results, level progress, custom‑practice settings, and the list of questions you answered incorrectly — stays in a local SQLite database on your device. App preferences such as theme, reminder time, and the onboarding flag are saved in SharedPreferences. None of this data leaves your phone unless you explicitly use the in‑app sync feature.</p>
-          <p><strong>We do not collect</strong> email addresses, phone numbers, contacts, precise location, camera or microphone access, advertising IDs, or any other personally‑identifiable information.</p>
+          <p>When you first open SpeedMaths Pro, Firebase creates an anonymous authentication ID. This random identifier lets the app save your daily leaderboard score and keep your streak in sync across devices. No email, phone number, or personal details are required to play.</p>
+          <p><strong>Google sign‐in (optional).</strong> Playing without an account is the default. If you choose to sign in with Google to back up and restore your progress, we receive your <strong>email address</strong> and a Google account identifier from Google. We use these only to sign you in and to link your progress to that account so it can be restored on another device. We do <strong>not</strong> use your Google name or profile photo, and the app never displays them.</p>
+          <p>The leaderboard stores your score, average time, and an optional display name in Cloud Firestore under a day‐specific document, together with the level, XP, streak and badges shown on your public player card. A separate user profile document holds your chosen reminder time, theme preference, and streak counters — all optional.</p>
+          <p>All practice history — quiz results, level progress, custom‐practice settings, and the list of questions you answered incorrectly — stays in a local SQLite database on your device. App preferences such as theme, reminder time, and the onboarding flag are saved in SharedPreferences. If you sign in with Google, a copy of your progress is also stored in your account on our servers so it can be restored if you reinstall the app or move to a new device.</p>
+          <p><strong>We do not collect</strong> phone numbers, contacts, precise or approximate location, camera or microphone data, photos, media files, messages, financial information, health or biometric data, or advertising IDs — and the app contains no advertising. We collect your email address only if you actively choose to sign in with Google.</p>
         </section>
 
         <section>
@@ -67,14 +68,14 @@ const jsonld = [
         </section>
 
         <section>
-          <h2>Third‑party services</h2>
-          <p>We use three Google services: Firebase Authentication (anonymous sign‑in) to generate a random user ID; Cloud Firestore to store leaderboard rows and optional profile data; and Google Play Services, which Firebase depends on. We do not use any of the identifiers from Play Services ourselves. All three are covered by Google's own privacy policies and Data‑Processing Addendum.</p>
+          <h2>Third‐party services</h2>
+          <p>We use Google services: Firebase Authentication (anonymous sign‐in by default, and Google sign‐in if you choose it) to generate and manage your user ID; Cloud Firestore to store leaderboard rows, optional profile data, and — when you are signed in — your progress backup; Google Sign‐In to authenticate the Google account you pick; and Google Play Services, which Firebase depends on. We do not use any of the identifiers from Play Services ourselves. All of these are covered by Google's own privacy policies and Data‐Processing Addendum.</p>
         </section>
 
         <section>
           <h2>Data retention & security</h2>
-          <p>All network traffic is encrypted with TLS 1.2 or higher (Firebase enforces HTTPS). The on‑device SQLite database lives in the app's private sandbox — no other app can read it. No data is written to external storage.</p>
-          <p>Leaderboard documents are kept for a rolling 30‑day window and then removed automatically by a Cloud Function. Your Firestore user profile remains until you request deletion (see the Delete Your Data page). Local data and preferences stay on your device until you tap <strong>Delete my data</strong> in the app or clear the app's storage from Android Settings.</p>
+          <p>All network traffic is encrypted with TLS 1.2 or higher (Firebase enforces HTTPS). The on‐device SQLite database lives in the app's private sandbox — no other app can read it. No data is written to external storage. Firestore security rules ensure a user can only read or write their own private data and their own leaderboard scores.</p>
+          <p>Daily and weekly leaderboard rows cover recent activity: the app removes your own older rows as part of normal use, so boards stay current and do not grow forever. If you are signed in with Google, your progress backup is retained until you delete it or ask us to remove it. Local data and preferences stay on your device until you tap <strong>Clear All Data</strong> in the app or clear the app's storage from Android Settings.</p>
         </section>
 
         <section>
@@ -84,7 +85,7 @@ const jsonld = [
 
         <section>
           <h2>Your rights</h2>
-          <p>You can view a summary of your data in the app's Profile screen. You may edit your display name and reminder time at any time. To erase everything, open <strong>Profile → Settings → Delete my data</strong>, or email us at <a href="mailto:dunitelabs.support@gmail.com">dunitelabs.support@gmail.com</a> with the subject "Delete my SpeedMaths Pro data" and the UID shown in Profile → About. We will confirm deletion within 48 hours. If you prefer, you can also request a JSON export of your data by email.</p>
+          <p>You can view a summary of your data in the app's Profile screen, and you may edit your display name and reminder time at any time. To erase the data stored on your device, open <strong>Profile → Settings → Clear All Data</strong>, or uninstall the app. To delete your cloud data — your leaderboard rows, public player card, progress backup and account — email us at <a href="mailto:dunitelabs.support@gmail.com">dunitelabs.support@gmail.com</a> with the subject "Delete my SpeedMaths Pro data". We will confirm deletion within 48 hours. If you prefer, you can also request a JSON export of your data by email. See the <a href={`/app/${app.slug}/delete-data/`}>Delete Your Data</a> page for details.</p>
         </section>
 
         <section>
