@@ -16,9 +16,6 @@
   lyrics, optional sync through the user's own Google Drive. No ads, no tracking.
 - [Speedmaths Pro](https://dunitelabs.com/app/speedmaths-pro/): Android mental-maths trainer with daily
   ranked quizzes, custom operation drills, a mastery game, heatmaps and badges.
-- [Govt Jobs Notice](https://dunitelabs.com/app/govtjobsnotice/): Clean website aggregating Indian
-  government job notices — verified listings, working filters, admit-card and result tracking, no popups.
-  Live at https://www.govtjobsnotice.com/
 
 ## Legal
 

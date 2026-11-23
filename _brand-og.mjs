@@ -84,7 +84,7 @@ const pages = {
     kicker: "INDEPENDENT APP STUDIO — INDIA",
     headline: ["WE BUILD", "USEFUL THINGS."],
     sub: [
-      "Guava Music · Speedmaths Pro · Govt Jobs Notice",
+      "Guava Music · Speedmaths Pro",
       "Offline-first Android apps, websites and tools. No ads, no tracking.",
     ],
     accent: "#D2FF4D",
@@ -110,13 +110,6 @@ const pages = {
     ],
     accent: "#6AE4FF",
     footerRight: "SPEEDMATHS PRO",
-  }),
-  "og-govtjobsnotice": og({
-    kicker: "WEBSITE — PAN INDIA",
-    headline: ["GOVT JOBS", "NOTICE"],
-    sub: ["Sarkari naukri, without the noise.", "Verified listings, working filters, zero popups."],
-    accent: "#FF6B2C",
-    footerRight: "GOVTJOBSNOTICE.COM",
   }),
 };
 

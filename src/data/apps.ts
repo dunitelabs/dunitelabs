@@ -16,7 +16,7 @@ export type App = {
   screenshots: string[];
   /** Same order as `screenshots`, WebP-capped at 1600px wide */
   shots: string[];
-  links: { label: string; href: string; kind: "playstore" | "website" | "github" }[];
+  links: { label: string; href: string; kind: "playstore" | "windows" | "website" | "github" }[];
   stats: { label: string; value: string }[];
   features: string[];
   color: string;
@@ -47,7 +47,10 @@ export const apps: App[] = [
     iconLarge: "/guava/icon-256.webp",
     screenshots: ["/guava/1.png", "/guava/2.png", "/guava/3.png"],
     shots: ["/guava/1.webp", "/guava/2.webp", "/guava/3.webp"],
-    links: [],
+    links: [
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.guava.music", kind: "playstore" },
+      { label: "Windows", href: "https://play.google.com/store/apps/details?id=com.guava.music", kind: "windows" },
+    ],
     stats: [
       { label: "Phase", value: "v1 • Beta" },
       { label: "Size", value: "~12 MB" },
@@ -86,7 +89,9 @@ export const apps: App[] = [
     iconLarge: "/speedmaths-pro/icon-256.webp",
     screenshots: ["/speedmaths-pro/1.png", "/speedmaths-pro/2.png", "/speedmaths-pro/3.png", "/speedmaths-pro/4.png", "/speedmaths-pro/5.png", "/speedmaths-pro/6.png"],
     shots: ["/speedmaths-pro/1.webp", "/speedmaths-pro/2.webp", "/speedmaths-pro/3.webp", "/speedmaths-pro/4.webp", "/speedmaths-pro/5.webp", "/speedmaths-pro/6.webp"],
-    links: [],
+    links: [
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.speedmathspro", kind: "playstore" },
+    ],
     stats: [
       { label: "Phase", value: "Early Access" },
       { label: "Platform", value: "Android" },
@@ -107,46 +112,6 @@ export const apps: App[] = [
       "Vedic maths practice app",
       "Dunite Labs Speedmaths Pro",
       "dunitelabs speedmaths",
-    ],
-  },
-  {
-    slug: "govtjobsnotice",
-    name: "Govt Jobs Notice",
-    short: "GJNOTICE",
-    tagline: "Sarkari naukri, without the noise.",
-    description: "Clean, fast website that aggregates government job notices. No popups, no fake updates — just verified listings with filters that work.",
-    type: "Website",
-    platform: "WEB",
-    accent: "#FF6B2C",
-    bg: "#14110F",
-    color: "#FF6B2C",
-    icon: "/govtjobsnotice/logo.png",
-    iconSmall: "/govtjobsnotice/icon-128.webp",
-    iconLarge: "/govtjobsnotice/icon-256.webp",
-    screenshots: ["/govtjobsnotice/1.png", "/govtjobsnotice/2.png", "/govtjobsnotice/3.png", "/govtjobsnotice/4.png"],
-    shots: ["/govtjobsnotice/1.webp", "/govtjobsnotice/2.webp", "/govtjobsnotice/3.webp", "/govtjobsnotice/4.webp"],
-    links: [
-      { label: "Visit Website", href: "https://www.govtjobsnotice.com/", kind: "website" },
-    ],
-    stats: [
-      { label: "Status", value: "Live" },
-      { label: "Coverage", value: "Pan-India" },
-      { label: "Updates", value: "Daily" },
-    ],
-    features: ["Instant filters", "Telegram alerts", "Admit card / Result tracker", "Zero spam"],
-    ogImage: "/og-govtjobsnotice.png",
-    alternateNames: ["GovtJobsNotice", "govtjobsnotice.com", "Govt Job Notice"],
-    hasLegal: false,
-    keywords: [
-      "Govt Jobs Notice",
-      "govtjobsnotice",
-      "government job notifications India",
-      "sarkari naukri",
-      "sarkari job alerts",
-      "govt job notice website",
-      "admit card and result tracker",
-      "government job filters",
-      "Dunite Labs Govt Jobs Notice",
     ],
   },
 ];

@@ -7,7 +7,6 @@ import { existsSync } from "node:fs";
 const logos = [
   "public/guava/guava-music-logo-coompress.png",
   "public/speedmaths-pro/speedmathspro_logo.png",
-  "public/govtjobsnotice/logo.png",
 ];
 
 /** Screenshots referenced from src/data/apps.ts — cap the width, keep the full-size original. */
@@ -21,10 +20,6 @@ const shots = [
   "public/speedmaths-pro/4.png",
   "public/speedmaths-pro/5.png",
   "public/speedmaths-pro/6.png",
-  "public/govtjobsnotice/1.png",
-  "public/govtjobsnotice/2.png",
-  "public/govtjobsnotice/3.png",
-  "public/govtjobsnotice/4.png",
 ];
 
 for (const src of [...logos, ...shots]) {

@@ -79,7 +79,7 @@ writeFileSync(
       name: "Dunite Labs",
       short_name: "Dunite Labs",
       description:
-        "Dunite Labs — an independent app studio from India. Guava Music, Speedmaths Pro and Govt Jobs Notice.",
+        "Dunite Labs — an independent app studio from India. Guava Music and Speedmaths Pro.",
       start_url: "/",
       scope: "/",
       display: "standalone",

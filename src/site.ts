@@ -6,7 +6,7 @@ export const site = {
   url: "https://dunitelabs.com",
   tagline: "We build useful things.",
   description:
-    "Dunite Labs is an independent app studio from India. We build Guava Music, Speedmaths Pro and Govt Jobs Notice — offline-first, ad-free apps, websites and tools that solve real problems.",
+    "Dunite Labs is an independent app studio from India. We build Guava Music and Speedmaths Pro — offline-first, ad-free apps and tools that solve real problems.",
   email: "dunitelabs.support@gmail.com",
   foundingDate: "2024",
   social: {
@@ -21,7 +21,6 @@ export const site = {
     "offline-first mobile apps",
     "music players",
     "mental maths training apps",
-    "government job notifications",
     "web development",
     "Kotlin and Jetpack Compose",
   ],
@@ -40,11 +39,8 @@ export const site = {
     "Guava music app",
     "Speedmaths Pro",
     "Speedmaths Pro app",
-    "Govt Jobs Notice",
-    "govtjobsnotice",
     "offline music player Android",
     "mental maths practice app",
-    "government job alerts India",
   ],
 };
 

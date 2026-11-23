@@ -33,7 +33,6 @@ The site showcases Dunite Labs products:
 | Project | Type | Notes |
 | :------ | :--- | :---- |
 | **Speedmaths Pro** | Android app | `src/data/apps.ts` |
-| **Govt Jobs Notice** | Website | `src/data/apps.ts` |
 | **Guava Music** | Android app | `src/data/apps.ts` |
 
 Edit `src/data/apps.ts` to add, update, or remove products.
