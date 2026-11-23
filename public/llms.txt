@@ -1,7 +1,7 @@
 # Dunite Labs
 
 > Dunite Labs (also written "dunitelabs" or "Dunite") is an independent app studio based in India,
-> founded in 2024. It builds offline-first Android apps, websites and tools. Everything works without
+> founded in 2025. It builds offline-first Android apps, websites and tools. Everything works without
 > a network connection; cloud features are optional. No ads, no trackers.
 
 - Website: https://dunitelabs.com

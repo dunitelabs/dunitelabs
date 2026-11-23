@@ -88,7 +88,7 @@ const pages = {
       "Offline-first Android apps, websites and tools. No ads, no tracking.",
     ],
     accent: "#D2FF4D",
-    footerRight: "EST. 2024",
+    footerRight: "EST. 2025",
     big: true,
   }),
   "og-guava-music": og({

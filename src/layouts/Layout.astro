@@ -144,7 +144,13 @@ const jsonLd = JSON.stringify({
         --ink:#0E0E0E;
         --line:#0E0E0E;
         --muted:#6B6B6B;
-        --card:#ffffff;
+        --card:#ffffff;              /* raised surface: cards, panels */
+        --card-2:#F7F3EE;            /* inset surface: chips, subtle fills */
+        --body:#333333;              /* secondary body copy */
+        --hair:rgba(14,14,14,0.10);  /* hairlines / dividers */
+        /* Single page-width token: every page's content container uses this so
+           the whole site lines up on the same grid. */
+        --page-w:1280px;
       }
       html[data-theme="dark"], :root[data-theme="dark"], [data-theme="dark"]{
         --bg:#0A0A0A;
@@ -152,6 +158,9 @@ const jsonLd = JSON.stringify({
         --line:#F7F3EE;
         --muted:#9A9A9A;
         --card:#1A1A1A;
+        --card-2:#232323;
+        --body:#CFCFCF;
+        --hair:rgba(247,243,238,0.12);
       }
       *{box-sizing:border-box}
       html,body{margin:0; padding:0}
@@ -176,7 +185,6 @@ const jsonLd = JSON.stringify({
       html[data-theme="dark"] .strip,
       html[data-theme="dark"] .work-note,
       html[data-theme="dark"] .app-card,
-      html[data-theme="dark"] .card-features li,
       html[data-theme="dark"] .hero-rail,
       html[data-theme="dark"] .card.feature,
       html[data-theme="dark"] .card.quote,

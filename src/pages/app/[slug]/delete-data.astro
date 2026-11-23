@@ -27,12 +27,12 @@ const jsonld = [
   description="Data‑deletion instructions for SpeedMaths Pro."
   path={`/app/${app.slug}/delete-data/`}
   jsonld={jsonld}
-  date="22 Nov 2026"
+  date="23 Nov 2026"
 >
   <div class="page" style={`--accent:${app.accent}`}>
     <div class="topbar">
       <a href={`/app/${app.slug}/`} class="back"><img src="/dunitelabs_logo.svg" alt="" width="20" height="20" /> Back to {app.name}</a>
-      <span class="top-mono">LEGAL • DELETE DATA • v1.2</span>
+      <span class="top-mono">LEGAL • DELETE DATA • v1.3</span>
       <button id="theme-toggle" type="button" onclick="window.toggleTheme()" aria-label="Toggle theme" title="Light / Dark" style="width:36px; height:36px; border-radius:50%; border:2px solid var(--line); background:var(--card); color:var(--ink); box-shadow:3px 3px 0 var(--line); cursor:pointer; display:grid; place-items:center; font-size:16px; flex-shrink:0;"><span id="theme-toggle-icon">☾</span></button>
     </div>
 
@@ -43,45 +43,40 @@ const jsonld = [
           <span>{app.name}</span>
         </div>
         <h1>SpeedMaths Pro — Delete Your Data</h1>
-        <p class="last">Last updated: 22 Nov 2026 · v1.2</p>
-        <p class="intro">You can delete your account and everything attached to it right inside the app, erase only the data on your device, or ask us to remove everything we hold about you in the cloud.</p>
+        <p class="last">Last updated: 23 Nov 2026 · v1.3</p>
+        <p class="intro">SpeedMaths Pro has no account to delete — you play anonymously. You can erase everything stored on your device right inside the app, and ask us to remove the leaderboard rows we hold for you in the cloud.</p>
         <div class="links">
           <a href={`/app/${app.slug}/privacy/`} class="link">Privacy Policy →</a>
           <span class="sep">•</span>
-          <a href={`mailto:dunitelabs.support@gmail.com?subject=${encodeURIComponent(`Delete my ${app.name} data`)}&body=${encodeURIComponent(`Please delete all my SpeedMaths Pro data.\n\nGoogle account email (if you signed in): `)}`} class="cta">Email to delete</a>
+          <a href={`mailto:dunitelabs.support@gmail.com?subject=${encodeURIComponent(`Delete my ${app.name} data`)}&body=${encodeURIComponent(`Please delete all my SpeedMaths Pro data.\n`)}`} class="cta">Email to delete</a>
         </div>
       </div>
 
       <div class="sections">
         <section>
-          <h2>Delete account in the app (recommended)</h2>
-          <p>Open <strong>SpeedMaths Pro</strong> → <strong>Profile</strong> → <strong>Settings</strong> → <strong>Delete account</strong> and confirm. The app permanently deletes your account and everything attached to it — your daily and weekly leaderboard rows, your public player card, your progress backup, and the account itself — then wipes the local history on your device. It needs no email and takes a few seconds.</p>
+          <h2>Clear data on your device</h2>
+          <p>SpeedMaths Pro has no account to delete — you play anonymously. To wipe the history stored on your phone — quiz results, practice sessions, level progress and streak — and your local preferences, open <strong>Profile</strong> → <strong>Settings</strong> → <strong>Clear All Data</strong>. Uninstalling the app also removes everything stored locally.</p>
         </section>
 
         <section>
-          <h2>Clear data on your device only</h2>
-          <p>Prefer to keep playing? Use <strong>Profile</strong> → <strong>Settings</strong> → <strong>Clear All Data</strong> to wipe only the on‐device history — quiz results, practice sessions, level progress and streak — and your local preferences, while keeping your account. Tap <strong>Log out</strong> to stop backing up and detach the Google account from this device.</p>
+          <h2>Delete your leaderboard data</h2>
+          <p>Your daily and weekly leaderboard rows are removed automatically within a few days as part of normal use. If you would like the cloud copy removed immediately, email <a href="mailto:dunitelabs.support@gmail.com">dunitelabs.support@gmail.com</a> with the subject <strong>"Delete my SpeedMaths Pro data"</strong>. We will remove your leaderboard rows and the anonymous identifier and reply with confirmation within <strong>48 hours</strong>.</p>
         </section>
 
         <section>
-          <h2>By email (if you cannot open the app)</h2>
-          <p>To delete the data we hold on our servers — your daily and weekly leaderboard rows, your public player card, any progress backup, and the account itself — send a message to <a href="mailto:dunitelabs.support@gmail.com">dunitelabs.support@gmail.com</a> with the subject <strong>"Delete my SpeedMaths Pro data"</strong>. If you signed in with Google, include the email address you used so we can locate the account. We will remove these records and reply with confirmation within <strong>48 hours</strong>.</p>
-        </section>
-
-        <section>
-          <h2>Playing without signing in</h2>
-          <p>You do not need an account to play. The app still creates a random anonymous identifier so your daily score can appear on the leaderboard; if you never entered a display name, nothing personally identifying is stored. Clearing the app's data (or uninstalling) removes the local copy, and you can email us to remove the anonymous leaderboard rows and identifier.</p>
+          <h2>Playing without an account</h2>
+          <p>You do not need an account to play. The app creates a random anonymous identifier so your scores can appear on the leaderboard; if you never entered a display name, nothing personally identifying is stored. Clearing the app's data (or uninstalling) removes the local copy, and you can email us to remove the anonymous leaderboard rows.</p>
         </section>
 
         <section>
           <h2>What happens after deletion</h2>
-          <p>Your cloud records — leaderboard rows, public player card, progress backup and account — are permanently removed, and your local data is erased. After deletion the device can no longer be linked to any prior activity, and any leaderboard entries will no longer appear.</p>
+          <p>Whatever is deleted is permanent: the on‐device history is erased, and any leaderboard rows we remove will no longer appear. After a local clear the device starts fresh — the next quiz creates a new anonymous identifier.</p>
         </section>
 
         <section class="contact">
           <h2>Contact for deletion requests</h2>
           <p>Email: <a href="mailto:dunitelabs.support@gmail.com">dunitelabs.support@gmail.com</a> — subject <strong>"Delete my SpeedMaths Pro data"</strong>. We confirm completion within 48 hours.</p>
-          <p>For Play Store Data Safety, this page (<code>/app/speedmaths-pro/delete-data/</code>) is the official data‑deletion URL.</p>
+          <p>For Play Store Data Safety, this page (<code>/app/speedmaths-pro/delete-data/</code>) is the official data‐deletion URL.</p>
         </section>
       </div>
 
@@ -93,14 +88,14 @@ const jsonld = [
   </div>
 
 <style>
-  .page{ min-height:100dvh; background:#F7F3EE; padding-bottom:24px }
-  .topbar{ max-width:860px; margin:0 auto; padding:14px 22px; display:flex; justify-content:space-between; gap:12px; align-items:center; font-family:"JetBrains Mono", monospace; font-size:11px; letter-spacing:0.1em }
-  .back{ display:flex; align-items:center; gap:8px; background:#0E0E0E; color:#fff; border:1.5px solid #0E0E0E; padding:6px 12px; font-weight:700; box-shadow:3px 3px 0 #0E0E0E }
-  .back.dark{ background:#fff; color:#0E0E0E; border-color:#0E0E0E }
+  .page{ min-height:100dvh; background:var(--bg); padding-bottom:24px }
+  .topbar{ max-width:var(--page-w); margin:0 auto; padding:14px 22px; display:flex; justify-content:space-between; gap:12px; align-items:center; font-family:"JetBrains Mono", monospace; font-size:11px; letter-spacing:0.1em }
+  .back{ display:flex; align-items:center; gap:8px; background:#0E0E0E; color:#fff; border:1.5px solid #0E0E0E; padding:6px 12px; font-weight:700; box-shadow:3px 3px 0 var(--line) }
+  .back.dark{ background:var(--card); color:var(--ink); border-color:var(--line) }
   .back img{ width:20px; height:20px }
   .top-mono{ opacity:0.6 }
-  .doc{ max-width:860px; margin:0 auto; padding:0 22px }
-  .doc-head{ background:#fff; border:2px solid var(--line); padding:22px; box-shadow:6px 6px 0 var(--line); margin-top:8px }
+  .doc{ max-width:var(--page-w); margin:0 auto; padding:0 22px }
+  .doc-head{ background:var(--card); border:2px solid var(--line); padding:22px; box-shadow:6px 6px 0 var(--line); margin-top:8px }
   .app-badge{ display:inline-flex; align-items:center; gap:8px; border:1.5px solid; padding:6px 10px; font-family:"Space Grotesk", sans-serif; font-weight:700; font-size:13px }
   .app-badge img{ width:22px; height:22px; object-fit:contain; background:#fff; border-radius:6px; padding:2px }
   h1{ margin:14px 0 6px; font-family:"Bricolage Grotesque", sans-serif; font-size:32px; letter-spacing:-0.04em; line-height:1 }
@@ -108,18 +103,24 @@ const jsonld = [
   .intro{ margin:12px 0 0; font-family:"Instrument Serif", serif; font-size:18px; line-height:1.4 }
   .links{ margin-top:12px; display:flex; gap:10px; align-items:center; font-family:"JetBrains Mono", monospace; font-size:11px; flex-wrap:wrap }
   .link{ border-bottom:1.5px solid var(--line); }
-  .cta{ background:#0E0E0E; color:#fff; padding:8px 12px; border:1.5px solid #0E0E0E; box-shadow:2px 2px 0 #0E0E0E }
+  .cta{ background:var(--ink); color:var(--bg); padding:8px 12px; border:1.5px solid var(--ink); box-shadow:2px 2px 0 var(--line) }
   .sep{ opacity:0.4 }
-  .sections{ margin-top:16px; background:#fff; border:2px solid var(--line); padding:22px; box-shadow:6px 6px 0 var(--line) }
-  section{ padding:14px 0; border-bottom:1px solid #00000012 }
+  .sections{ margin-top:16px; background:var(--card); border:2px solid var(--line); padding:22px; box-shadow:6px 6px 0 var(--line) }
+  section{ padding:14px 0; border-bottom:1px solid var(--hair) }
   section:last-child{ border-bottom:none }
   h2{ margin:0 0 6px; font-family:"Space Grotesk", sans-serif; font-size:15px; letter-spacing:-0.02em }
   p{ margin:0 0 12px; font-size:14px; line-height:1.7; opacity:0.85 }
   .contact a{ text-decoration:underline }
   .doc-foot{ display:flex; justify-content:space-between; gap:12px; align-items:center; margin-top:16px; font-family:"JetBrains Mono", monospace; font-size:11px }
+  @media(min-width:1000px){
+    .doc{ display:grid; grid-template-columns:minmax(300px, 380px) minmax(0, 1fr); gap:22px; align-items:start }
+    .doc-head{ margin-top:8px; position:sticky; top:16px }
+    .sections{ margin-top:8px }
+    .doc-foot{ grid-column:1 / -1; margin-top:0 }
+  }
   @media(max-width:768px){
     .topbar{ padding:10px 14px; flex-wrap:wrap; gap:8px; }
-    .back{ padding:5px 9px; font-size:11px; box-shadow:2px 2px 0 #0E0E0E; order:1; }
+    .back{ padding:5px 9px; font-size:11px; box-shadow:2px 2px 0 var(--line); order:1; }
     #theme-toggle{ order:2; margin-left:auto; }
     .top-mono{ font-size:9px; width:100%; text-align:left; order:3; }
     .doc{ padding:0 14px; }

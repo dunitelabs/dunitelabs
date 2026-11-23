@@ -1,9 +1,8 @@
 /**
  * The address printed on every public legal page.
  *
- * One constant, because Play, the OAuth consent screen and both policies have to agree —
- * a user who cannot reach support is a `Data safety` failure. Change it here and every page
- * follows.
+ * One constant, because Play and both policies have to agree — a user who cannot reach
+ * support is a `Data safety` failure. Change it here and every page follows.
  */
 export const contactEmail = "dunitelabs.support@gmail.com";
 

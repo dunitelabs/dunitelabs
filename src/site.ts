@@ -8,7 +8,7 @@ export const site = {
   description:
     "Dunite Labs is an independent app studio from India. We build Guava Music and Speedmaths Pro — offline-first, ad-free apps and tools that solve real problems.",
   email: "dunitelabs.support@gmail.com",
-  foundingDate: "2024",
+  foundingDate: "2025",
   social: {
     github: "https://github.com/dunitelabs",
     x: "https://x.com/dunitelabs",
