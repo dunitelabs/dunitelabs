@@ -85,21 +85,24 @@ const jsonld = [
 
         <div class="cta-row">
           {app.links.map((l) =>
-            l.kind === "playstore" ? (
-              <a class="cta badge-cta" href={l.href} target="_blank" rel="noopener" aria-label={`Get it on ${l.label}`}>
-                <img class="store-badge" src="/badges/google-play.png" alt={`Get it on ${l.label}`} width="564" height="168" decoding="async" />
+            l.kind === "playstore" || l.kind === "windows" ? (
+              <a class="cta badge-cta" href={l.href} target="_blank" rel="noopener" aria-label={l.kind === "playstore" ? "Get it on Google Play" : "Download from the Microsoft Store"}>
+                <img
+                  class="store-badge"
+                  src={l.kind === "playstore" ? "/badges/google-play.png" : "/badges/microsoft-store.svg"}
+                  alt={l.kind === "playstore" ? "Get it on Google Play" : "Download from the Microsoft Store"}
+                  width={l.kind === "playstore" ? "564" : "161"}
+                  height={l.kind === "playstore" ? "168" : "44"}
+                  decoding="async"
+                />
               </a>
             ) : (
               <a class="cta" href={l.href} target="_blank" rel="noopener">
                 <span class="cta-icon" aria-hidden="true">
-                  {l.kind === "windows" ? (
-                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M3 3h8.4v8.4H3zM12.6 3H21v8.4h-8.4zM3 12.6h8.4V21H3zM12.6 12.6H21V21h-8.4z"/></svg>
-                  ) : (
-                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20ZM2 12h20M12 2a15 15 0 0 1 4 10a15 15 0 0 1-4 10A15 15 0 0 1 8 12A15 15 0 0 1 12 2Z"/></svg>
-                  )}
+                  <svg viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20ZM2 12h20M12 2a15 15 0 0 1 4 10a15 15 0 0 1-4 10A15 15 0 0 1 8 12A15 15 0 0 1 12 2Z"/></svg>
                 </span>
                 <span class="cta-label">
-                  <span class="cta-kicker">{l.kind === "windows" ? "DOWNLOAD FOR" : "OPEN"}</span>
+                  <span class="cta-kicker">OPEN</span>
                   <span class="cta-title">{l.label}</span>
                 </span>
                 <span class="cta-arrow">↗</span>
