@@ -66,7 +66,7 @@ export const apps: App[] = [
       { label: "Windows", href: "https://play.google.com/store/apps/details?id=com.guava.music", kind: "windows" },
     ],
     stats: [
-      { label: "Phase", value: "v1 • Beta" },
+      { label: "Status", value: "Closed Testing" },
       { label: "Size", value: "~12 MB" },
       { label: "Mode", value: "Offline" },
     ],
@@ -127,8 +127,8 @@ export const apps: App[] = [
       { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.speedmathspro", kind: "playstore" },
     ],
     stats: [
-      { label: "Phase", value: "Early Access" },
-      { label: "Platform", value: "Android" },
+      { label: "Status", value: "Live" },
+      { label: "Downloads", value: "100+" },
       { label: "Focus", value: "Daily Drills" },
     ],
     features: ["Daily ranked quiz + leaderboard", "Custom practice: mix operations & difficulty", "Mastery game", "Tips & tricks with practice", "Profile heatmaps + badges", "Full attempt history"],
